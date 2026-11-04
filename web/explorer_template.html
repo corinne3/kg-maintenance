@@ -1,0 +1,463 @@
+<title>FAA Maintenance Knowledge Graph</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column (~1080px), stacked sections; the explorer is 2 columns, 1 below 820px.
+   Accent colour: the purple of hydraulic fluid (Skydrol). */
+:root {
+  --bg: #f5f5f8;
+  --surface: #ffffff;
+  --ink: #1d1b26;
+  --muted: #5f5b6e;
+  --line: #e1dfe9;
+  --line-strong: #c4c0d2;
+  --accent: #6a3fb5;
+  --accent-ink: #4f2c8f;
+  --accent-soft: #ede6f9;
+  --struct: #2f6584;
+  --struct-soft: #e2eef5;
+  --llm: #9a5b00;
+  --llm-soft: #fbefd9;
+  --warn: #a4362a;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131219; --surface: #1c1a25; --ink: #ecebf2; --muted: #a6a2b6;
+    --line: #302d3c; --line-strong: #4a4659; --accent: #a98bea; --accent-ink: #c8b4f3;
+    --accent-soft: #2c2443; --struct: #82b2cf; --struct-soft: #1d2f3b;
+    --llm: #e2a650; --llm-soft: #3a2b14; --warn: #f08a7c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131219; --surface: #1c1a25; --ink: #ecebf2; --muted: #a6a2b6;
+  --line: #302d3c; --line-strong: #4a4659; --accent: #a98bea; --accent-ink: #c8b4f3;
+  --accent-soft: #2c2443; --struct: #82b2cf; --struct-soft: #1d2f3b;
+  --llm: #e2a650; --llm-soft: #3a2b14; --warn: #f08a7c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body);
+  font-size: 15px; line-height: 1.55;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 64px;
+  display: grid; gap: 56px;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: 0.005em; }
+h1 { font-size: clamp(2.3rem, 5.6vw, 3.6rem); }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.lead { font-size: 1.08rem; color: var(--muted); }
+section { display: grid; gap: 18px; }
+.head { display: grid; gap: 14px; }
+.note { font-size: 0.86rem; color: var(--muted); }
+code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
+
+/* Chiffres clés */
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.fig {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 14px 16px; display: grid; gap: 4px; align-content: start;
+}
+.fig b { font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.fig b .vs { color: var(--muted); font-weight: 500; font-size: 1.4rem; }
+.fig span { font-size: 0.86rem; color: var(--muted); }
+
+/* Barres */
+.bars { display: grid; gap: 8px; }
+.bar { display: grid; grid-template-columns: minmax(130px, 260px) 1fr; gap: 12px; align-items: center; }
+.bar .lab { font-size: 0.9rem; text-align: right; color: var(--muted); }
+.bar .track { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.bar .fill { height: 18px; border-radius: 0 4px 4px 0; background: var(--accent); min-width: 2px; }
+.bar .fill.grey { background: var(--line-strong); }
+.bar .fill.struct { background: var(--struct); }
+.bar .val { font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+@media (max-width: 560px) {
+  .bar { grid-template-columns: 1fr; gap: 2px; }
+  .bar .lab { text-align: left; }
+}
+
+.compare { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.compare th, .compare td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.compare th { font-weight: 600; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.compare td.n { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+.compare .big { font-weight: 600; color: var(--accent-ink); }
+.scroll { overflow-x: auto; }
+
+/* Explorateur */
+.explorer { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 820px) { .explorer { grid-template-columns: 1fr; } }
+.partlist { display: grid; gap: 4px; max-height: 620px; overflow-y: auto; padding-right: 4px; }
+@media (max-width: 820px) { .partlist { max-height: 260px; } }
+.partbtn {
+  font: inherit; text-align: left; cursor: pointer; color: var(--ink);
+  background: transparent; border: 1px solid transparent; border-radius: 5px;
+  padding: 8px 10px; display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: baseline;
+}
+.partbtn:hover { background: var(--surface); border-color: var(--line); }
+.partbtn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.partbtn .cnt { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.partbtn:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: grid; gap: 16px; min-width: 0; }
+.panel-head { display: grid; gap: 8px; }
+.split { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.92rem; }
+.split b { font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-family: var(--font-mono); font-size: 0.78rem; padding: 3px 8px; border-radius: 4px;
+  background: var(--accent-soft); color: var(--accent-ink); white-space: nowrap;
+}
+.chip i { font-style: normal; color: var(--muted); margin-left: 4px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.controls input[type="search"] {
+  font: inherit; font-size: 0.92rem; padding: 7px 10px; border-radius: 5px;
+  border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); min-width: 0; flex: 1 1 220px;
+}
+.controls label { font-size: 0.9rem; display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.reports { display: grid; gap: 6px; }
+details.rep { border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+details.rep[open] { background: var(--surface); border-color: var(--line-strong); }
+details.rep summary {
+  cursor: pointer; list-style: none; padding: 9px 12px; display: flex; flex-wrap: wrap; gap: 4px 14px;
+  align-items: baseline; font-size: 0.88rem;
+}
+details.rep summary::-webkit-details-marker { display: none; }
+details.rep summary .id { font-family: var(--font-mono); font-weight: 500; }
+details.rep summary .meta { color: var(--muted); }
+details.rep summary .flag { font-size: 0.75rem; color: var(--warn); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.rep-body { padding: 0 12px 14px; display: grid; gap: 12px; }
+.text {
+  font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.65; white-space: pre-wrap;
+  overflow-wrap: anywhere; background: var(--bg); border-radius: 5px; padding: 10px 12px; border: 1px solid var(--line);
+}
+.text mark { background: transparent; color: inherit; border-bottom: 2px solid var(--line-strong); padding: 0 1px; }
+.text mark.on { background: var(--accent-soft); border-bottom-color: var(--accent); color: var(--accent-ink); }
+.prov { display: grid; gap: 6px; font-size: 0.86rem; }
+.prov-row { display: grid; grid-template-columns: 112px 1fr; gap: 10px; align-items: baseline; }
+@media (max-width: 480px) { .prov-row { grid-template-columns: 1fr; gap: 2px; } }
+.src { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 3px; justify-self: start; }
+.src.s { background: var(--struct-soft); color: var(--struct); }
+.src.d { background: var(--accent-soft); color: var(--accent-ink); }
+.src.l { background: var(--llm-soft); color: var(--llm); }
+.more { font: inherit; font-size: 0.9rem; cursor: pointer; justify-self: start; background: transparent; color: var(--accent-ink); border: 1px solid var(--line-strong); border-radius: 5px; padding: 6px 12px; }
+.empty { color: var(--muted); font-size: 0.9rem; }
+
+/* Parcours GraphRAG */
+.hopbox { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: grid; gap: 16px; }
+.hop-ctl { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden; }
+.seg button { font: inherit; font-size: 0.9rem; padding: 6px 14px; border: 0; background: transparent; color: var(--ink); cursor: pointer; font-variant-numeric: tabular-nums; }
+.seg button + button { border-left: 1px solid var(--line-strong); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+
+.twocol { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.codecard { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; align-content: start; }
+pre.code { margin: 0; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 10px 12px; overflow-x: auto; }
+
+.traps { display: grid; gap: 10px; }
+.trap { display: grid; grid-template-columns: 150px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.trap:first-child { border-top: 0; }
+.trap h3 { font-size: 1.05rem; }
+@media (max-width: 560px) { .trap { grid-template-columns: 1fr; gap: 4px; } }
+
+footer { border-top: 1px solid var(--line); padding-top: 20px; display: grid; gap: 8px; font-size: 0.86rem; color: var(--muted); }
+footer a { color: var(--accent-ink); }
+@media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.35s ease; } }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div class="eyebrow">FAA Service Difficulty Reports · 2025 · ATA 29 Hydraulic Power</div>
+    <h1>Where maintenance knowledge graphs break</h1>
+    <p class="lead" id="lead"></p>
+    <p class="note">Case study on real public data: <a href="https://www.faa.gov/av-info/download_SDR" target="_blank" rel="noopener" style="color:var(--accent-ink)">FAA Service Difficulty Reports (download page)</a>, 2025 file, 514 reports with JASC codes 29xx. Code written with an AI assistant; framing, design decisions and analysis by Corinne Bergès.</p>
+  </header>
+
+  <section aria-label="Key figures">
+    <div class="figures" id="figures"></div>
+  </section>
+
+  <section id="pompes">
+    <div class="head">
+      <div class="eyebrow">Pitfall 1 · Entity resolution</div>
+      <h2>The structured field says “PUMP”. Which one?</h2>
+      <p id="pump-intro"></p>
+    </div>
+    <div class="bars" id="pump-bars"></div>
+    <div class="scroll">
+      <table class="compare">
+        <thead><tr><th>Question asked of the graph</th><th style="text-align:right">Structured field only</th><th style="text-align:right">Structured + text</th></tr></thead>
+        <tbody id="pump-table"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="explorer">
+    <div class="head">
+      <div class="eyebrow">Explore</div>
+      <h2>Every link has a source</h2>
+      <p>Pick a part type. Open a report to see the original text, the words that were recognised, and where each link in the graph comes from.</p>
+    </div>
+    <div class="explorer">
+      <nav class="partlist" id="partlist" aria-label="Part types"></nav>
+      <div class="panel" id="panel"></div>
+    </div>
+  </section>
+
+  <section id="graphrag">
+    <div class="head">
+      <div class="eyebrow">Pitfall 2 · Hubs</div>
+      <h2>Naive GraphRAG pulls in the whole graph</h2>
+      <p>Test question: <em>“What problems affect engine-driven pumps (EDP)?”</em> A naive traversal starts at the EDP node and takes everything within N hops. It passes through highly connected nodes (a classification code, the “LEAKING” condition, a manufacturer…) and soon returns almost everything.</p>
+    </div>
+    <div class="hopbox">
+      <div class="hop-ctl">
+        <span class="note">Number of hops</span>
+        <div class="seg" id="hopseg" role="group" aria-label="Number of hops"></div>
+      </div>
+      <div class="bars" id="hop-bars"></div>
+      <p class="note" id="hop-note"></p>
+    </div>
+    <div class="twocol">
+      <div class="codecard">
+        <h3>Most connected nodes</h3>
+        <div class="bars" id="hub-bars"></div>
+      </div>
+      <div class="codecard">
+        <h3>What it means</h3>
+        <p id="hub-text"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="modeles">
+    <div class="head">
+      <div class="eyebrow">Pitfall 3 · Choosing a model</div>
+      <h2>Property graph or RDF: same facts, two worlds</h2>
+      <p id="rdf-intro"></p>
+    </div>
+    <div class="twocol">
+      <div class="codecard">
+        <h3>Cypher · Neo4j, FalkorDB</h3>
+<pre class="code">MATCH (p:PartType {key:'ENGINE_DRIVEN_PUMP'})
+      &lt;-[:INVOLVES_PART]-(r:Report)
+      -[:HAS_CONDITION]-&gt;(c:Condition)
+RETURN c.label AS condition,
+       count(DISTINCT r) AS reports
+ORDER BY reports DESC</pre>
+        <p class="note">Provenance (source, report, supporting text) is simply a property of the <code>INVOLVES_PART</code> relationship.</p>
+      </div>
+      <div class="codecard">
+        <h3>SPARQL · rdflib, Oxigraph, GraphDB</h3>
+<pre class="code">SELECT ?condition (COUNT(DISTINCT ?r) AS ?reports)
+WHERE {
+  ?r kg:INVOLVES_PART kg:PartType_ENGINE_DRIVEN_PUMP ;
+     kg:HAS_CONDITION ?c .
+  ?c rdfs:label ?condition .
+} GROUP BY ?condition ORDER BY DESC(?reports)</pre>
+        <p class="note">An RDF triple cannot carry properties: to keep provenance, each fact becomes an <code>rdf:Statement</code> node (reification).</p>
+      </div>
+    </div>
+    <div class="bars" id="rdf-bars"></div>
+  </section>
+
+  <section id="pieges">
+    <div class="head">
+      <div class="eyebrow">Logbook</div>
+      <h2>What you only see by opening the data</h2>
+    </div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <footer>
+    <div>Data: <a href="https://www.faa.gov/av-info/download_SDR" target="_blank" rel="noopener">FAA Service Difficulty Reports</a>, 2025 file, filtered on JASC codes 29xx.</div>
+    <div>Stack: Python, pandas, NetworkX, rdflib (SPARQL), Cypher export for Neo4j / FalkorDB, Ollama for LLM extraction. Fully local, on a laptop with no GPU.</div>
+  </footer>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => n.toLocaleString("en-US");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pct = (a, b) => Math.round((100 * a) / b) + "%";
+const L = D.labels;
+
+function bars(el, rows, max) {
+  el.innerHTML = rows.map((r) => `
+    <div class="bar"><div class="lab">${esc(r.label)}</div>
+      <div class="track"><div class="fill ${r.cls || ""}" style="width:${Math.max(0.3, (100 * r.value) / max)}%"></div>
+      <span class="val">${r.text ?? fmt(r.value)}</span></div></div>`).join("");
+}
+
+const edp = D.parts.find((p) => p.key === "ENGINE_DRIVEN_PUMP");
+const emp = D.parts.find((p) => p.key === "ELECTRIC_MOTOR_PUMP");
+const h3 = D.hops.find((h) => h.h === 3);
+
+$("lead").textContent = `${fmt(D.nReports)} real hydraulic incident reports, turned into a knowledge graph. The goal is not a demo that works. It is to make visible, with numbers, the problems teams run into when they build these graphs from industrial data.`;
+
+$("figures").innerHTML = [
+  [`<span class="vs">0 →</span> ${edp.nAll}`, "reports about an engine-driven pump: structured field only, then reading the free text"],
+  ["15", "ways the text spells “engine-driven pump” (ignoring engine numbers and plurals)"],
+  [String(D.ambiguous.length), "“PUMP” reports that mention several pumps: which one failed?"],
+  [pct(h3.naive, D.nNodes), "of the graph returned by a naive 3-hop traversal"],
+  [`×${Math.round(D.rdfTotal / D.nDistinct)}`, "more triples in RDF when every fact keeps its provenance"],
+].map(([b, s]) => `<div class="fig"><b>${b}</b><span>${s}</span></div>`).join("");
+
+// ---- Pompes
+const po = D.pumpOutcome;
+$("pump-intro").textContent = `In ${D.pumpTotal} reports, the PartName field just says “PUMP”, so the graph cannot tell which pump is involved. The free text often does say, if you can read its abbreviations: EDP, ENG 1 PUMP, ACMP, EMDP…`;
+const pumpRows = [
+  ["Engine-driven pump (EDP)", po.ENGINE_DRIVEN_PUMP || 0, ""],
+  ["Electric motor pump (ACMP / EMDP)", po.ELECTRIC_MOTOR_PUMP || 0, ""],
+  ["PTU", po.POWER_TRANSFER_UNIT || 0, ""],
+  ["RAT", po.RAM_AIR_TURBINE || 0, ""],
+  ["Several pumps mentioned", po.AMBIGU || 0, "grey"],
+  ["Text just as vague (“HYD PUMP”)", po.IMPRECIS || 0, "grey"],
+  ["No pump in the text", po.AUCUNE || 0, "grey"],
+].map(([label, value, cls]) => ({ label, value, cls }));
+bars($("pump-bars"), pumpRows, Math.max(...pumpRows.map((r) => r.value)));
+$("pump-table").innerHTML = [
+  ["How many reports involve an engine-driven pump (EDP)?", edp.nStruct, edp.nAll],
+  ["How many reports involve an electric motor pump?", emp.nStruct, emp.nAll],
+].map(([q, a, b]) => `<tr><td>${q}</td><td class="n">${a}</td><td class="n big">${b}</td></tr>`).join("");
+
+// ---- Explorateur
+let current = "ENGINE_DRIVEN_PUMP", shown = 15;
+const ambSet = new Set(D.ambiguous);
+$("partlist").innerHTML = D.parts.map((p) => `
+  <button class="partbtn" type="button" data-key="${p.key}" aria-pressed="${p.key === current}">
+    <span>${esc(p.label)}</span><span class="cnt">${p.nAll}</span></button>`).join("");
+$("partlist").addEventListener("click", (e) => {
+  const b = e.target.closest(".partbtn"); if (!b) return;
+  current = b.dataset.key; shown = 15;
+  document.querySelectorAll(".partbtn").forEach((x) => x.setAttribute("aria-pressed", x.dataset.key === current));
+  renderPanel();
+});
+
+function highlight(r, key) {
+  const ms = [...r.m].sort((a, b) => a.s - b.s);
+  let out = "", pos = 0;
+  for (const m of ms) {
+    if (m.s < pos) continue;
+    out += esc(r.text.slice(pos, m.s));
+    out += `<mark class="${m.t === key ? "on" : ""}" title="${esc(L[m.t])}">${esc(r.text.slice(m.s, m.e))}</mark>`;
+    pos = m.e;
+  }
+  return out + esc(r.text.slice(pos));
+}
+
+function provenance(r) {
+  const rows = [];
+  if (r.pn) rows.push(`<div class="prov-row"><span class="src s">Structured</span><span>PartName = <code>${esc(r.pn)}</code> → ${r.sp ? esc(L[r.sp]) : "<em>not recognised</em>"}${r.cond ? ` · condition <code>${esc(r.cond)}</code>` : ""}</span></div>`);
+  const seen = new Set();
+  for (const m of r.m) {
+    const k = m.t + "|" + r.text.slice(m.s, m.e);
+    if (seen.has(k)) continue; seen.add(k);
+    rows.push(`<div class="prov-row"><span class="src d">Dictionary</span><span><code>${esc(r.text.slice(m.s, m.e))}</code> → ${esc(L[m.t])}</span></div>`);
+  }
+  if (r.amm.length) rows.push(`<div class="prov-row"><span class="src d">Dictionary</span><span>Maintenance manual tasks: ${r.amm.map((a) => `<code>AMM ${a}</code>`).join(", ")}</span></div>`);
+  if (r.llm) {
+    const v = r.llm;
+    const txt = v.invalid ? "invalid JSON output" :
+      `failed: ${(v.faulty || []).map((x) => `<code>${esc(x)}</code>`).join(", ") || "none"} · only mentioned: ${(v.mentioned || []).map((x) => `<code>${esc(x)}</code>`).join(", ") || "none"} · ${v.sec} s`;
+    rows.push(`<div class="prov-row"><span class="src l">LLM</span><span>${txt}</span></div>`);
+  }
+  return rows.join("");
+}
+
+function renderPanel() {
+  const p = D.parts.find((x) => x.key === current);
+  const q = ($("q")?.value || "").trim().toUpperCase();
+  const onlyAmb = $("amb")?.checked || false;
+  const rank = (id) => (ambSet.has(id) ? 0 : D.reports[id].sp === "HYDRAULIC_PUMP_UNSPECIFIED" ? 1 : D.reports[id].sp === current ? 2 : 3);
+  let ids = [...p.ids].sort((a, b) => rank(a) - rank(b));
+  if (q) ids = ids.filter((id) => D.reports[id].text.includes(q) || id.includes(q));
+  if (onlyAmb) ids = ids.filter((id) => ambSet.has(id));
+  const isPump = ["ENGINE_DRIVEN_PUMP", "ELECTRIC_MOTOR_PUMP", "POWER_TRANSFER_UNIT", "RAM_AIR_TURBINE", "HYDRAULIC_PUMP_UNSPECIFIED"].includes(p.key);
+  $("panel").innerHTML = `
+    <div class="panel-head">
+      <h3>${esc(p.label)}</h3>
+      <div class="split">
+        <span>Structured field: <b>${p.nStruct}</b> reports</span>
+        <span>Free text (dictionary): <b>${p.nText}</b> reports</span>
+        <span>Linked in the graph: <b>${p.nAll}</b></span>
+      </div>
+    </div>
+    <div class="panel-head">
+      <span class="eyebrow">Spellings found in the text (number of mentions)</span>
+      <div class="chips">${p.variants.length ? p.variants.map(([v, n]) => `<span class="chip">${esc(v)}<i>${n}</i></span>`).join("") : '<span class="empty">None: this type only appears in the structured field.</span>'}</div>
+    </div>
+    <div class="controls">
+      <input type="search" id="q" placeholder="Filter: word in the text or report number" value="${esc(q)}" aria-label="Filter reports">
+      ${isPump ? `<label><input type="checkbox" id="amb" ${onlyAmb ? "checked" : ""}> Ambiguous reports only</label>` : ""}
+      <span class="note">${ids.length} report${ids.length === 1 ? "" : "s"}</span>
+    </div>
+    <div class="reports">${ids.slice(0, shown).map((id) => {
+      const r = D.reports[id];
+      return `<details class="rep"><summary><span class="id">${esc(id)}</span>
+        <span class="meta">${esc(r.date)} · ${esc(r.make)} ${esc(r.fam)} · ${esc(r.op)}${r.cond ? " · " + esc(r.cond) : ""}</span>
+        ${ambSet.has(id) ? '<span class="flag">ambiguous</span>' : ""}</summary>
+        <div class="rep-body"><div class="text">${highlight(r, current)}</div><div class="prov">${provenance(r)}</div></div></details>`;
+    }).join("") || '<p class="empty">No report matches this filter.</p>'}</div>
+    ${ids.length > shown ? `<button class="more" id="more" type="button">Show ${Math.min(15, ids.length - shown)} more</button>` : ""}`;
+  $("q").addEventListener("input", debounce(() => { shown = 15; renderPanel(); $("q").focus(); const v = $("q").value; $("q").setSelectionRange(v.length, v.length); }, 250));
+  $("amb")?.addEventListener("change", () => { shown = 15; renderPanel(); });
+  $("more")?.addEventListener("click", () => { shown += 15; renderPanel(); });
+}
+function debounce(fn, ms) { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; }
+renderPanel();
+
+// ---- Parcours
+let hop = 3;
+$("hopseg").innerHTML = D.hops.map((h) => `<button type="button" data-h="${h.h}" aria-pressed="${h.h === hop}">${h.h}</button>`).join("");
+$("hopseg").addEventListener("click", (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  hop = +b.dataset.h;
+  document.querySelectorAll("#hopseg button").forEach((x) => x.setAttribute("aria-pressed", +x.dataset.h === hop));
+  renderHops();
+});
+function renderHops() {
+  const h = D.hops.find((x) => x.h === hop);
+  bars($("hop-bars"), [
+    { label: "Naive traversal", value: h.naive, text: `${fmt(h.naive)} nodes · ${pct(h.naive, D.nNodes)}`, cls: "grey" },
+    { label: "Blocking hubs (≥ 50 neighbours)", value: h.guarded, text: `${fmt(h.guarded)} nodes · ${pct(h.guarded, D.nNodes)}`, cls: "grey" },
+    { label: "Schema-guided query", value: D.typed, text: `${fmt(D.typed)} nodes · ${pct(D.typed, D.nNodes)}` },
+  ], D.nNodes);
+  $("hop-note").textContent = `The graph has ${fmt(D.nNodes)} nodes. The guided query follows one path defined by the ontology (part ← report → condition or manual task), so it does not depend on the number of hops.`;
+}
+renderHops();
+bars($("hub-bars"), D.hubs.map((h) => ({ label: `${h.label}`, value: h.deg, cls: h.type === "PartType" ? "" : "struct" })), D.hubs[0].deg);
+$("hub-text").innerHTML = `Blocking hubs barely helps: at 3 hops it only goes from ${pct(h3.naive, D.nNodes)} to ${pct(h3.guarded, D.nNodes)} of the graph. What works is querying the graph through its ontology. Another signal: <strong>the “pump, type not specified” node is itself a hub</strong>. A poorly resolved entity attracts noise.`;
+
+// ---- RDF
+$("rdf-intro").textContent = `Both exports start from the same ${fmt(D.nDistinct)} distinct facts and give the same answers (checked: identical engine-driven pump counts in the graph and in SPARQL). The difference is provenance.`;
+bars($("rdf-bars"), [
+  { label: "Distinct facts (report → part, etc.)", value: D.nDistinct, cls: "struct" },
+  { label: "RDF triples with provenance", value: D.rdfTotal },
+], D.rdfTotal);
+
+// ---- Pièges
+const traps = [
+  ["“EMP” is not a pump", `In “ADD EMP:U349218”, EMP is an employee number, not an <em>Electric Motor Pump</em>. All 5 occurrences in scope were employees. The rule was only fixed by reading real examples by hand.`],
+  ["Mentioned ≠ failed", `${D.ambiguous.length} “PUMP” reports mention several pumps, some only switched off or checked. A dictionary finds the words, not the role of the part. That is where an LLM is useful, and only there.`],
+  ["The condition may belong to another part", `PartCondition (LEAKING, FAILED…) describes the part in the structured field. If the text is about an EDP but the structured field names a hose, the condition is not necessarily the EDP’s.`],
+  ["The ontology has gaps", `${D.unmapped.n} PartName values (${D.unmapped.reports} reports) match no part type: ${D.unmapped.top.slice(0, 6).map(([k]) => `<code>${esc(k)}</code>`).join(", ")}… Each one is a decision: add it, group it, or ignore it.`],
+  ["A local LLM is slow", `On a laptop with no GPU, a 3-billion-parameter model takes about 2 minutes per report, and it sometimes invents types outside the allowed list (“PRESSURE_SWITCH S29”). So it is only used where the dictionary fails.`],
+];
+$("traps").innerHTML = traps.map(([t, x]) => `<div class="trap"><h3>${t}</h3><p>${x}</p></div>`).join("");
+</script>

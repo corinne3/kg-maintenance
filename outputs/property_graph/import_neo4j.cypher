@@ -1,0 +1,20 @@
+// Généré par run_step1.py à partir de l'ontologie du domaine
+
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'Report' MERGE (n:Report {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'Aircraft' MERGE (n:Aircraft {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'AircraftModel' MERGE (n:AircraftModel {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'Manufacturer' MERGE (n:Manufacturer {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'Operator' MERGE (n:Operator {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'JascCode' MERGE (n:JascCode {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'PartType' MERGE (n:PartType {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'Condition' MERGE (n:Condition {id: row.id}) SET n.key = row.key, n.label = row.label;
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row WITH row WHERE row.type = 'AmmTask' MERGE (n:AmmTask {id: row.id}) SET n.key = row.key, n.label = row.label;
+
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'CONCERNS' MATCH (a:Report {id: row.start}), (b:Aircraft {id: row.end}) CREATE (a)-[:CONCERNS {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'IS_MODEL' MATCH (a:Aircraft {id: row.start}), (b:AircraftModel {id: row.end}) CREATE (a)-[:IS_MODEL {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'MADE_BY' MATCH (a:AircraftModel {id: row.start}), (b:Manufacturer {id: row.end}) CREATE (a)-[:MADE_BY {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'REPORTED_BY' MATCH (a:Report {id: row.start}), (b:Operator {id: row.end}) CREATE (a)-[:REPORTED_BY {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'CLASSIFIED_AS' MATCH (a:Report {id: row.start}), (b:JascCode {id: row.end}) CREATE (a)-[:CLASSIFIED_AS {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'INVOLVES_PART' MATCH (a:Report {id: row.start}), (b:PartType {id: row.end}) CREATE (a)-[:INVOLVES_PART {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'HAS_CONDITION' MATCH (a:Report {id: row.start}), (b:Condition {id: row.end}) CREATE (a)-[:HAS_CONDITION {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row.relation = 'REFERENCES' MATCH (a:Report {id: row.start}), (b:AmmTask {id: row.end}) CREATE (a)-[:REFERENCES {source: row.source, record_id: row.record_id, evidence: row.evidence}]->(b);

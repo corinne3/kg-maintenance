@@ -1,0 +1,100 @@
+"""Exports : property graph (CSV pour Neo4j / FalkorDB) et RDF (Turtle).
+
+Les deux exports partent des mêmes faits. La différence la plus visible :
+la PROVENANCE. En property graph, elle se met naturellement en propriété
+de l'arête. En RDF, un triplet n'a pas de propriétés : il faut « réifier »
+le triplet (le transformer en nœud) pour lui attacher sa source.
+"""
+from __future__ import annotations
+
+import csv
+import re
+from pathlib import Path
+
+from kgcore.facts import Fact
+
+NS = "http://example.org/kg#"
+
+
+# ---------------------------------------------------------------- property graph
+def export_property_graph(facts: list[Fact], outdir: Path) -> None:
+    outdir.mkdir(parents=True, exist_ok=True)
+    nodes = {}
+    for f in facts:
+        nodes[f.subject.id] = f.subject
+        nodes[f.object.id] = f.object
+    with open(outdir / "nodes.csv", "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["id", "type", "key", "label"])
+        for n in nodes.values():
+            w.writerow([n.id, n.type, n.key, n.label])
+    with open(outdir / "edges.csv", "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["start", "relation", "end", "source", "record_id", "evidence"])
+        for f in facts:
+            w.writerow([f.subject.id, f.relation, f.object.id, f.source,
+                        f.record_id, f.evidence])
+
+
+def cypher_import_script(ontology: dict, path: Path) -> None:
+    """Script Cypher pour charger nodes.csv / edges.csv dans Neo4j.
+
+    Copier les deux CSV dans le dossier « import » de la base Neo4j.
+    Une instruction par type (Neo4j n'accepte pas de label dynamique sans APOC).
+    """
+    out = ["// Généré par run_step1.py à partir de l'ontologie du domaine", ""]
+    for t in ontology["node_types"]:
+        out += [f"LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row "
+                f"WITH row WHERE row.type = '{t}' "
+                f"MERGE (n:{t} {{id: row.id}}) SET n.key = row.key, n.label = row.label;"]
+    out += [""]
+    for rel, (s, o) in ontology["relations"].items():
+        out += [f"LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row "
+                f"WITH row WHERE row.relation = '{rel}' "
+                f"MATCH (a:{s} {{id: row.start}}), (b:{o} {{id: row.end}}) "
+                f"CREATE (a)-[:{rel} {{source: row.source, record_id: row.record_id, "
+                f"evidence: row.evidence}}]->(b);"]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(out) + "\n", encoding="utf-8")
+
+
+# ---------------------------------------------------------------- RDF
+def _iri(node) -> str:
+    key = re.sub(r"[^A-Za-z0-9_\-]", "_", node.key)
+    return f"kg:{node.type}_{key}"
+
+
+def _lit(s: str) -> str:
+    s = (s or "").replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ").replace("\r", " ")
+    return f'"{s}"'
+
+
+def export_turtle(facts: list[Fact], path: Path, reify: bool = True) -> None:
+    lines = [f"@prefix kg: <{NS}> .",
+             "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .",
+             "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .", ""]
+    seen = set()
+    for f in facts:
+        for n in (f.subject, f.object):
+            if n.id not in seen:
+                seen.add(n.id)
+                lines.append(f"{_iri(n)} rdf:type kg:{n.type} ; rdfs:label {_lit(n.label or n.key)} .")
+    lines.append("")
+    done = set()
+    for i, f in enumerate(facts):
+        triple = (_iri(f.subject), f.relation, _iri(f.object))
+        if triple not in done:  # en RDF, un même triplet n'existe qu'une fois
+            done.add(triple)
+            lines.append(f"{triple[0]} kg:{f.relation} {triple[2]} .")
+        if reify:
+            lines.append(
+                f"kg:assertion_{i} rdf:type rdf:Statement ; "
+                f"rdf:subject {triple[0]} ; rdf:predicate kg:{f.relation} ; rdf:object {triple[2]} ; "
+                f"kg:source {_lit(f.source)} ; kg:fromReport {_iri_report(f.record_id)} ; "
+                f"kg:evidence {_lit(f.evidence)} .")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _iri_report(rid: str) -> str:
+    return "kg:Report_" + re.sub(r"[^A-Za-z0-9_\-]", "_", rid)

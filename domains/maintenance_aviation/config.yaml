@@ -1,0 +1,198 @@
+# =====================================================================
+# Domaine : maintenance aéronautique — chapitre ATA 29 (hydraulique)
+# Source  : FAA Service Difficulty Reports (SDR), année 2025
+#
+# Tout ce qui est propre au domaine est ici. Le code de kgcore/ est
+# générique : un autre domaine = un autre dossier avec son config.yaml.
+# Les choix marqués [D1], [D2]... sont expliqués dans DECISIONS.md.
+# =====================================================================
+
+name: maintenance_aviation
+description: "Rapports d'incidents hydrauliques (ATA 29) déclarés à la FAA en 2025"
+
+source:
+  file: data/SDR-2025.csv
+  encoding: latin1
+  id_column: OperatorControlNumber
+  text_column: Discrepancy
+  date_column: DifficultyDate
+
+# [D1] Périmètre : chapitre ATA 29 (codes JASC 29xx)
+filter:
+  column: JASCCode
+  startswith: "29"
+
+# ---------------------------------------------------------------------
+# Ontologie : types de nœuds et de relations
+# ---------------------------------------------------------------------
+ontology:
+  node_types:
+    Report:        "Un rapport d'incident (une ligne du fichier FAA)"
+    Aircraft:      "Un avion précis (immatriculation)"
+    AircraftModel: "Famille d'avion (A320, 737...)"
+    Manufacturer:  "Constructeur"
+    Operator:      "Compagnie ou atelier qui déclare"
+    JascCode:      "Code de classification FAA (proche des chapitres ATA)"
+    PartType:      "Type de pièce normalisé [D2]"
+    Condition:     "État constaté de la pièce (LEAKING, CRACKED...)"
+    AmmTask:       "Tâche du manuel de maintenance citée dans le texte"
+  relations:
+    CONCERNS:       [Report, Aircraft]
+    IS_MODEL:       [Aircraft, AircraftModel]
+    MADE_BY:        [AircraftModel, Manufacturer]
+    REPORTED_BY:    [Report, Operator]
+    CLASSIFIED_AS:  [Report, JascCode]
+    INVOLVES_PART:  [Report, PartType]
+    HAS_CONDITION:  [Report, Condition]
+    REFERENCES:     [Report, AmmTask]
+
+# ---------------------------------------------------------------------
+# Entity resolution — constructeurs
+# Les codes FAA sont abrégés. [D5] CNDAIR (Canadair) et BOMBDR
+# (Bombardier) : faut-il les fusionner ? Par défaut : non, on garde
+# la distinction et on la signale.
+# ---------------------------------------------------------------------
+manufacturers:
+  AIRBUS: Airbus
+  BOEING: Boeing
+  EMB: Embraer
+  CNDAIR: Canadair (Bombardier)
+  BOMBDR: Bombardier
+  DOUG: McDonnell Douglas
+  CESSNA: Cessna
+  DHAV: De Havilland
+  SKRSKY: Sikorsky
+  BOLKMS: Bolkow (MBB)
+  AGUSTA: Agusta
+  SNIAS: Aerospatiale (SNIAS)
+  AEROSP: Aerospatiale
+  BELL: Bell
+  TEXTRN: Textron
+  PIPER: Piper
+  LEAR: Learjet
+  SAAB: Saab
+  LKHEED: Lockheed
+  BEECH: Beechcraft
+  RAYTHN: Raytheon
+  FRCHLD: Fairchild
+  SWRNGN: Swearingen
+  AMD: Dassault (AMD)
+
+# Familles d'avions : le code modèle FAA (ex. A320232, 737823) est
+# ramené à une famille par expression régulière, dans cet ordre.
+model_families:
+  - {pattern: "^A3(\\d\\d)",      family: "A3{0}"}
+  - {pattern: "^A2(\\d\\d)",      family: "A2{0}"}
+  - {pattern: "^7(\\d7)",         family: "7{0}"}
+  - {pattern: "^ERJ|^EMB|^ERJ1",  family: "ERJ"}
+  - {pattern: "^CL",              family: "CRJ/Challenger"}
+
+# ---------------------------------------------------------------------
+# Entity resolution — types de pièces [D2]
+# Chaque type canonique a une liste de variantes (expressions
+# régulières sur le texte en MAJUSCULES). L'ordre compte : les types
+# précis passent avant les types génériques.
+# [D4] ACMP (Boeing) et EMDP/ELEC PUMP : même type « pompe électrique »
+# ou deux types ? Par défaut : fusionnés.
+# ---------------------------------------------------------------------
+part_types:
+  ENGINE_DRIVEN_PUMP:
+    label: "Pompe entraînée par le moteur (EDP)"
+    label_en: "Engine-driven pump (EDP)"
+    aliases:
+      - "\\bEDPS?\\b"
+      - "\\bENG(INE)?[ -]?DRIVEN (HYD(RAULIC)? )?PUMPS?\\b"
+      - "\\bENG(INE)?\\s*(#|NO\\.?\\s*)?\\d?\\s*(HYD(RAULIC)? )?PUMPS?\\b"
+  ELECTRIC_MOTOR_PUMP:
+    label: "Pompe à moteur électrique (ACMP / EMDP)"
+    label_en: "Electric motor pump (ACMP / EMDP)"
+    aliases:
+      - "\\bACMPS?\\b"
+      - "\\bEMDPS?\\b"
+      # Piège trouvé : « ADD EMP:U349218 » = numéro d'EMPloyé, pas une pompe.
+      # Les 5 occurrences de EMP dans le périmètre étaient toutes des employés.
+      - "\\bEMPS?\\b(?!:)"
+      - "\\b(HYD(RAULIC)?\\.? )?ELEC(T|TRIC|TRICAL)?\\.?\\s*(MOTOR\\s*)?(DRIVEN\\s*)?(HYD(RAULIC)? )?PUMPS?\\b"
+      - "\\bHYDRAULIC SYSTEM ELECTRIC PUMP\\b"
+  POWER_TRANSFER_UNIT:
+    label: "Power Transfer Unit (PTU)"
+    label_en: "Power transfer unit (PTU)"
+    aliases: ["\\bPTU\\b", "\\bPOWER TRANSFER UNIT\\b"]
+  RAM_AIR_TURBINE:
+    label: "Ram Air Turbine (RAT)"
+    label_en: "Ram air turbine (RAT)"
+    aliases: ["\\bRAT\\b", "\\bRAM AIR TURBINE\\b"]
+  HYDRAULIC_PUMP_UNSPECIFIED:
+    label: "Pompe hydraulique (type non précisé)"
+    label_en: "Hydraulic pump (type not specified)"
+    aliases:
+      - "\\bHYD(RAULIC|R)?\\.?\\s*(SYS(TEM)?\\s*)?([ABC]|GREEN|BLUE|YELLOW|L|R|LH|RH)?\\s*PUMPS?\\b"
+      - "\\bHYDRAULICPUMP\\b"
+      - "^PUMP$"
+  RESERVOIR:
+    label: "Réservoir hydraulique"
+    label_en: "Hydraulic reservoir"
+    aliases: ["\\bRESERVOIRS?\\b", "\\bRSVR\\b"]
+  ACCUMULATOR:
+    label: "Accumulateur"
+    label_en: "Accumulator"
+    aliases: ["\\bACCUM(ULATOR)?S?\\b"]
+  PRESSURE_SWITCH:
+    label: "Pressostat"
+    label_en: "Pressure switch"
+    aliases: ["\\bPRESS(URE)?\\.?\\s*SW(ITCH)?(ES)?\\b"]
+  PRESSURE_TRANSMITTER:
+    label: "Transmetteur / capteur de pression"
+    label_en: "Pressure transmitter / transducer"
+    aliases: ["\\b(PRESS(URE)?\\.?\\s*)?(TRANSMITTER|TRANSDUCER|XDCR|XMTR)S?\\b"]
+  HYDRAULIC_LINE:
+    label: "Tuyauterie (ligne, tube, flexible)"
+    label_en: "Hydraulic line (tube, hose)"
+    aliases:
+      - "\\bHYD(RAULIC)?\\.?\\s*(PRESSURE |RETURN |SUPPLY |CASE DRAIN )?(LINE|TUBE|HOSE|PIPE)S?\\b"
+      - "\\b(FLEX )?HOSES?\\b"
+      - "\\bCASE DRAIN (LINE|HOSE|TUBE)S?\\b"
+  FILTER:
+    label: "Filtre"
+    label_en: "Filter"
+    aliases: ["\\bFILTERS?\\b"]
+  CHECK_VALVE:
+    label: "Clapet anti-retour"
+    label_en: "Check valve"
+    aliases: ["\\bCHECK VALVES?\\b"]
+  SHUTOFF_VALVE:
+    label: "Vanne de coupure (dont coupe-feu)"
+    label_en: "Shutoff valve (incl. fire shutoff)"
+    aliases: ["\\b(FIRE )?SHUT ?-?OFF VALVES?\\b", "\\bSOV\\b"]
+  PRIORITY_VALVE:
+    label: "Valve de priorité"
+    label_en: "Priority valve"
+    aliases: ["\\bPRIORITY VALVES?\\b"]
+  MANIFOLD:
+    label: "Bloc / collecteur hydraulique"
+    label_en: "Manifold"
+    aliases: ["\\bMANIFOLDS?\\b"]
+  SEAL:
+    label: "Joint (O-ring, packing)"
+    label_en: "Seal (O-ring, packing)"
+    aliases: ["\\bO-?RINGS?\\b", "\\bPACKINGS?\\b", "\\bSEALS?\\b"]
+  FITTING:
+    label: "Raccord (fitting, B-nut)"
+    label_en: "Fitting (B-nut)"
+    aliases: ["\\bFITTINGS?\\b", "\\bB-?NUTS?\\b"]
+  HYDRAULIC_SYSTEM:
+    label: "Système hydraulique (générique)"
+    label_en: "Hydraulic system (generic)"
+    aliases: ["^HYDRAULIC SYSTEM$"]
+
+# Valeurs du champ structuré PartName qui ne sont pas des pièces
+part_name_ignore: ["WARNING MESSAGE", "NAN", "NONE", "UNKNOWN"]
+
+# Références au manuel de maintenance (AMM xx-xx-xx)
+amm_pattern: "\\bAMM\\s*(?:TASK\\s*)?(\\d{2}-\\d{2}-\\d{2})"
+
+# Questions de test (pour l'étape GraphRAG, plus tard)
+test_questions:
+  - "Quels problèmes touchent les pompes entraînées par le moteur sur la famille A320 ?"
+  - "Quelles tâches du manuel sont citées pour les fuites de pompes électriques ?"
+  - "Quels opérateurs déclarent le plus de problèmes de PTU ?"
