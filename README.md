@@ -22,6 +22,28 @@ The goal is not a demo that works. It is to **make visible and measurable** the 
 
 Details: [`outputs/step1_report.md`](outputs/step1_report.md) · [`outputs/step2_report_llama3.2_3b.md`](outputs/step2_report_llama3.2_3b.md) · Design decisions: [`DECISIONS.md`](DECISIONS.md) · Cypher vs SPARQL: [`queries/README.md`](queries/README.md)
 
+## Coverage: what this case shows, and what it does not
+
+Checked against a standard list of knowledge-graph pitfalls:
+
+| Pitfall | Covered | Where |
+| --- | --- | --- |
+| Synonyms / entity resolution | Yes | "Engine-driven pump" written 15 ways |
+| Vague "garbage" node | Yes | "PUMP" with no type: linked to 147 reports, becomes a hub |
+| Legitimate hubs | Yes | "LEAKING", JASC 2910: a naive 3-hop traversal returns 61% of the graph |
+| Extraction hallucinations | Yes | 12% of LLM answers outside the schema; altered manual references |
+| Source grounding (the remedy) | Yes | Every fact keeps its report and supporting text |
+| Inconsistent relation names | Partly | Relations were imposed by a closed list; only the LLM's out-of-list answers show it |
+| Transitivity bias (false shortcuts over long chains) | **No** | The graph is star-shaped around reports: no part → part chains (no bill of materials) |
+| Isolated islands | **No** | The graph is connected, precisely because of the hubs |
+| Global synthesis (community summaries, Microsoft GraphRAG) | **No** | Not implemented |
+| Incremental updates | **No** | One file, one year |
+| Access control and privacy | **No** | Public data; this is the point of a second, HR domain |
+
+Pitfalls found here that the standard list does not mention: mentioned ≠ failed, missing model hierarchy, information in the text but not in the schema, wrong or duplicated source records, the cost of provenance in RDF, and evaluation without ground truth.
+
+**Next:** a second domain under `domains/hr/` (ESCO skills reference + public CV text + a small, clearly labelled synthetic layer of managers, projects and certifications). People graphs have long chains, so it covers transitivity bias, human hubs and access control, with `kgcore/` unchanged.
+
 ## The assistant: three ways to answer the same question
 
 `streamlit run app.py` opens a local app. Type a question; it builds three contexts side by side and, optionally, asks the local LLM to answer from each:
