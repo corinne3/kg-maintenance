@@ -174,9 +174,60 @@ def evaluate(df, mapper, path: Path, model: str) -> str:
          "", "## Les rapports « PUMP » : quelle pompe est en panne selon le LLM ?", "",
          "| Réponse du LLM | Rapports |", "| --- | ---: |"]
     L += [f"| {k} | {v} |" for k, v in pump_llm.most_common()]
-    L += ["", "À comparer avec `etape1_rapport.md` (dictionnaire). "
-          "Lire 10 cas à la main avant de conclure : c'est la seule vérité terrain disponible.", ""]
+    L += [""]
+    L += compare_reference(df, mapper, recs)
     return "\n".join(x for x in L if x is not None)
+
+
+def to_label(pumps: list[str]) -> str:
+    pumps = [p for p in PUMPS if p in pumps]
+    if not pumps:
+        return "NO_PUMP_FAILED"
+    return pumps[0] if len(pumps) == 1 else "SEVERAL"
+
+
+def compare_reference(df, mapper, recs) -> list[str]:
+    """Compare dictionnaire et LLM à la référence data/ground_truth.xlsx."""
+    path = ROOT / "data" / "ground_truth.xlsx"
+    if not path.exists():
+        return ["(Pas de référence : data/ground_truth.xlsx absent.)"]
+    import openpyxl
+    ws = openpyxl.load_workbook(path, read_only=True).worksheets[0]
+    rows = list(ws.iter_rows(min_row=2, values_only=True))
+    ref = {r[0]: (r[4], r[6], r[7] if len(r) > 7 else "") for r in rows if r[0] and r[4]}
+    annot = {v[2] for v in ref.values() if v[2]}
+    texts = df.set_index("OperatorControlNumber")["Discrepancy"]
+    llm_by_id = {}
+    for r in recs:
+        try:
+            llm_by_id[r["id"]] = to_label(as_list(json.loads(r["raw"]).get("faulty_parts")))
+        except Exception:  # noqa: BLE001
+            llm_by_id[r["id"]] = "INVALID"
+    L = ["## Comparaison à la référence (20 rapports « PUMP »)", "",
+         f"Référence : `data/ground_truth.xlsx` — annotateur : {', '.join(annot) or '?'}.", "",
+         "| Rapport | Référence | Dictionnaire | LLM |", "| --- | --- | --- | --- |"]
+    ok_d = ok_l = n_d = n_l = 0
+    for rid, (gold, _comment, _a) in ref.items():
+        if rid not in texts.index:
+            continue
+        dico = to_label([m.canonical for m in mapper.parts.find(str(texts[rid]))])
+        llm = llm_by_id.get(rid, "—")
+        scored = gold != "CANNOT_TELL"
+        if scored:
+            n_d += 1
+            ok_d += dico == gold
+            if llm != "—":
+                n_l += 1
+                ok_l += llm == gold
+        mark = lambda x: f"**{x}**" if scored and x == gold else x  # noqa: E731
+        L.append(f"| `{rid}` | {gold} | {mark(dico)} | {mark(llm)} |")
+    L += ["", f"- Dictionnaire : **{ok_d} / {n_d}** conformes à la référence.",
+          f"- LLM : **{ok_l} / {n_l}** conformes (sur les rapports déjà traités par le LLM)." if n_l
+          else "- LLM : aucun de ces rapports n'a encore été traité (lancer `--only-pump`).",
+          "- `CANNOT_TELL` dans la référence = non compté.",
+          "- Limite : la référence est un LLM (Claude), pas un expert maintenance. "
+          "Dans un vrai projet, un échantillon serait validé par les mécaniciens.", ""]
+    return L
 
 
 def main():
