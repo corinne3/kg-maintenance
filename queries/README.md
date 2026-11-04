@@ -1,39 +1,39 @@
-# La même question, en Cypher et en SPARQL
+# The same question in Cypher and in SPARQL
 
-Question : *« Pour les pompes moteur (EDP), quels états sont déclarés, et combien de fois ? »*
+Question: *"For engine-driven pumps (EDP), which conditions are reported, and how often?"*
 
-## Cypher (property graph : Neo4j, FalkorDB, Memgraph…)
+## Cypher (property graph: Neo4j, FalkorDB, Memgraph…)
 
 ```cypher
 MATCH (p:PartType {key: 'ENGINE_DRIVEN_PUMP'})<-[:INVOLVES_PART]-(r:Report)-[:HAS_CONDITION]->(c:Condition)
-RETURN c.label AS etat, count(DISTINCT r) AS rapports
-ORDER BY rapports DESC
+RETURN c.label AS condition, count(DISTINCT r) AS reports
+ORDER BY reports DESC
 ```
 
-## SPARQL (RDF : Oxigraph, GraphDB, Jena…)
+## SPARQL (RDF: Oxigraph, GraphDB, Jena, rdflib…)
 
 ```sparql
 PREFIX kg: <http://example.org/kg#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT ?etat (COUNT(DISTINCT ?r) AS ?rapports) WHERE {
+SELECT ?condition (COUNT(DISTINCT ?r) AS ?reports) WHERE {
   ?r kg:INVOLVES_PART kg:PartType_ENGINE_DRIVEN_PUMP ;
      kg:HAS_CONDITION ?c .
-  ?c rdfs:label ?etat .
+  ?c rdfs:label ?condition .
 }
-GROUP BY ?etat
-ORDER BY DESC(?rapports)
+GROUP BY ?condition
+ORDER BY DESC(?reports)
 ```
 
-## Provenance : « d'où vient ce lien ? »
+## Provenance: "where does this link come from?"
 
-Cypher : la provenance est une propriété de la relation.
+Cypher: provenance is a property of the relationship.
 
 ```cypher
 MATCH (r:Report)-[i:INVOLVES_PART]->(p:PartType {key: 'ENGINE_DRIVEN_PUMP'})
 RETURN r.key, i.source, i.evidence LIMIT 10
 ```
 
-SPARQL : il faut passer par le triplet réifié (`rdf:Statement`).
+SPARQL: you have to go through the reified triple (`rdf:Statement`).
 
 ```sparql
 PREFIX kg: <http://example.org/kg#>
@@ -48,15 +48,15 @@ SELECT ?r ?source ?evidence WHERE {
 } LIMIT 10
 ```
 
-## Ce qu'il faut retenir
+## Takeaways
 
 | | Property graph (Cypher) | RDF (SPARQL) |
 | --- | --- | --- |
-| Lire une requête simple | Très lisible : le motif `()-[]->()` ressemble au dessin | Lisible, mais plus verbeux |
-| Provenance d'un lien | Propriété de la relation, naturelle | Il faut réifier le triplet (ou RDF 1.2 / RDF-star) |
-| Identifiants | Locaux à la base | URI globales : on peut relier à des référentiels publics (ex. ESCO en RH) |
-| Ontologie, raisonnement | Schéma souple, peu de sémantique formelle | RDFS / OWL, contrôles SHACL, inférence |
-| Quand le choisir | Application, exploration, GraphRAG rapide | Interopérabilité, référentiels partagés, gouvernance |
+| Reading a simple query | Very readable: the `()-[]->()` pattern looks like the drawing | Readable, more verbose |
+| Provenance of a link | A property of the relationship | The triple must be reified (or use RDF 1.2 triple terms) |
+| Identifiers | Local to the database | Global URIs: can link to public reference data (e.g. ESCO for HR) |
+| Ontology, reasoning | Flexible schema, little formal semantics | RDFS / OWL, SHACL validation, inference |
+| When to choose it | Applications, exploration, fast GraphRAG | Interoperability, shared reference data, governance |
 
-`run_sparql.py` (à la racine) exécute ces requêtes SPARQL sur `outputs/graphe.ttl`.
-Pour le Cypher : charger `outputs/property_graph/*.csv` dans Neo4j Desktop ou FalkorDB (voir `docs/COMPRENDRE.md`).
+`run_sparql.py` runs these SPARQL queries on `outputs/graph.ttl`.
+For Cypher: load `outputs/property_graph/*.csv` into Neo4j Desktop or FalkorDB and run `outputs/property_graph/import_neo4j.cypher`.

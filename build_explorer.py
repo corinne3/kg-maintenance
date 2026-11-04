@@ -1,10 +1,10 @@
-"""Génère la page d'exploration : outputs/explorer.html
+"""Builds the explorer page: outputs/explorer.html
 
     python build_explorer.py
 
-Recalcule le graphe (comme run_step1.py), puis injecte les données dans
-web/explorer_template.html. Si des résultats LLM existent
-(outputs/llm_*.jsonl), ils sont ajoutés comme troisième source.
+Rebuilds the graph (like run_step1.py) and injects the data into
+web/explorer_template.html. If LLM results exist (outputs/llm_*.jsonl),
+they are added as a third source with their evaluation.
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ def main():
     cfg = load_domain("maintenance_aviation")
     df = load_records(cfg)
     mapper = MaintenanceMapper(cfg)
-    viewer = MaintenanceMapper(cfg)  # 2e instance : ne pas doubler les compteurs de mapper
+    viewer = MaintenanceMapper(cfg)  # second instance, so mapper's counters are not doubled
     labels = {k: v.get("label_en", v["label"]) for k, v in cfg["part_types"].items()}
 
     facts, reports = [], {}
@@ -60,7 +60,7 @@ def main():
             "m": mentions,
         }
 
-    # LLM (facultatif)
+    # LLM (optional)
     llm_model, llm = None, {}
     files = sorted((ROOT / "outputs").glob("llm_*.jsonl"))
     files = [f for f in files if "mock" not in f.name]
@@ -79,7 +79,13 @@ def main():
             if rid in reports:
                 reports[rid]["llm"] = v
 
-    # Types de pièces
+    llm_eval = None
+    if files:
+        from run_step2_llm import summarize
+        recs = [json.loads(x) for x in files[-1].read_text(encoding="utf-8").splitlines()]
+        llm_eval = summarize(df, MaintenanceMapper(cfg), recs)
+
+    # Part types
     parts = []
     for key in cfg["part_types"]:
         struct_ids = [rid for rid, r in reports.items() if r["sp"] == key]
@@ -97,7 +103,7 @@ def main():
                           "variants": variants.most_common(), "ids": ids})
     parts.sort(key=lambda p: -p["nAll"])
 
-    # Les pompes
+    # The pumps
     outcome, ambiguous = Counter(), []
     for rid, r in reports.items():
         if r["sp"] != "HYDRAULIC_PUMP_UNSPECIFIED":
@@ -114,7 +120,7 @@ def main():
         else:
             outcome["AUCUNE"] += 1
 
-    # Graphe, hubs, parcours
+    # Graph, hubs, traversals
     g = build_graph(facts)
     und = nx.Graph(g)
     total = g.number_of_nodes()
@@ -146,13 +152,14 @@ def main():
         "unmapped": {"n": len(unm), "reports": sum(unm.values()), "top": unm.most_common(12)},
         "edpVariantsRaw": len(edp_variants_raw),
         "llmModel": llm_model, "nLlm": len(llm),
+        "llmEval": llm_eval,
     }
     tpl = (ROOT / "web" / "explorer_template.html").read_text(encoding="utf-8")
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = tpl.replace("/*__DATA__*/null", payload)
     out = ROOT / "outputs" / "explorer.html"
     out.write_text(html, encoding="utf-8")
-    print(f"Page écrite : {out} ({len(html) // 1024} Ko)")
+    print(f"Page written: {out} ({len(html) // 1024} KB)")
 
 
 if __name__ == "__main__":

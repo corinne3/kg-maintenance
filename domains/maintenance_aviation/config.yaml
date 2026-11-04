@@ -1,14 +1,14 @@
 # =====================================================================
-# Domaine : maintenance aéronautique — chapitre ATA 29 (hydraulique)
-# Source  : FAA Service Difficulty Reports (SDR), année 2025
+# Domain: aircraft maintenance — ATA chapter 29 (hydraulic power)
+# Source: FAA Service Difficulty Reports (SDR), 2025
 #
-# Tout ce qui est propre au domaine est ici. Le code de kgcore/ est
-# générique : un autre domaine = un autre dossier avec son config.yaml.
-# Les choix marqués [D1], [D2]... sont expliqués dans DECISIONS.md.
+# Everything specific to the domain lives here. The kgcore/ code is
+# generic: another domain = another folder with its own config.yaml.
+# Choices marked [D1], [D2]... are explained in DECISIONS.md.
 # =====================================================================
 
 name: maintenance_aviation
-description: "Rapports d'incidents hydrauliques (ATA 29) déclarés à la FAA en 2025"
+description: "Hydraulic incident reports (ATA 29) filed with the FAA in 2025"
 
 source:
   file: data/SDR-2025.csv
@@ -17,25 +17,25 @@ source:
   text_column: Discrepancy
   date_column: DifficultyDate
 
-# [D1] Périmètre : chapitre ATA 29 (codes JASC 29xx)
+# [D1] Scope: ATA chapter 29 (JASC codes 29xx)
 filter:
   column: JASCCode
   startswith: "29"
 
 # ---------------------------------------------------------------------
-# Ontologie : types de nœuds et de relations
+# Ontology: node types and relations
 # ---------------------------------------------------------------------
 ontology:
   node_types:
-    Report:        "Un rapport d'incident (une ligne du fichier FAA)"
-    Aircraft:      "Un avion précis (immatriculation)"
-    AircraftModel: "Famille d'avion (A320, 737...)"
-    Manufacturer:  "Constructeur"
-    Operator:      "Compagnie ou atelier qui déclare"
-    JascCode:      "Code de classification FAA (proche des chapitres ATA)"
-    PartType:      "Type de pièce normalisé [D2]"
-    Condition:     "État constaté de la pièce (LEAKING, CRACKED...)"
-    AmmTask:       "Tâche du manuel de maintenance citée dans le texte"
+    Report:        "One incident report (one row of the FAA file)"
+    Aircraft:      "One aircraft (registration number)"
+    AircraftModel: "Aircraft family (A320, 737...)"
+    Manufacturer:  "Manufacturer"
+    Operator:      "Airline or repair station that files the report"
+    JascCode:      "FAA classification code (close to ATA chapters)"
+    PartType:      "Normalised part type [D2]"
+    Condition:     "Condition found (LEAKING, CRACKED...)"
+    AmmTask:       "Maintenance manual task cited in the text"
   relations:
     CONCERNS:       [Report, Aircraft]
     IS_MODEL:       [Aircraft, AircraftModel]
@@ -47,10 +47,9 @@ ontology:
     REFERENCES:     [Report, AmmTask]
 
 # ---------------------------------------------------------------------
-# Entity resolution — constructeurs
-# Les codes FAA sont abrégés. [D5] CNDAIR (Canadair) et BOMBDR
-# (Bombardier) : faut-il les fusionner ? Par défaut : non, on garde
-# la distinction et on la signale.
+# Entity resolution — manufacturers
+# FAA codes are abbreviated. [D5] CNDAIR (Canadair) and BOMBDR
+# (Bombardier): merge them? Default: no, keep both and document the link.
 # ---------------------------------------------------------------------
 manufacturers:
   AIRBUS: Airbus
@@ -78,8 +77,8 @@ manufacturers:
   SWRNGN: Swearingen
   AMD: Dassault (AMD)
 
-# Familles d'avions : le code modèle FAA (ex. A320232, 737823) est
-# ramené à une famille par expression régulière, dans cet ordre.
+# Aircraft families: the FAA model code (e.g. A320232, 737823) is
+# mapped to a family by regular expression, in this order.
 model_families:
   - {pattern: "^A3(\\d\\d)",      family: "A3{0}"}
   - {pattern: "^A2(\\d\\d)",      family: "A2{0}"}
@@ -88,12 +87,12 @@ model_families:
   - {pattern: "^CL",              family: "CRJ/Challenger"}
 
 # ---------------------------------------------------------------------
-# Entity resolution — types de pièces [D2]
-# Chaque type canonique a une liste de variantes (expressions
-# régulières sur le texte en MAJUSCULES). L'ordre compte : les types
-# précis passent avant les types génériques.
-# [D4] ACMP (Boeing) et EMDP/ELEC PUMP : même type « pompe électrique »
-# ou deux types ? Par défaut : fusionnés.
+# Entity resolution — part types [D2]
+# Each canonical type has a list of aliases (regular expressions on the
+# UPPER-CASE text). Order matters: specific types come before generic ones.
+# label = French label, label_en = English label (used in outputs).
+# [D4] ACMP (Boeing) and EMDP/ELEC PUMP: one "electric motor pump" type
+# or two? Default: merged.
 # ---------------------------------------------------------------------
 part_types:
   ENGINE_DRIVEN_PUMP:
@@ -109,8 +108,8 @@ part_types:
     aliases:
       - "\\bACMPS?\\b"
       - "\\bEMDPS?\\b"
-      # Piège trouvé : « ADD EMP:U349218 » = numéro d'EMPloyé, pas une pompe.
-      # Les 5 occurrences de EMP dans le périmètre étaient toutes des employés.
+      # Pitfall found: "ADD EMP:U349218" is an EMPloyee number, not a pump.
+      # All 5 occurrences of EMP in scope were employees.
       - "\\bEMPS?\\b(?!:)"
       - "\\b(HYD(RAULIC)?\\.? )?ELEC(T|TRIC|TRICAL)?\\.?\\s*(MOTOR\\s*)?(DRIVEN\\s*)?(HYD(RAULIC)? )?PUMPS?\\b"
       - "\\bHYDRAULIC SYSTEM ELECTRIC PUMP\\b"
@@ -185,14 +184,14 @@ part_types:
     label_en: "Hydraulic system (generic)"
     aliases: ["^HYDRAULIC SYSTEM$"]
 
-# Valeurs du champ structuré PartName qui ne sont pas des pièces
+# PartName values that are not parts
 part_name_ignore: ["WARNING MESSAGE", "NAN", "NONE", "UNKNOWN"]
 
-# Références au manuel de maintenance (AMM xx-xx-xx)
+# Maintenance manual references (AMM xx-xx-xx)
 amm_pattern: "\\bAMM\\s*(?:TASK\\s*)?(\\d{2}-\\d{2}-\\d{2})"
 
-# Questions de test (pour l'étape GraphRAG, plus tard)
+# Test questions (for the GraphRAG step)
 test_questions:
-  - "Quels problèmes touchent les pompes entraînées par le moteur sur la famille A320 ?"
-  - "Quelles tâches du manuel sont citées pour les fuites de pompes électriques ?"
-  - "Quels opérateurs déclarent le plus de problèmes de PTU ?"
+  - "What problems affect engine-driven pumps on the A320 family?"
+  - "Which maintenance manual tasks are cited for electric motor pump leaks?"
+  - "Which operators report the most PTU problems?"

@@ -33,7 +33,7 @@ CSV FAA ──► loader ──► mapping (domaine) ──► FAITS ──┬�
 - **Hub** : nœud relié à énormément d'autres (ex. l'état « LEAKING »). Un GraphRAG qui suit tous les liens passe par les hubs et ramène tout le graphe.
 - **GraphRAG** : au lieu de donner au LLM des extraits de texte proches de la question (RAG classique), on lui donne un morceau de graphe autour des entités de la question.
 
-## Ce que montre l'étape 1 (chiffres dans `outputs/etape1_rapport.md`)
+## Ce que montre l'étape 1 (chiffres dans `outputs/step1_report.md`)
 1. Le champ structuré dit « PUMP » dans 117 rapports. **Selon ce champ seul, 0 rapport concerne une pompe moteur (EDP). En lisant le texte, 147.**
 2. La même pompe est écrite de 15 façons différentes dans le texte (EDP, ENG PUMP, ENGINE-DRIVEN HYDRAULIC PUMP…), sans compter les numéros de moteur et les pluriels.
 3. Un dictionnaire se trompe aussi : « EMP: U349218 » est un numéro d'employé, pas une pompe.

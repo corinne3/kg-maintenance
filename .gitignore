@@ -1,6 +1,5 @@
 .venv/
 __pycache__/
 data/*.csv
-outputs/llm_*.jsonl
-outputs/graphe.ttl
+outputs/graph.ttl
 outputs/property_graph/*.csv

@@ -1,4 +1,4 @@
-"""Chargement d'un domaine : config + données filtrées sur le périmètre."""
+"""Loading a domain: config + data filtered on its scope."""
 from __future__ import annotations
 
 from pathlib import Path

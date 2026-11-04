@@ -1,26 +1,26 @@
-"""Interroger le graphe RDF en SPARQL (à lancer sur ton PC).
+"""Query the RDF graph with SPARQL.
 
     pip install rdflib
-    python run_step1.py      # produit outputs/graphe.ttl
+    python run_step1.py      # writes outputs/graph.ttl
     python run_sparql.py
 """
 from pathlib import Path
 
 from rdflib import Graph
 
-TTL = Path(__file__).resolve().parent / "outputs" / "graphe.ttl"
+TTL = Path(__file__).resolve().parent / "outputs" / "graph.ttl"
 
 QUERIES = {
-    "États déclarés pour les pompes moteur (EDP)": """
+    "Conditions reported for engine-driven pumps (EDP)": """
         PREFIX kg: <http://example.org/kg#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        SELECT ?etat (COUNT(DISTINCT ?r) AS ?rapports) WHERE {
+        SELECT ?condition (COUNT(DISTINCT ?r) AS ?reports) WHERE {
           ?r kg:INVOLVES_PART kg:PartType_ENGINE_DRIVEN_PUMP ;
              kg:HAS_CONDITION ?c .
-          ?c rdfs:label ?etat .
-        } GROUP BY ?etat ORDER BY DESC(?rapports) LIMIT 8
+          ?c rdfs:label ?condition .
+        } GROUP BY ?condition ORDER BY DESC(?reports) LIMIT 8
     """,
-    "Provenance des liens rapport -> EDP (5 exemples)": """
+    "Provenance of report -> EDP links (5 examples)": """
         PREFIX kg: <http://example.org/kg#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         SELECT ?r ?source ?evidence WHERE {
@@ -32,22 +32,22 @@ QUERIES = {
              kg:evidence ?evidence .
         } LIMIT 5
     """,
-    "Familles d'avions avec le plus de rapports EDP": """
+    "Aircraft families with the most EDP reports": """
         PREFIX kg: <http://example.org/kg#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        SELECT ?famille (COUNT(DISTINCT ?r) AS ?rapports) WHERE {
+        SELECT ?family (COUNT(DISTINCT ?r) AS ?reports) WHERE {
           ?r kg:INVOLVES_PART kg:PartType_ENGINE_DRIVEN_PUMP ;
-             kg:CONCERNS ?avion .
-          ?avion kg:IS_MODEL ?m .
-          ?m rdfs:label ?famille .
-        } GROUP BY ?famille ORDER BY DESC(?rapports) LIMIT 8
+             kg:CONCERNS ?aircraft .
+          ?aircraft kg:IS_MODEL ?m .
+          ?m rdfs:label ?family .
+        } GROUP BY ?family ORDER BY DESC(?reports) LIMIT 8
     """,
 }
 
 if __name__ == "__main__":
     g = Graph()
     g.parse(TTL, format="turtle")
-    print(f"{len(g)} triplets chargés depuis {TTL.name}\n")
+    print(f"{len(g)} triples loaded from {TTL.name}\n")
     for title, q in QUERIES.items():
         print(f"== {title}")
         for row in g.query(q):

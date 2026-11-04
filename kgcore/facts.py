@@ -1,8 +1,8 @@
-"""Le format pivot : un « fait » = un triplet + sa provenance.
+"""The pivot format: a "fact" = a triple + its provenance.
 
-Tout le reste (graphe NetworkX, export Neo4j, export RDF) est construit
-à partir de cette liste de faits. C'est ce qui rend la stack réutilisable
-d'un domaine à l'autre : seul le passage « donnée brute -> faits » change.
+Everything else (NetworkX graph, Neo4j export, RDF export) is built from
+this list of facts. That is what makes the stack reusable from one domain
+to another: only the "raw data -> facts" step changes.
 """
 from __future__ import annotations
 
@@ -11,9 +11,9 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class Node:
-    type: str       # ex. PartType
-    key: str        # identifiant stable, ex. ENGINE_DRIVEN_PUMP
-    label: str = "" # libellé lisible
+    type: str       # e.g. PartType
+    key: str        # stable identifier, e.g. ENGINE_DRIVEN_PUMP
+    label: str = "" # readable label
 
     @property
     def id(self) -> str:
@@ -26,6 +26,6 @@ class Fact:
     relation: str
     object: Node
     source: str            # structured | dictionary | llm
-    record_id: str         # rapport d'où vient le fait (provenance)
-    evidence: str = ""     # texte qui justifie le fait
+    record_id: str         # report the fact comes from (provenance)
+    evidence: str = ""     # text that supports the fact
     attrs: dict = field(default_factory=dict)

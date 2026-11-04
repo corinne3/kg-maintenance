@@ -66,7 +66,7 @@ section { display: grid; gap: 18px; }
 .note { font-size: 0.86rem; color: var(--muted); }
 code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
 
-/* Chiffres clés */
+/* Key figures */
 .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
 .fig {
   background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
@@ -95,6 +95,9 @@ code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
 .compare th { font-weight: 600; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .compare td.n { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
 .compare .big { font-weight: 600; color: var(--accent-ink); }
+.compare td.ok { color: var(--accent-ink); font-weight: 600; }
+.compare td.ko { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--warn); }
+.compare td small { display: block; color: var(--muted); font-size: 0.8rem; max-width: 46ch; }
 .scroll { overflow-x: auto; }
 
 /* Explorateur */
@@ -244,9 +247,32 @@ footer a { color: var(--accent-ink); }
     </div>
   </section>
 
+  <section id="llm" hidden>
+    <div class="head">
+      <div class="eyebrow">Pitfall 3 · LLM extraction</div>
+      <h2>A small local LLM helps, if you fence it in</h2>
+      <p id="llm-intro"></p>
+    </div>
+    <div class="hopbox">
+      <h3>Which pump actually failed? Agreement with the reference</h3>
+      <div class="bars" id="llm-bars"></div>
+      <p class="note" id="llm-limits"></p>
+    </div>
+    <div class="figures" id="llm-figs"></div>
+    <details class="rep">
+      <summary><span class="id">The 20 reference cases</span><span class="meta">reference vs dictionary vs LLM vs hybrid</span></summary>
+      <div class="rep-body scroll">
+        <table class="compare">
+          <thead><tr><th>Report</th><th>Reference</th><th>Dictionary</th><th>LLM</th><th>Hybrid</th></tr></thead>
+          <tbody id="llm-table"></tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
   <section id="modeles">
     <div class="head">
-      <div class="eyebrow">Pitfall 3 · Choosing a model</div>
+      <div class="eyebrow">Pitfall 4 · Choosing a model</div>
       <h2>Property graph or RDF: same facts, two worlds</h2>
       <p id="rdf-intro"></p>
     </div>
@@ -318,7 +344,7 @@ $("figures").innerHTML = [
   [`×${Math.round(D.rdfTotal / D.nDistinct)}`, "more triples in RDF when every fact keeps its provenance"],
 ].map(([b, s]) => `<div class="fig"><b>${b}</b><span>${s}</span></div>`).join("");
 
-// ---- Pompes
+// ---- Pumps
 const po = D.pumpOutcome;
 $("pump-intro").textContent = `In ${D.pumpTotal} reports, the PartName field just says “PUMP”, so the graph cannot tell which pump is involved. The free text often does say, if you can read its abbreviations: EDP, ENG 1 PUMP, ACMP, EMDP…`;
 const pumpRows = [
@@ -336,7 +362,7 @@ $("pump-table").innerHTML = [
   ["How many reports involve an electric motor pump?", emp.nStruct, emp.nAll],
 ].map(([q, a, b]) => `<tr><td>${q}</td><td class="n">${a}</td><td class="n big">${b}</td></tr>`).join("");
 
-// ---- Explorateur
+// ---- Explorer
 let current = "ENGINE_DRIVEN_PUMP", shown = 15;
 const ambSet = new Set(D.ambiguous);
 $("partlist").innerHTML = D.parts.map((p) => `
@@ -422,7 +448,7 @@ function renderPanel() {
 function debounce(fn, ms) { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; }
 renderPanel();
 
-// ---- Parcours
+// ---- Traversals
 let hop = 3;
 $("hopseg").innerHTML = D.hops.map((h) => `<button type="button" data-h="${h.h}" aria-pressed="${h.h === hop}">${h.h}</button>`).join("");
 $("hopseg").addEventListener("click", (e) => {
@@ -444,6 +470,30 @@ renderHops();
 bars($("hub-bars"), D.hubs.map((h) => ({ label: `${h.label}`, value: h.deg, cls: h.type === "PartType" ? "" : "struct" })), D.hubs[0].deg);
 $("hub-text").innerHTML = `Blocking hubs barely helps: at 3 hops it only goes from ${pct(h3.naive, D.nNodes)} to ${pct(h3.guarded, D.nNodes)} of the graph. What works is querying the graph through its ontology. Another signal: <strong>the “pump, type not specified” node is itself a hub</strong>. A poorly resolved entity attracts noise.`;
 
+// ---- LLM
+if (D.llmEval && D.llmEval.reference.length) {
+  const E = D.llmEval, sc = E.score, n = sc.n;
+  $("llm").hidden = false;
+  $("llm-intro").textContent = `The dictionary cannot tell a failed pump from one that was only switched off or replaced as a precaution. A local LLM (${D.llmModel.replace("_", ":")}, through Ollama) was asked to separate “faulty” from “only mentioned” parts on the ${E.n_pump} “PUMP” reports. It does better on ambiguous cases and worse on obvious ones, so the best result comes from combining both.`;
+  bars($("llm-bars"), [
+    { label: "Dictionary", value: sc.dico, text: `${sc.dico} of ${n}`, cls: "grey" },
+    { label: "LLM alone", value: sc.llm, text: `${sc.llm} of ${n}`, cls: "grey" },
+    { label: "Hybrid: LLM only where the dictionary finds several pumps", value: sc.hybrid, text: `${sc.hybrid} of ${n}` },
+  ], n);
+  $("llm-limits").textContent = `${n} scored cases, 12 of them picked because they are ambiguous. The reference was annotated by a large LLM (Claude), not by a maintenance engineer. These are trends, not proof; in a real project a sample would be validated by mechanics.`;
+  const a = E.amm_bad;
+  $("llm-figs").innerHTML = [
+    [`${E.pump_seconds} s`, "per report on a laptop CPU with 8 GB RAM (110 s when the model reloaded each time)"],
+    [`${Math.round((100 * E.resp_invented) / E.n)}%`, `of answers used a part type outside the allowed list, e.g. “${E.invented.slice(0, 3).map(([k]) => k).join("”, “")}”`],
+    [`${a.length} / ${E.amm_total}`, a.length ? `manual references altered: the LLM wrote ${a.map((x) => `${x.llm} where the text says ${x.text[x.text.length - 1] || "?"}`).join("; ")}` : "manual references altered"],
+  ].map(([b, t]) => `<div class="fig"><b>${esc(b)}</b><span>${esc(t)}</span></div>`).join("");
+  $("llm-table").innerHTML = E.reference.map((r) => {
+    const c = (x) => (!r.scored ? "" : x === r.gold ? "ok" : "ko");
+    return `<tr><td><code>${esc(r.id)}</code><small>${esc(r.comment)}</small></td><td>${esc(r.gold)}</td>
+      <td class="${c(r.dico)}">${esc(r.dico)}</td><td class="${c(r.llm)}">${esc(r.llm)}</td><td class="${c(r.hybrid)}">${esc(r.hybrid)}</td></tr>`;
+  }).join("");
+}
+
 // ---- RDF
 $("rdf-intro").textContent = `Both exports start from the same ${fmt(D.nDistinct)} distinct facts and give the same answers (checked: identical engine-driven pump counts in the graph and in SPARQL). The difference is provenance.`;
 bars($("rdf-bars"), [
@@ -451,13 +501,15 @@ bars($("rdf-bars"), [
   { label: "RDF triples with provenance", value: D.rdfTotal },
 ], D.rdfTotal);
 
-// ---- Pièges
+// ---- Pitfalls
 const traps = [
   ["“EMP” is not a pump", `In “ADD EMP:U349218”, EMP is an employee number, not an <em>Electric Motor Pump</em>. All 5 occurrences in scope were employees. The rule was only fixed by reading real examples by hand.`],
   ["Mentioned ≠ failed", `${D.ambiguous.length} “PUMP” reports mention several pumps, some only switched off or checked. A dictionary finds the words, not the role of the part. That is where an LLM is useful, and only there.`],
   ["The condition may belong to another part", `PartCondition (LEAKING, FAILED…) describes the part in the structured field. If the text is about an EDP but the structured field names a hose, the condition is not necessarily the EDP’s.`],
   ["The ontology has gaps", `${D.unmapped.n} PartName values (${D.unmapped.reports} reports) match no part type: ${D.unmapped.top.slice(0, 6).map(([k]) => `<code>${esc(k)}</code>`).join(", ")}… Each one is a decision: add it, group it, or ignore it.`],
-  ["A local LLM is slow", `On a laptop with no GPU, a 3-billion-parameter model takes about 2 minutes per report, and it sometimes invents types outside the allowed list (“PRESSURE_SWITCH S29”). So it is only used where the dictionary fails.`],
+  ["The source data is wrong too", `Two reports filed under PartName “PUMP” involve no pump at all: a flight control computer (ELAC) and a brake line. The structured field is not only vague, it can be wrong.`],
+  ["Duplicates count twice", `Two reports (SWAA2025102728412 and SWAA2025102729004) describe the same event. Without de-duplication, the graph counts that failure twice.`],
+  ["An LLM must be validated before it writes to the graph", `Around 12% of the local model’s answers contained a part type outside the allowed list, and it altered two manual references into plausible but wrong ones. Its output is checked against the ontology before it becomes a fact.`],
 ];
 $("traps").innerHTML = traps.map(([t, x]) => `<div class="trap"><h3>${t}</h3><p>${x}</p></div>`).join("");
 </script>

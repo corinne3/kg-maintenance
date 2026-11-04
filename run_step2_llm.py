@@ -1,27 +1,28 @@
-"""Étape 2 — Extraction par LLM local (Ollama), puis évaluation.
+"""Step 2 — Extraction with a local LLM (Ollama), then evaluation.
 
-À lancer sur ton PC (Ollama installé et démarré) :
+Run on your machine (Ollama installed and running):
 
     ollama pull llama3.2:3b
-    python run_step2_llm.py --limit 30            # essai rapide
-    python run_step2_llm.py --only-pump           # les 117 rapports « PUMP » (la vraie question)
-    python run_step2_llm.py                        # les 514 rapports (plusieurs heures sur CPU)
-    python run_step2_llm.py --evaluate-only        # recalculer le rapport sans relancer le LLM
+    python run_step2_llm.py --limit 30            # quick test
+    python run_step2_llm.py --only-pump           # the 117 "PUMP" reports (the real question)
+    python run_step2_llm.py                        # all 514 reports (hours on CPU)
+    python run_step2_llm.py --evaluate-only        # rebuild the report without calling the LLM
 
-Le script reprend là où il s'est arrêté (les résultats sont ajoutés au fil de l'eau
-dans outputs/llm_<modèle>.jsonl). Tu peux l'interrompre avec Ctrl+C.
+The script resumes where it stopped (results are appended to
+outputs/llm_<model>.jsonl as they come). You can stop it with Ctrl+C.
 
-Ce qu'on mesure (os n°2 : la fiabilité de l'extraction) :
-  - sorties JSON invalides ;
-  - types de pièces inventés (hors de la liste fermée) ;
-  - tâches AMM inventées (absentes du texte) ;
-  - accord avec le champ structuré quand celui-ci est précis ;
-  - sur les 117 rapports « PUMP » : quelle pompe le LLM désigne comme en panne.
+What is measured (reliability of extraction):
+  - invalid JSON outputs;
+  - part types invented outside the closed list;
+  - maintenance manual (AMM) references not found in the text;
+  - on the "PUMP" reports: which pump the LLM says failed, compared with
+    the dictionary and with the reference (data/ground_truth.xlsx).
 """
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 import urllib.request
@@ -60,7 +61,7 @@ def call_ollama(model: str, prompt: str, host: str) -> str:
         "messages": [{"role": "user", "content": prompt}],
         "format": "json",
         "stream": False,
-        "keep_alive": "60m",  # garder le modèle en mémoire entre deux rapports
+        "keep_alive": "60m",  # keep the model in memory between reports
         "options": {"temperature": 0, "num_ctx": 2048},
     }).encode()
     req = urllib.request.Request(f"{host}/api/chat", data=body,
@@ -70,7 +71,7 @@ def call_ollama(model: str, prompt: str, host: str) -> str:
 
 
 def mock_llm(mapper: MaintenanceMapper):
-    """Faux LLM (le dictionnaire) pour tester le pipeline sans Ollama."""
+    """Fake LLM (the dictionary) to test the pipeline without Ollama."""
     def run(text: str) -> str:
         found = list(dict.fromkeys(m.canonical for m in mapper.parts.find(text)))
         return json.dumps({"faulty_parts": found[:1], "mentioned_parts": found[1:],
@@ -93,7 +94,7 @@ def extract(args, df, mapper, path: Path):
     todo = [r for r in rows if r["OperatorControlNumber"] not in done]
     if args.limit:
         todo = todo[: max(0, args.limit - len(done))]
-    print(f"{len(done)} déjà faits, {len(todo)} à faire avec {args.model}")
+    print(f"{len(done)} already done, {len(todo)} to do with {args.model}")
     with open(path, "a", encoding="utf-8") as fh:
         for i, r in enumerate(todo, 1):
             text = str(r["Discrepancy"])
@@ -111,7 +112,7 @@ def extract(args, df, mapper, path: Path):
                    "seconds": round(time.time() - t0, 1)}
             fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
             fh.flush()
-            print(f"  [{i}/{len(todo)}] {rec['id']} {rec['seconds']} s {'ERREUR' if err else ''}")
+            print(f"  [{i}/{len(todo)}] {rec['id']} {rec['seconds']} s {'ERROR' if err else ''}")
 
 
 def as_list(v):
@@ -122,112 +123,126 @@ def as_list(v):
     return []
 
 
-def evaluate(df, mapper, path: Path, model: str) -> str:
-    allowed = set(mapper.cfg["part_types"])
-    by_id = df.set_index("OperatorControlNumber")
-    recs = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
-    n = len(recs)
-    invalid, invented_types, invented_amm, amm_total = 0, Counter(), 0, 0
-    agree = disagree = 0
-    pump_llm = Counter()
-    secs = [r["seconds"] for r in recs if not r["error"]]
-    examples = []
-    for r in recs:
-        row = by_id.loc[r["id"]]
-        text = str(row["Discrepancy"]).upper()
-        try:
-            out = json.loads(r["raw"])
-            assert isinstance(out, dict)
-        except Exception:  # noqa: BLE001
-            invalid += 1
-            continue
-        faulty = as_list(out.get("faulty_parts"))
-        mentioned = as_list(out.get("mentioned_parts"))
-        for p in faulty + mentioned:
-            if p not in allowed:
-                invented_types[p] += 1
-        for t in as_list(out.get("amm_tasks")):
-            amm_total += 1
-            if t.replace("AMM", "").strip() not in text:
-                invented_amm += 1
-                if len(examples) < 3:
-                    examples.append((r["id"], t))
-        structured = mapper.part_from_structured(str(row["PartName"]))
-        if structured and structured not in ("HYDRAULIC_PUMP_UNSPECIFIED", "HYDRAULIC_SYSTEM"):
-            if structured in faulty:
-                agree += 1
-            else:
-                disagree += 1
-        if structured == "HYDRAULIC_PUMP_UNSPECIFIED":
-            spec = [p for p in PUMPS if p in faulty]
-            pump_llm[spec[0] if len(spec) == 1 else ("PLUSIEURS" if spec else "AUCUNE_PRECISE")] += 1
-
-    L = [f"# Étape 2 — Extraction par LLM ({model})", "",
-         f"- Rapports traités : **{n}**",
-         f"- Temps moyen par rapport : **{sum(secs) / len(secs):.1f} s**" if secs else "",
-         f"- Sorties JSON invalides : **{invalid}**",
-         f"- Types de pièces inventés (hors liste fermée) : **{sum(invented_types.values())}** "
-         + (f"({', '.join(f'`{k}` ×{v}' for k, v in invented_types.most_common(6))})" if invented_types else ""),
-         f"- Tâches AMM citées par le LLM mais absentes du texte : **{invented_amm} / {amm_total}** "
-         + (f"(ex. {', '.join(f'`{t}` dans {i}' for i, t in examples)})" if examples else ""),
-         f"- Accord avec le champ structuré (quand il est précis) : **{agree} / {agree + disagree}**",
-         "", "## Les rapports « PUMP » : quelle pompe est en panne selon le LLM ?", "",
-         "| Réponse du LLM | Rapports |", "| --- | ---: |"]
-    L += [f"| {k} | {v} |" for k, v in pump_llm.most_common()]
-    L += [""]
-    L += compare_reference(df, mapper, recs)
-    return "\n".join(x for x in L if x is not None)
-
-
 def to_label(pumps: list[str]) -> str:
+    """List of part types -> one label comparable to the reference."""
     pumps = [p for p in PUMPS if p in pumps]
     if not pumps:
         return "NO_PUMP_FAILED"
     return pumps[0] if len(pumps) == 1 else "SEVERAL"
 
 
-def compare_reference(df, mapper, recs) -> list[str]:
-    """Compare dictionnaire et LLM à la référence data/ground_truth.xlsx."""
+def load_reference() -> tuple[dict, str]:
     path = ROOT / "data" / "ground_truth.xlsx"
     if not path.exists():
-        return ["(Pas de référence : data/ground_truth.xlsx absent.)"]
+        return {}, ""
     import openpyxl
     ws = openpyxl.load_workbook(path, read_only=True).worksheets[0]
     rows = list(ws.iter_rows(min_row=2, values_only=True))
-    ref = {r[0]: (r[4], r[6], r[7] if len(r) > 7 else "") for r in rows if r[0] and r[4]}
-    annot = {v[2] for v in ref.values() if v[2]}
-    texts = df.set_index("OperatorControlNumber")["Discrepancy"]
-    llm_by_id = {}
+    ref = {r[0]: {"gold": r[4], "comment": r[6] or ""} for r in rows if r[0] and r[4]}
+    annot = {r[7] for r in rows if len(r) > 7 and r[7]}
+    return ref, ", ".join(sorted(annot))
+
+
+def summarize(df, mapper, recs: list[dict]) -> dict:
+    """All step-2 metrics, used by the Markdown report and by the explorer page."""
+    allowed = set(mapper.cfg["part_types"])
+    by_id = df.set_index("OperatorControlNumber")
+    invalid, invented, resp_invented = 0, Counter(), 0
+    amm_total, amm_bad = 0, []
+    pump_llm, pump_dico = Counter(), Counter()
+    llm_label = {}
     for r in recs:
+        text = str(by_id.loc[r["id"], "Discrepancy"]).upper()
         try:
-            llm_by_id[r["id"]] = to_label(as_list(json.loads(r["raw"]).get("faulty_parts")))
+            out = json.loads(r["raw"])
+            assert isinstance(out, dict)
         except Exception:  # noqa: BLE001
-            llm_by_id[r["id"]] = "INVALID"
-    L = ["## Comparaison à la référence (20 rapports « PUMP »)", "",
-         f"Référence : `data/ground_truth.xlsx` — annotateur : {', '.join(annot) or '?'}.", "",
-         "| Rapport | Référence | Dictionnaire | LLM |", "| --- | --- | --- | --- |"]
-    ok_d = ok_l = n_d = n_l = 0
-    for rid, (gold, _comment, _a) in ref.items():
-        if rid not in texts.index:
+            invalid += 1
+            llm_label[r["id"]] = "INVALID"
             continue
-        dico = to_label([m.canonical for m in mapper.parts.find(str(texts[rid]))])
-        llm = llm_by_id.get(rid, "—")
-        scored = gold != "CANNOT_TELL"
+        faulty = as_list(out.get("faulty_parts"))
+        mentioned = as_list(out.get("mentioned_parts"))
+        bad = [p for p in faulty + mentioned if p not in allowed]
+        invented.update(bad)
+        resp_invented += bool(bad)
+        for t in as_list(out.get("amm_tasks")):
+            amm_total += 1
+            t = t.replace("AMM", "").strip()
+            if t not in text:
+                amm_bad.append({"id": r["id"], "llm": t,
+                                "text": [x for x in re.findall(r"\d\d-\d\d-\d\d[\w-]*", text)
+                                         if x[:5] == t[:5]][:2]})
+        llm_label[r["id"]] = to_label(faulty)
+        if mapper.part_from_structured(str(by_id.loc[r["id"], "PartName"])) == "HYDRAULIC_PUMP_UNSPECIFIED":
+            pump_llm[llm_label[r["id"]]] += 1
+            pump_dico[to_label([m.canonical for m in mapper.parts.find(text)])] += 1
+    pump_secs = [r["seconds"] for r in recs if not r["error"] and r["id"] in by_id.index
+                 and mapper.part_from_structured(str(by_id.loc[r["id"], "PartName"])) == "HYDRAULIC_PUMP_UNSPECIFIED"]
+
+    ref, annotator = load_reference()
+    rows, score = [], Counter()
+    for rid, v in ref.items():
+        if rid not in by_id.index:
+            continue
+        dico = to_label([m.canonical for m in mapper.parts.find(str(by_id.loc[rid, "Discrepancy"]))])
+        llm = llm_label.get(rid, "-")
+        # Hybrid rule: trust the dictionary when it finds 0 or 1 pump, ask the LLM otherwise.
+        hybrid = llm if dico == "SEVERAL" and llm not in ("-", "INVALID") else dico
+        scored = v["gold"] != "CANNOT_TELL"
         if scored:
-            n_d += 1
-            ok_d += dico == gold
-            if llm != "—":
-                n_l += 1
-                ok_l += llm == gold
-        mark = lambda x: f"**{x}**" if scored and x == gold else x  # noqa: E731
-        L.append(f"| `{rid}` | {gold} | {mark(dico)} | {mark(llm)} |")
-    L += ["", f"- Dictionnaire : **{ok_d} / {n_d}** conformes à la référence.",
-          f"- LLM : **{ok_l} / {n_l}** conformes (sur les rapports déjà traités par le LLM)." if n_l
-          else "- LLM : aucun de ces rapports n'a encore été traité (lancer `--only-pump`).",
-          "- `CANNOT_TELL` dans la référence = non compté.",
-          "- Limite : la référence est un LLM (Claude), pas un expert maintenance. "
-          "Dans un vrai projet, un échantillon serait validé par les mécaniciens.", ""]
-    return L
+            score["n"] += 1
+            score["dico"] += dico == v["gold"]
+            score["llm"] += llm == v["gold"]
+            score["hybrid"] += hybrid == v["gold"]
+            score["llm_seen"] += llm != "-"
+        rows.append({"id": rid, "gold": v["gold"], "comment": v["comment"], "dico": dico,
+                     "llm": llm, "hybrid": hybrid, "scored": scored})
+    return {
+        "n": len(recs), "invalid": invalid,
+        "pump_seconds": round(sum(pump_secs) / len(pump_secs), 1) if pump_secs else None,
+        "n_pump": len(pump_secs),
+        "invented": invented.most_common(), "resp_invented": resp_invented,
+        "amm_total": amm_total, "amm_bad": amm_bad,
+        "pump_llm": dict(pump_llm), "pump_dico": dict(pump_dico),
+        "reference": rows, "annotator": annotator, "score": dict(score),
+    }
+
+
+def evaluate(df, mapper, path: Path, model: str) -> str:
+    recs = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    s = summarize(df, mapper, recs)
+    sc = s["score"]
+    L = [f"# Step 2 — LLM extraction ({model})", "",
+         f"- Reports processed: **{s['n']}** (of which {s['n_pump']} \"PUMP\" reports)",
+         f"- Average time per \"PUMP\" report: **{s['pump_seconds']} s** (CPU only, 8 GB RAM)" if s["pump_seconds"] else "",
+         f"- Invalid JSON outputs: **{s['invalid']}**",
+         f"- Responses with at least one part type outside the allowed list: **{s['resp_invented']} / {s['n']}** "
+         f"({100 * s['resp_invented'] / max(1, s['n']):.0f}%). Examples: "
+         + ", ".join(f"`{k}` ×{v}" for k, v in s["invented"][:6]),
+         f"- Maintenance manual (AMM) references not found in the text: **{len(s['amm_bad'])} / {s['amm_total']}**. "
+         "They are near-copies of real references, which makes them hard to spot:"]
+    L += [f"    - `{a['id']}`: LLM wrote `{a['llm']}`, text says {', '.join(f'`{x}`' for x in a['text']) or '(nothing close)'}"
+          for a in s["amm_bad"]]
+    L += ["", "## \"PUMP\" reports: which pump failed?", "",
+          "| Answer | Dictionary | LLM |", "| --- | ---: | ---: |"]
+    for k in PUMPS + ["SEVERAL", "NO_PUMP_FAILED"]:
+        name = "NO_PUMP_FAILED (dictionary: no specific pump found)" if k == "NO_PUMP_FAILED" else k
+        L.append(f"| {name} | {s['pump_dico'].get(k, 0)} | {s['pump_llm'].get(k, 0)} |")
+    if s["reference"]:
+        L += ["", f"## Comparison with the reference ({len(s['reference'])} \"PUMP\" reports)", "",
+              f"Reference: `data/ground_truth.xlsx`, annotator: {s['annotator'] or '?'}.", "",
+              "| Report | Reference | Dictionary | LLM | Hybrid |", "| --- | --- | --- | --- | --- |"]
+        for r in s["reference"]:
+            m = lambda x: f"**{x}**" if r["scored"] and x == r["gold"] else x  # noqa: E731
+            L.append(f"| `{r['id']}` | {r['gold']} | {m(r['dico'])} | {m(r['llm'])} | {m(r['hybrid'])} |")
+        L += ["", f"- Dictionary: **{sc.get('dico', 0)} / {sc.get('n', 0)}**",
+              f"- LLM: **{sc.get('llm', 0)} / {sc.get('n', 0)}**",
+              f"- Hybrid (dictionary when it finds 0 or 1 pump, LLM when it finds several): "
+              f"**{sc.get('hybrid', 0)} / {sc.get('n', 0)}**",
+              "- `CANNOT_TELL` in the reference is not scored. Bold = matches the reference.",
+              "- Limits: 19 scored cases, 12 of them chosen because they are ambiguous; the reference "
+              "is an LLM (Claude), not a maintenance expert. Trends, not proof.", ""]
+    return "\n".join(x for x in L if x is not None)
 
 
 def main():
@@ -235,9 +250,9 @@ def main():
     ap.add_argument("--model", default="llama3.2:3b")
     ap.add_argument("--host", default="http://localhost:11434")
     ap.add_argument("--limit", type=int, default=0)
-    ap.add_argument("--mock", action="store_true", help="tester sans Ollama")
+    ap.add_argument("--mock", action="store_true", help="test without Ollama")
     ap.add_argument("--only-pump", action="store_true",
-                    help="seulement les 117 rapports dont le champ structuré dit « PUMP »")
+                    help="only the 117 reports whose structured field says PUMP")
     ap.add_argument("--evaluate-only", action="store_true")
     args = ap.parse_args()
 
@@ -251,12 +266,12 @@ def main():
         try:
             urllib.request.urlopen(f"{args.host}/api/tags", timeout=5)
         except Exception:  # noqa: BLE001
-            sys.exit(f"Ollama ne répond pas sur {args.host}. Lance l'application Ollama "
-                     f"(ou `ollama serve`), puis `ollama pull {args.model}`.")
+            sys.exit(f"Ollama is not answering on {args.host}. Start the Ollama app "
+                     f"(or `ollama serve`), then `ollama pull {args.model}`.")
     if not args.evaluate_only:
         extract(args, df, mapper, path)
-    report = evaluate(df, mapper, path, "dictionnaire (mock)" if args.mock else args.model)
-    (OUT / f"etape2_rapport_{tag}.md").write_text(report, encoding="utf-8")
+    report = evaluate(df, mapper, path, "dictionary (mock)" if args.mock else args.model)
+    (OUT / f"step2_report_{tag}.md").write_text(report, encoding="utf-8")
     print("\n" + report)
 
 

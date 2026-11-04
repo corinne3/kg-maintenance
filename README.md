@@ -1,32 +1,56 @@
-# Graphe de connaissances de maintenance : là où ça coince
+# Where maintenance knowledge graphs break
 
-Cas d'étude sur des **données publiques réelles** : les *Service Difficulty Reports* de la FAA (2025), chapitre ATA 29 (hydraulique), 514 rapports d'incidents.
+A case study on **real public data**: the FAA *Service Difficulty Reports* (2025), ATA chapter 29 (hydraulic power), 514 incident reports.
 
-Le but n'est pas une démo qui marche. C'est de **rendre visibles et mesurables** les difficultés que rencontrent les équipes qui construisent des graphes de connaissances à partir de données industrielles.
+The goal is not a demo that works. It is to **make visible and measurable** the problems teams run into when they build knowledge graphs from industrial maintenance data.
 
-## Ce que montrent les données (étape 1)
+**Interactive explorer:** [link to be added when shared] · **Data:** [FAA SDR download page](https://www.faa.gov/av-info/download_SDR)
 
-| Difficulté | Constat chiffré |
+## What the data shows
+
+| Pitfall | Measured |
 | --- | --- |
-| Entity resolution | Le champ structuré dit « PUMP » dans 117 rapports. Selon ce champ seul, **0** rapport concerne une pompe moteur (EDP) ; en lisant le texte, **147**. La même pompe est écrite de **15** façons (hors numéros de moteur et pluriels). |
-| Faux positifs | « EMP: U349218 » est un numéro d'employé, pas une *Electric Motor Pump*. |
-| Mention ≠ panne | **12** rapports citent plusieurs pompes : un dictionnaire ne sait pas laquelle est en panne. |
-| Hubs | Un parcours GraphRAG naïf à 3 sauts ramène **61 %** du graphe. Une requête guidée par l'ontologie ne ramène que ce qui répond. |
-| Property graph vs RDF | Mêmes faits, deux modèles. La provenance est une propriété d'arête en Cypher ; en RDF, il faut réifier chaque triplet. |
+| Entity resolution | `PartName` just says "PUMP" in 117 reports. With that field only, **0** reports involve an engine-driven pump (EDP); reading the free text, **147**. The same pump is written **15** different ways. |
+| False positives | In "ADD EMP:U349218", EMP is an employee number, not an *Electric Motor Pump*. |
+| Wrong source data | 2 "PUMP" reports involve no pump at all; 2 reports describe the same event. |
+| Mentioned ≠ failed | 12 "PUMP" reports mention several pumps, some only switched off or replaced as a precaution. |
+| LLM extraction | On 19 reference cases: dictionary **10**, local LLM **12**, hybrid **15**. The LLM puts a part type outside the schema in **12%** of answers and altered 2 manual references. |
+| Hubs | A naive 3-hop GraphRAG traversal returns **61%** of the graph. A schema-guided query returns only what answers the question. |
+| Property graph vs RDF | Same facts, same answers. Provenance is an edge property in Cypher; in RDF every fact must be reified: **~10x more triples**. |
 
-Détails : [`outputs/etape1_rapport.md`](outputs/etape1_rapport.md) · Notions expliquées : [`docs/COMPRENDRE.md`](docs/COMPRENDRE.md) · Choix de conception : [`DECISIONS.md`](DECISIONS.md)
+Details: [`outputs/step1_report.md`](outputs/step1_report.md) · [`outputs/step2_report_llama3.2_3b.md`](outputs/step2_report_llama3.2_3b.md) · Design decisions: [`DECISIONS.md`](DECISIONS.md) · Cypher vs SPARQL: [`queries/README.md`](queries/README.md)
 
-## Architecture : même stack, autre domaine
+## Architecture: same stack, another domain
 
-- `kgcore/` : générique (faits + provenance, entity resolution, graphe, exports Cypher et RDF).
-- `domains/maintenance_aviation/` : tout ce qui est propre au domaine (périmètre, ontologie, dictionnaire, mapping).
-- Un autre domaine = un autre dossier sous `domains/`.
+```
+FAA CSV ──► loader ──► domain mapping ──► FACTS (triple + provenance) ──┬──► NetworkX graph ──► analysis (hubs, paths)
+                                                                       ├──► CSV + Cypher ──► Neo4j / FalkorDB
+                                                                       └──► Turtle (RDF) ──► SPARQL (rdflib)
+```
+
+- `kgcore/`: generic (facts with provenance, entity resolution, graph, Cypher and RDF exports).
+- `domains/maintenance_aviation/`: everything specific to the domain (scope, ontology, alias dictionary, mapping).
+- Another domain (HR, supply chain…) = another folder under `domains/`. `kgcore/` stays unchanged.
 
 ## Stack
-100 % open source, en local, sur un PC portable CPU 8 Go : Python, pandas, NetworkX, rdflib (SPARQL), export Neo4j/FalkorDB (Cypher), Ollama pour l'extraction par LLM (étape 2).
 
-## Lancer
-Voir [`docs/COMPRENDRE.md`](docs/COMPRENDRE.md#lancer-le-projet-sur-ton-pc-windows).
+Fully open source and local, on a laptop with 8 GB RAM and no GPU: Python, pandas, NetworkX, rdflib (SPARQL), Cypher export for Neo4j / FalkorDB, Ollama (`llama3.2:3b`) for LLM extraction.
 
-## Transparence
-Données publiques FAA. Code écrit avec un assistant IA ; le cadrage, les choix de conception ([`DECISIONS.md`](DECISIONS.md)) et l'analyse sont les miens.
+## Run it
+
+```bash
+python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+# download SDR-2025.csv from the FAA page above into data/
+python run_step1.py            # graph, step 1 report, figures, exports
+python run_sparql.py           # same answers in SPARQL
+ollama pull llama3.2:3b
+python run_step2_llm.py --only-pump    # LLM extraction on the 117 "PUMP" reports (~30 min on CPU)
+python build_explorer.py       # regenerates outputs/explorer.html
+```
+
+## Transparency
+
+Public FAA data. Code written with an AI assistant; framing, design decisions and analysis are mine. The reference annotations in `data/ground_truth.xlsx` were made by a large LLM (Claude), not by a maintenance expert.
+
+— Corinne Bergès

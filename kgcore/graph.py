@@ -1,4 +1,4 @@
-"""Graphe en mémoire (NetworkX, modèle « property graph ») et analyses."""
+"""In-memory graph (NetworkX, property graph model) and analyses."""
 from __future__ import annotations
 
 from collections import Counter
@@ -9,10 +9,10 @@ from kgcore.facts import Fact
 
 
 def build_graph(facts: list[Fact]) -> nx.MultiDiGraph:
-    """Une arête par fait : on garde la provenance sur l'arête.
+    """One edge per fact: provenance is kept on the edge.
 
-    MultiDiGraph = plusieurs arêtes possibles entre deux mêmes nœuds
-    (ex. la pièce citée à la fois dans le champ structuré et dans le texte).
+    MultiDiGraph = several edges allowed between the same two nodes
+    (e.g. a part cited both in the structured field and in the text).
     """
     g = nx.MultiDiGraph()
     for f in facts:
@@ -30,19 +30,19 @@ def node_counts(g) -> Counter:
 
 
 def hubs(g, exclude_types=("Report",), top=12) -> list[tuple[str, str, int]]:
-    """Nœuds les plus connectés (hors rapports) : les « hubs »."""
-    und = nx.Graph(g)  # on compte les voisins distincts
+    """Most connected nodes (excluding reports): the hubs."""
+    und = nx.Graph(g)  # count distinct neighbours
     rows = [(n, g.nodes[n]["type"], und.degree(n))
             for n in und.nodes if g.nodes[n]["type"] not in exclude_types]
     return sorted(rows, key=lambda r: -r[2])[:top]
 
 
 def typed_paths(g, start: str, path: list[tuple[str, str]]) -> set[str]:
-    """Ce que fait une requête Cypher / SPARQL : suivre le schéma.
+    """What a Cypher / SPARQL query does: follow the schema.
 
-    path = suite de (relation, sens) ; sens 'in' = on remonte l'arête.
-    Ex. [("INVOLVES_PART", "in"), ("HAS_CONDITION", "out")] :
-        pièce <-INVOLVES_PART- rapport -HAS_CONDITION-> état
+    path = sequence of (relation, direction); 'in' = walk the edge backwards.
+    E.g. [("INVOLVES_PART", "in"), ("HAS_CONDITION", "out")]:
+        part <-INVOLVES_PART- report -HAS_CONDITION-> condition
     """
     frontier, seen = {start}, {start}
     for rel, direction in path:
@@ -58,9 +58,9 @@ def typed_paths(g, start: str, path: list[tuple[str, str]]) -> set[str]:
 
 
 def neighborhood(g, start: str, hops: int, blocked: set[str] = frozenset()) -> set[str]:
-    """Ce qu'un GraphRAG naïf récupère : tous les nœuds à N sauts.
+    """What a naive GraphRAG retrieves: every node within N hops.
 
-    `blocked` = nœuds qu'on refuse de traverser (ex. les hubs).
+    `blocked` = nodes we refuse to traverse (e.g. hubs).
     """
     und = nx.Graph(g)
     seen, frontier = {start}, {start}

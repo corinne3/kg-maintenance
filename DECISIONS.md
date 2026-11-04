@@ -1,64 +1,58 @@
-# Décisions de conception
+# Design decisions
 
-Chaque choix est noté avec les options, l'argument, et **ma décision (Corinne)**.
-Le code n'est que l'application de ces décisions.
+Each decision lists the options, the choice and the rationale. The code only applies these decisions.
 
----
+## Decided
 
-## Décisions prises
+### D1 — Scope: ATA chapter 29 (hydraulic power), FAA SDR 2025
+- Options: ATA 29 only (514 reports) · ATA 29 + 32 landing gear (~3x more) · A320 family, all chapters.
+- **Choice: ATA 29 only.**
+- Rationale: small enough for an LLM on a laptop CPU; Airbus and Boeing comparable (200 / 190 reports); contains the "PUMP" case.
 
-### D1 — Périmètre : chapitre ATA 29 (hydraulique), FAA SDR 2025
-- Options : ATA 29 seul (514 rapports) · ATA 29 + 32 train (~3× plus) · famille A320 tous chapitres.
-- Choix : **ATA 29 seul**.
-- Arguments : taille compatible avec un LLM sur CPU (une nuit) ; Airbus et Boeing comparables (200 / 190 rapports) ; contient le cas des pompes.
-- Mon pourquoi : _à écrire_
+### D2 — Part granularity: normalised part type
+- Options: normalised type · part number · both.
+- **Choice: normalised type** (e.g. "Engine-driven pump" groups EDP, ENG PUMP, ENGINE DRIVEN PUMP…).
+- Rationale: the part number is missing in 59% of reports; entity resolution is what this case study is about.
 
-### D2 — Granularité des pièces : type normalisé
-- Options : type normalisé · numéro de pièce · les deux.
-- Choix : **type normalisé** (ex. « Pompe entraînée par le moteur » regroupe EDP, ENG PUMP, ENGINE DRIVEN PUMP…).
-- Arguments : le numéro de pièce manque dans 59 % des rapports ; c'est l'entity resolution qu'on veut démontrer.
-- Mon pourquoi : _à écrire_
+### D3 — Graph model: property graph AND RDF, compared
+- **Choice: both**, built from the same facts (`kgcore/facts.py`).
+- Rationale: show the concrete difference (provenance, size, interoperability) instead of describing it.
 
-### D3 — Modèle de graphe : property graph ET RDF, comparés
-- Choix : **les deux**, à partir des mêmes faits (`kgcore/facts.py`).
-- Arguments : montrer la différence concrète (provenance, verbosité, interopérabilité) plutôt que la réciter.
-- Mon pourquoi : _à écrire_
+### D9 — Use the LLM only where the dictionary fails
+- Observation: on 19 reference cases, dictionary 10/19, LLM 12/19, and they fail on different reports.
+- **Choice: hybrid rule.** Trust the dictionary when it finds 0 or 1 pump; ask the LLM only when it finds several. Result: 15/19.
+- Rationale: on CPU the LLM costs ~16 s per report and invents types outside the schema in 12% of answers. It is worth its cost only on ambiguous cases, and its output must be validated against the ontology before it becomes a fact.
 
----
+### D10 — Reference annotations made by a large LLM
+- Options: maintenance expert · myself · a large LLM as reference.
+- **Choice: a large LLM (Claude) annotated 20 "PUMP" reports** (`data/ground_truth.xlsx`, each row labelled).
+- Rationale: fast, and it gives a consistent reference to compare the dictionary and the small local LLM. Limit: an LLM judging an LLM. In a real project, a sample would be validated by maintenance engineers.
 
-## Décisions ouvertes (à trancher)
+## Open questions
 
-### D4 — ACMP (Boeing, Bombardier) et EMDP / ELEC PUMP : un seul type ?
-- Option A (actuelle) : un seul type « pompe à moteur électrique ». Simple, et la fonction est la même.
-- Option B : deux types. Fidèle au vocabulaire constructeur, mais coupe les comparaisons Airbus/Boeing.
-- Ma décision : _?_
+### D4 — ACMP (Boeing, Bombardier) and EMDP / ELEC PUMP: one type or two?
+- Current default: one type, "electric motor pump" (same function, keeps Airbus/Boeing comparable).
+- Alternative: two types, closer to manufacturer vocabulary.
 
-### D5 — Canadair (CNDAIR) et Bombardier (BOMBDR) : fusionner ?
-- Les CRJ sont des Canadair devenus Bombardier (puis Mitsubishi). La FAA garde deux codes.
-- Option A (actuelle) : garder deux constructeurs, signaler le lien.
-- Option B : fusionner sous « Bombardier ». Plus juste pour l'analyse, mais on perd la trace de la source.
-- Ma décision : _?_
+### D5 — Canadair (CNDAIR) and Bombardier (BOMBDR): merge?
+- Current default: keep both FAA codes, and document the link.
+- Alternative: merge under Bombardier (better for analysis, loses the trace of the source code).
 
-### D6 — Les hubs : comment parcourir le graphe pour un GraphRAG ?
-- Constat : à 3 sauts depuis « EDP », un parcours naïf ramène 61 % du graphe ; bloquer les hubs ne le réduit qu'à ~55 %.
-- Option A : parcours guidé par le schéma (requêtes typées) — ce qui marche à l'étape 1.
-- Option B : bloquer les hubs au-delà d'un seuil (50 voisins ?).
-- Option C : pondérer les nœuds (un hub vaut moins qu'un nœud rare).
-- Ma décision : _?_
+### D6 — Hubs: how should GraphRAG traverse the graph?
+- Observation: a naive 3-hop traversal from "EDP" returns 61% of the graph; blocking hubs only brings it to ~55%.
+- Options: schema-guided queries (what works in step 1) · block hubs above a threshold · weight nodes by rarity.
 
-### D7 — « Le rapport cite une pièce » ≠ « la pièce est en panne »
-- Constat : 12 rapports « PUMP » citent plusieurs pompes ; certaines sont seulement « coupées » ou « vérifiées ».
-- Option A (actuelle) : une seule relation `INVOLVES_PART`.
-- Option B : deux relations, `HAS_FAULTY_PART` et `MENTIONS_PART`, remplies par le LLM à l'étape 2.
-- Ma décision : _?_
+### D7 — "The report mentions a part" is not "the part failed"
+- Current: one relation, `INVOLVES_PART`.
+- Proposal: two relations, `HAS_FAULTY_PART` and `MENTIONS_PART`, filled by the hybrid rule (D9).
 
-### D8 — Les 55 valeurs de `PartName` non reconnues (101 rapports)
-- Exemples : `ELEC CONNECTOR`, `MODULE`, `VALVE`, `FUSE`, `SWITCH`, `INDICATOR`…
-- Question : les ajouter à l'ontologie, les regrouper (« composant électrique »), ou les ignorer ?
-- Ma décision : _?_
+### D8 — 55 unrecognised `PartName` values (101 reports)
+- Examples: `ELEC CONNECTOR`, `MODULE`, `VALVE`, `FUSE`, `SWITCH`, `INDICATOR`…
+- Add them to the ontology, group them ("electrical component"), or ignore them?
 
----
+## Log
 
-## Journal de constats (ce que j'ai vu en lançant le code)
-
-- _date — constat_
+- 2026-11-04 — First LLM test: 110 s per report. Once the model stays loaded in memory: 16 s per report.
+- 2026-11-04 — Two "PUMP" reports involve no pump (ELAC computer, brake line): the structured field can be wrong, not only vague.
+- 2026-11-04 — Two reports describe the same event (SWAA2025102728412, SWAA2025102729004): duplicates in the source data.
+- 2026-11-04 — The LLM altered two maintenance manual references into plausible but wrong ones (29-11-51 for 29-11-11).

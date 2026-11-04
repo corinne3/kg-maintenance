@@ -1,6 +1,6 @@
-"""Domaine maintenance : une ligne FAA -> une liste de faits.
+"""Maintenance domain: one FAA row -> a list of facts.
 
-C'est la seule partie du code qui connaît les colonnes du fichier FAA.
+The only part of the code that knows the columns of the FAA file.
 """
 from __future__ import annotations
 
@@ -43,10 +43,10 @@ class MaintenanceMapper:
         def add(rel, obj, source="structured", evidence=""):
             out.append(Fact(report, rel, obj, source, rid, evidence))
 
-        # --- Avion, modèle, constructeur
+        # --- Aircraft, model, manufacturer
         reg = _clean(row["RegistryNNumber"])
         make_code = _clean(row["AircraftMake"]).upper()
-        make = self.cfg["manufacturers"].get(make_code, make_code or "INCONNU")
+        make = self.cfg["manufacturers"].get(make_code, make_code or "UNKNOWN")
         family = resolve_by_patterns(_clean(row["AircraftModel"]),
                                      self.cfg["model_families"]) or _clean(row["AircraftModel"])
         if reg:
@@ -58,7 +58,7 @@ class MaintenanceMapper:
                 out.append(Fact(model, "MADE_BY", Node("Manufacturer", make, make),
                                 "structured", rid, evidence=make_code))
 
-        # --- Opérateur, code JASC, état de la pièce
+        # --- Operator, JASC code, part condition
         op = _clean(row["OperatorDesignator"])
         if op:
             add("REPORTED_BY", Node("Operator", op, op))
@@ -69,7 +69,7 @@ class MaintenanceMapper:
         if cond:
             add("HAS_CONDITION", Node("Condition", cond, cond))
 
-        # --- Pièce : champ structuré
+        # --- Part: structured field
         pn = _clean(row["PartName"])
         canonical = self.part_from_structured(pn)
         if canonical:
@@ -77,7 +77,7 @@ class MaintenanceMapper:
                 Node("PartType", canonical, self.parts.labels[canonical]),
                 "structured", pn)
 
-        # --- Pièce et tâches AMM : texte libre (dictionnaire)
+        # --- Parts and AMM tasks: free text (dictionary)
         if use_text:
             text = _clean(row["Discrepancy"])
             seen = set()
