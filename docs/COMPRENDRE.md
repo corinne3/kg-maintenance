@@ -63,3 +63,15 @@ python run_step2_llm.py --limit 30
 Charger le graphe dans Neo4j (optionnel) :
 - Neo4j Desktop → créer une base → copier `outputs/property_graph/nodes.csv` et `edges.csv` dans son dossier `import`.
 - Exécuter `outputs/property_graph/import_neo4j.cypher`, puis les requêtes de `queries/README.md`.
+
+## L'assistant (étape 3)
+
+```powershell
+pip install streamlit scikit-learn
+streamlit run app.py
+```
+- Une page s'ouvre dans ton navigateur (http://localhost:8501).
+- Choisis une question exemple ou tape la tienne, en anglais.
+- Trois colonnes : **RAG classique** (textes ressemblants), **GraphRAG naïf** (tout à N sauts, déborde), **GraphRAG guidé** (le chemin de l'ontologie, avec des comptages).
+- Case « Generate answers with the LLM » : le LLM répond à partir de chaque contexte (30 à 60 s par réponse).
+- Case « model hierarchy » : décoche-la pour voir la question « A320 family » perdre la moitié de ses rapports (51 → 24).

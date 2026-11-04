@@ -86,6 +86,15 @@ model_families:
   - {pattern: "^ERJ|^EMB|^ERJ1",  family: "ERJ"}
   - {pattern: "^CL",              family: "CRJ/Challenger"}
 
+# Model hierarchy (D11): what people call a "family" is a group of models.
+# "A320 family" = A318 + A319 + A320 + A321. Without this, a question about
+# the A320 family only finds reports on the A320 itself.
+model_groups:
+  "A320 FAMILY": [A318, A319, A320, A321]
+  "A330 FAMILY": [A330]
+  "737 FAMILY": [737]
+  "777 FAMILY": [777]
+
 # ---------------------------------------------------------------------
 # Entity resolution — part types [D2]
 # Each canonical type has a list of aliases (regular expressions on the

@@ -28,6 +28,14 @@ Each decision lists the options, the choice and the rationale. The code only app
 - **Choice: a large LLM (Claude) annotated 20 "PUMP" reports** (`data/ground_truth.xlsx`, each row labelled).
 - Rationale: fast, and it gives a consistent reference to compare the dictionary and the small local LLM. Limit: an LLM judging an LLM. In a real project, a sample would be validated by maintenance engineers.
 
+### D11 — A model hierarchy in the ontology
+- Observation: "A320 family" in a question matched only the A320 model: 24 EDP reports instead of 51 with A319 and A321.
+- **Choice: `model_groups` in the config** ("A320 FAMILY" = A318, A319, A320, A321), used by entity linking. It can be switched off in the assistant to show the difference.
+
+### D12 — When a schema filter returns nothing, relax it and say so
+- Observation: "reservoir + overheat" gives 0 reports through `PartCondition`, 12 through the free text.
+- **Choice:** the guided query falls back to the text and writes the fallback into the context, so the LLM and the user both see it.
+
 ## Open questions
 
 ### D4 — ACMP (Boeing, Bombardier) and EMDP / ELEC PUMP: one type or two?
@@ -55,4 +63,6 @@ Each decision lists the options, the choice and the rationale. The code only app
 - 2026-11-04 — First LLM test: 110 s per report. Once the model stays loaded in memory: 16 s per report.
 - 2026-11-04 — Two "PUMP" reports involve no pump (ELAC computer, brake line): the structured field can be wrong, not only vague.
 - 2026-11-04 — Two reports describe the same event (SWAA2025102728412, SWAA2025102729004): duplicates in the source data.
+- 2026-11-05 — "A320 family" query: 24 reports without the model hierarchy, 51 with it.
+- 2026-11-05 — "Reservoir overheat": 0 reports through PartCondition, 12 through the text.
 - 2026-11-04 — The LLM altered two maintenance manual references into plausible but wrong ones (29-11-51 for 29-11-11).

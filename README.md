@@ -16,9 +16,21 @@ The goal is not a demo that works. It is to **make visible and measurable** the 
 | Mentioned ≠ failed | 12 "PUMP" reports mention several pumps, some only switched off or replaced as a precaution. |
 | LLM extraction | On 19 reference cases: dictionary **10**, local LLM **12**, hybrid **15**. The LLM puts a part type outside the schema in **12%** of answers and altered 2 manual references. |
 | Hubs | A naive 3-hop GraphRAG traversal returns **61%** of the graph. A schema-guided query returns only what answers the question. |
+| Ontology gaps | "A320 family" means A318/A319/A320/A321. Without a model hierarchy, the guided query finds **24** EDP reports; with it, **51**. |
+| Schema vs text | "Reservoir + OVERHEATED" returns **0** reports through `PartCondition`, but **12** reports describe it in the text. The graph only knows what was extracted. |
 | Property graph vs RDF | Same facts, same answers. Provenance is an edge property in Cypher; in RDF every fact must be reified: **~10x more triples**. |
 
 Details: [`outputs/step1_report.md`](outputs/step1_report.md) · [`outputs/step2_report_llama3.2_3b.md`](outputs/step2_report_llama3.2_3b.md) · Design decisions: [`DECISIONS.md`](DECISIONS.md) · Cypher vs SPARQL: [`queries/README.md`](queries/README.md)
+
+## The assistant: three ways to answer the same question
+
+`streamlit run app.py` opens a local app. Type a question; it builds three contexts side by side and, optionally, asks the local LLM to answer from each:
+
+| Method | What the LLM receives | Typical result |
+| --- | --- | --- |
+| Classic RAG | the 8 report texts most similar to the question (TF-IDF) | relevant examples, but no counting or aggregation |
+| Naive GraphRAG | every triple within N hops of the entities in the question | overflows the context budget and gets cut |
+| Schema-guided GraphRAG | one ontology path (part ← report → condition / manual task / aircraft): counts plus 8 source reports | compact and countable, but only as good as entity linking |
 
 ## Architecture: same stack, another domain
 
@@ -47,6 +59,7 @@ python run_sparql.py           # same answers in SPARQL
 ollama pull llama3.2:3b
 python run_step2_llm.py --only-pump    # LLM extraction on the 117 "PUMP" reports (~30 min on CPU)
 python build_explorer.py       # regenerates outputs/explorer.html
+streamlit run app.py           # the assistant
 ```
 
 ## Transparency
