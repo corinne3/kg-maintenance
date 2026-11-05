@@ -4,7 +4,7 @@ A case study on **real public data**: the FAA *Service Difficulty Reports* (2025
 
 The goal is not a demo that works. It is to **make visible and measurable** the problems teams run into when they build knowledge graphs from industrial maintenance data.
 
-**Interactive explorer:** [link to be added when shared] · **Data:** [FAA SDR download page](https://www.faa.gov/av-info/download_SDR)
+**Interactive explorer:** (https://claude.ai/artifact/DcqBxAdqVA2WnNU992YJmb) · **Data:** [FAA SDR download page](https://www.faa.gov/av-info/download_SDR)
 
 ## What the data shows
 
