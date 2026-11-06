@@ -7,7 +7,7 @@ Two domains, one stack:
 
 The goal is not a demo that works. It is to **make visible and measurable** the problems teams run into when they build knowledge graphs from enterprise data, and to show which fixes work.
 
-**Interactive explorer:** https://claude.ai/artifact/DcqBxAdqVA2WnNU992YJmb · **Data:** [FAA SDR](https://www.faa.gov/av-info/download_SDR) · [ESCO](https://esco.ec.europa.eu/en/use-esco/download)
+**Interactive explorer:** https://corinne3.github.io/kg-maintenance/ · **Data:** [FAA SDR](https://www.faa.gov/av-info/download_SDR) · [ESCO](https://esco.ec.europa.eu/en/use-esco/download)
 
 ## Maintenance: what the data shows
 
@@ -125,7 +125,7 @@ python run_step2_llm.py --only-pump    # LLM extraction on the 117 "PUMP" report
 # HR: download ESCO v1.2.1 classification CSV (en + fr) into data/esco/en and data/esco/fr
 python -m domains.hr.generate  # synthetic company (already in data/hr_synthetic/)
 python run_hr.py               # HR report and figures
-python build_explorer.py       # regenerates outputs/explorer.html
+python build_explorer.py       # regenerates outputs/explorer.html and docs/index.html (the published page)
 python eval_agent.py           # agent routing: rules vs LLM vs hybrid (~10 min on CPU)
 streamlit run app.py           # the assistant: compare retrieval + agent
 ```

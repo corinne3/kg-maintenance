@@ -9,6 +9,7 @@ they are added as a third source with their evaluation.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -22,12 +23,113 @@ from domains.maintenance_aviation.mapping import MaintenanceMapper  # noqa: E402
 from kgcore.graph import build_graph, hubs, neighborhood, typed_paths  # noqa: E402
 from kgcore.loader import load_domain, load_records  # noqa: E402
 from kgcore.resolver import resolve_by_patterns  # noqa: E402
+from kgcore.views import fixed_view, radial_view  # noqa: E402
 
 PUMPS = ["ENGINE_DRIVEN_PUMP", "ELECTRIC_MOTOR_PUMP", "POWER_TRANSFER_UNIT", "RAM_AIR_TURBINE"]
 
 
 def s(v):
     return "" if v is None or (isinstance(v, float) and v != v) else str(v).strip()
+
+
+def graph_views(mcfg, mfacts, g) -> dict:
+    """Bridge view (maintenance + HR) and the HR false-shortcut path."""
+    import yaml
+    from domains.hr.esco import load
+    from domains.hr.mapping import HRMapper, load_tables
+    hcfg = yaml.safe_load(open(ROOT / "domains" / "hr" / "config.yaml", encoding="utf-8"))
+    esco = load(hcfg)
+    t = load_tables()
+    hfacts = [f for f in HRMapper(hcfg, esco).facts(t) if not f.attrs.get("sensitive")]
+    today = hcfg["certifications"]["today"]
+    merged = build_graph(mfacts + hfacts)
+    part = "PartType:ENGINE_DRIVEN_PUMP"
+    fams = ["AircraftModel:A319", "AircraftModel:A320", "AircraftModel:A321"]
+
+    def out(n, rel):
+        return [v for _, v, d in merged.out_edges(n, data=True) if d["relation"] == rel]
+
+    reports, edges = [], []
+    for u, _, d in merged.in_edges(part, data=True):
+        if d["relation"] == "INVOLVES_PART" and u.startswith("Report:"):
+            models = [m for a in out(u, "CONCERNS") for m in out(a, "IS_MODEL") if m in fams]
+            if models:
+                reports.append(u)
+                edges += [(u, part)] + [(u, m) for m in set(models)]
+    reports = sorted(set(reports))
+    techs = {}
+    for u, _, d in merged.in_edges(part, data=True):
+        if d["relation"] != "CERTIFIED_FOR":
+            continue
+        rated = [(m, d2.get("valid_to", "")) for _, m, d2 in merged.out_edges(u, data=True)
+                 if d2["relation"] == "TYPE_RATED" and m in fams]
+        if rated:
+            valid = d.get("valid_to", "") >= today and all(v >= today for _, v in rated)
+            techs[u] = valid
+            edges += [(u, part)] + [(u, m) for m, _ in rated]
+    nodes = [{"id": part, "label": "Engine-driven pump (EDP)", "type": "PartType", "x": 0.5, "y": 0.06, "hub": True}]
+    for i, m in enumerate(fams):
+        nodes.append({"id": m, "label": m.split(":")[1], "type": "AircraftModel", "x": 0.5, "y": 0.45 + 0.22 * i, "hub": True})
+
+    def grid(items, x0, x1, kind, extra):
+        cols = 5
+        rows = (len(items) + cols - 1) // cols
+        for i, n in enumerate(items):
+            r, c = divmod(i, cols)
+            nodes.append({"id": n, "label": merged.nodes[n].get("label", n), "type": kind,
+                          "x": round(x0 + (x1 - x0) * c / (cols - 1), 4),
+                          "y": round(0.22 + 0.76 * r / max(1, rows - 1), 4), **extra(n)})
+    grid(reports, 0.02, 0.32, "Report", lambda n: {})
+    tech_sorted = sorted(techs, key=lambda n: (not techs[n], n))
+    grid(tech_sorted, 0.68, 0.98, "Employee", lambda n: {"expired": not techs[n]})
+    bridge = fixed_view(nodes, edges)
+    bridge.update({"reports": len(reports), "valid": sum(techs.values()), "expired": sum(1 for v in techs.values() if not v)})
+
+    # HR false shortcut: "worked on a project with someone who worked on a project with an X"
+    hg = build_graph(hfacts)
+    occ = {f.subject.id: f.object for f in hfacts if f.relation == "HOLDS_OCCUPATION"}
+    proj = nx.Graph([(f.subject.id, f.object.id) for f in hfacts if f.relation == "MEMBER_OF"])
+    ops = next(e for e, o in sorted(occ.items()) if o.label == "operations manager")
+    path = None
+    for d_emp in sorted(e for e, o in occ.items() if o.label == "software developer"):
+        for f_emp in sorted(e for e, o in occ.items() if o.label == "financial controller"):
+            try:
+                p1, p2 = nx.shortest_path(proj, d_emp, ops), nx.shortest_path(proj, ops, f_emp)
+            except (nx.NetworkXNoPath, nx.NodeNotFound):
+                continue
+            if len(p1) == 3 and len(p2) == 3:
+                path = p1 + p2[1:] + [occ[f_emp].id]
+                break
+        if path:
+            break
+    und = nx.Graph(hg)
+    def named(v):
+        lab = hg.nodes[v].get("label", "")
+        return lab and not re.fullmatch(r"[0-9a-f]{6,}", lab)
+
+    skills = lambda e: sorted(v for _, v, d in hg.out_edges(e, data=True) if d["relation"] == "HAS_SKILL" and named(v))  # noqa: E731
+    req = sorted(v for _, v, d in hg.out_edges(path[-1], data=True) if d["relation"] == "REQUIRES" and named(v))
+    n = len(path)
+    def plabel(x):
+        lab = hg.nodes[x].get("label", x)
+        return f"{lab} ({occ[x].label})" if x in occ else lab
+
+    pnodes = [{"id": x, "label": plabel(x), "type": hg.nodes[x]["type"],
+               "x": round(0.04 + 0.92 * i / (n - 1), 4), "y": 0.5, "hub": x == ops, "onpath": True}
+              for i, x in enumerate(path)]
+    pedges = list(zip(path, path[1:]))
+    for j, s_ in enumerate(skills(path[0])[:4]):
+        pnodes.append({"id": "a" + s_, "label": hg.nodes[s_]["label"], "type": "Skill",
+                       "x": 0.04, "y": round(0.08 + 0.1 * j, 4)})
+        pedges.append((path[0], "a" + s_))
+    for j, s_ in enumerate(req[:4]):
+        pnodes.append({"id": "b" + s_, "label": hg.nodes[s_]["label"], "type": "Skill",
+                       "x": 0.96, "y": round(0.92 - 0.1 * j, 4)})
+        pedges.append((path[-1], "b" + s_))
+    shared = len(set(skills(path[0])) & set(req))
+    shortcut = fixed_view(pnodes, pedges)
+    shortcut.update({"shared": shared, "hub_links": und.degree(ops)})
+    return {"bridge": bridge, "shortcut": shortcut}
 
 
 def main():
@@ -151,6 +253,10 @@ def main():
     unm = Counter(mapper.unmapped_part_names)
     edp_variants_raw = next(p for p in parts if p["key"] == "ENGINE_DRIVEN_PUMP")["variants"]
 
+    views = {"hub": radial_view(g, edp, max(h["h"] for h in hops))}
+    if hr is not None:
+        views.update(graph_views(cfg, facts, g))
+
     data = {
         "nReports": len(reports), "nNodes": total, "nFacts": len(facts),
         "nDistinct": distinct, "rdfTotal": rdf_total,
@@ -165,6 +271,7 @@ def main():
         "llmEval": llm_eval,
         "hr": hr,
         "agent": agent_eval,
+        "views": views,
     }
     tpl = (ROOT / "web" / "explorer_template.html").read_text(encoding="utf-8")
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -172,6 +279,10 @@ def main():
     out = ROOT / "outputs" / "explorer.html"
     out.write_text(html, encoding="utf-8")
     print(f"Page written: {out} ({len(html) // 1024} KB)")
+    site = ROOT / "docs" / "index.html"   # published by GitHub Pages (Settings > Pages > main, /docs)
+    site.write_text(html, encoding="utf-8")
+    (ROOT / "docs" / ".nojekyll").touch()
+    print(f"Site copy:    {site}")
 
 
 if __name__ == "__main__":

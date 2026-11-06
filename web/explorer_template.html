@@ -177,6 +177,16 @@ pre.code { margin: 0; font-family: var(--font-mono); font-size: 0.78rem; line-he
 .trap h3 { font-size: 1.05rem; }
 @media (max-width: 560px) { .trap { grid-template-columns: 1fr; gap: 4px; } }
 
+/* Graph views (drawn on canvas, positions computed in Python) */
+.gview { position: relative; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.gview canvas { display: block; width: 100%; touch-action: pan-y; }
+.gtip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong);
+  border-radius: 4px; padding: 4px 8px; font-size: 0.8rem; max-width: 260px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.gtip[hidden] { display: none; }
+.glegend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.82rem; color: var(--muted); }
+.glegend span { display: inline-flex; align-items: center; gap: 6px; }
+.glegend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; box-sizing: border-box; }
+.glegend i[style*="--bg"] { border: 1.5px solid var(--warn); }
 footer { border-top: 1px solid var(--line); padding-top: 20px; display: grid; gap: 8px; font-size: 0.86rem; color: var(--muted); }
 footer a { color: var(--accent-ink); }
 @media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.35s ease; } }
@@ -232,6 +242,8 @@ footer a { color: var(--accent-ink); }
         <span class="note">Number of hops</span>
         <div class="seg" id="hopseg" role="group" aria-label="Number of hops"></div>
       </div>
+      <div class="gview"><canvas id="g-hub" height="520" role="img"></canvas><div class="gtip" hidden></div></div>
+      <div class="glegend" id="g-hub-legend"></div>
       <div class="bars" id="hop-bars"></div>
       <p class="note" id="hop-note"></p>
     </div>
@@ -281,6 +293,15 @@ footer a { color: var(--accent-ink); }
       <h3>Internal mobility: suggestions with zero matching skills</h3>
       <div class="bars" id="hr-mob"></div>
       <p class="note" id="hr-mob-note"></p>
+      <h3 id="g-short-title" hidden>One suggestion, drawn: the path looks short, the skills do not match</h3>
+      <div class="gview" id="g-short-box" hidden><canvas id="g-short" height="320" role="img"></canvas><div class="gtip" hidden></div></div>
+      <p class="note" id="g-short-note"></p>
+    </div>
+    <div class="hopbox" id="g-bridge-box" hidden>
+      <h3>One graph, two domains: engine-driven pumps on the A320 family</h3>
+      <div class="gview"><canvas id="g-bridge" height="520" role="img"></canvas><div class="gtip" hidden></div></div>
+      <div class="glegend" id="g-bridge-legend"></div>
+      <p class="note" id="g-bridge-note"></p>
     </div>
     <div class="twocol">
       <div class="codecard">
@@ -503,6 +524,105 @@ function renderPanel() {
 function debounce(fn, ms) { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; }
 renderPanel();
 
+
+// ---- Graph drawing (no library: positions come from Python, the page only draws)
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const GROUP = {
+  PartType: "--accent", Report: "--line-strong", Condition: "--struct", JascCode: "--struct", Operator: "--struct",
+  AircraftModel: "--struct", AmmTask: "--llm", Aircraft: "--muted",
+  Employee: "--accent", Skill: "--llm", Project: "--struct", Occupation: "--accent-ink",
+};
+function legend(el, items) {
+  el.innerHTML = items.map(([c, t]) => `<span><i style="background:var(${c})"></i>${esc(t)}</span>`).join("");
+}
+function graphView(canvas, view, opt) {
+  const tip = canvas.parentElement.querySelector(".gtip");
+  let pts = [], visible = () => true;
+  function draw() {
+    const W = canvas.clientWidth, H = +canvas.getAttribute("height"), dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px";
+    const c = canvas.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
+    const vis = view.nodes.map((n, i) => visible(n, i));
+    let x0 = 1, x1 = 0, y0 = 1, y1 = 0;
+    view.nodes.forEach((n, i) => { if (vis[i]) { x0 = Math.min(x0, n.x); x1 = Math.max(x1, n.x); y0 = Math.min(y0, n.y); y1 = Math.max(y1, n.y); } });
+    const pad = opt.pad ?? 28, sx = (W - 2 * pad) / Math.max(x1 - x0, 0.05), sy = (H - 2 * pad) / Math.max(y1 - y0, 0.05);
+    const s = opt.keepRatio ? Math.min(sx, sy) : null;
+    const ox = s ? (W - s * (x1 - x0)) / 2 : pad, oy = s ? (H - s * (y1 - y0)) / 2 : pad;
+    pts = view.nodes.map((n) => [ox + (n.x - x0) * (s || sx), oy + (n.y - y0) * (s || sy)]);
+    c.lineWidth = 0.6; c.strokeStyle = css("--line-strong"); c.globalAlpha = opt.edgeAlpha ?? 0.35;
+    c.beginPath();
+    for (const [a, b] of view.edges) if (vis[a] && vis[b]) { c.moveTo(...pts[a]); c.lineTo(...pts[b]); }
+    c.stroke(); c.globalAlpha = 1;
+    if (opt.pathEdges) {
+      c.lineWidth = 2.2; c.strokeStyle = css("--warn"); c.beginPath();
+      for (const [a, b] of view.edges) if (view.nodes[a].onpath && view.nodes[b].onpath) { c.moveTo(...pts[a]); c.lineTo(...pts[b]); }
+      c.stroke();
+    }
+    const order = view.nodes.map((_, i) => i).sort((a, b) => (view.nodes[a].hub ? 1 : 0) - (view.nodes[b].hub ? 1 : 0));
+    for (const i of order) {
+      if (!vis[i]) continue;
+      const n = view.nodes[i], r = opt.radius(n, i);
+      c.beginPath(); c.arc(...pts[i], r, 0, 2 * Math.PI);
+      if (n.expired) { c.fillStyle = css("--bg"); c.fill(); c.lineWidth = 1.5; c.strokeStyle = css("--warn"); c.stroke(); continue; }
+      c.fillStyle = css(GROUP[n.type] || "--muted"); c.fill();
+      if (n.hub || i === view.start) { c.lineWidth = 1.5; c.strokeStyle = css("--surface"); c.stroke(); }
+    }
+    c.font = `500 12px ${css("--font-body")}`; c.textBaseline = "middle";
+    const taken = [];
+    const lab = order.filter((i) => vis[i] && opt.label(view.nodes[i], i))
+      .sort((a, b) => (b === view.start) - (a === view.start) || (view.nodes[b].deg || 0) - (view.nodes[a].deg || 0));
+    for (const i of lab) {
+      const n = view.nodes[i], r = opt.radius(n, i), [x, y] = pts[i];
+      const txt = n.label.length > 34 ? n.label.slice(0, 32) + "…" : n.label, w = c.measureText(txt).width;
+      let left, ty;
+      if (opt.labelBelow?.(n)) { left = Math.max(4, Math.min(W - w - 4, x - w / 2)); ty = y + r + 10; }
+      else { left = x < W * 0.6 ? x + r + 4 : x - r - 4 - w; ty = y; if (left + w > W - 4) left = x - r - 4 - w; if (left < 4) left = x + r + 4; }
+      const box = [left - 2, ty - 8, left + w + 2, ty + 8];
+      if (taken.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1])) continue;
+      taken.push(box);
+      c.textAlign = "left";
+      c.lineWidth = 3; c.strokeStyle = css("--bg"); c.strokeText(txt, left, ty);
+      c.fillStyle = css("--ink"); c.fillText(txt, left, ty);
+    }
+  }
+  canvas.addEventListener("pointermove", (e) => {
+    const rc = canvas.getBoundingClientRect(), mx = e.clientX - rc.left, my = e.clientY - rc.top;
+    let best = -1, bd = 100;
+    pts.forEach(([x, y], i) => { if (!visible(view.nodes[i], i)) return; const d = (x - mx) ** 2 + (y - my) ** 2; if (d < bd) { bd = d; best = i; } });
+    if (best < 0) { tip.hidden = true; return; }
+    const n = view.nodes[best];
+    tip.innerHTML = opt.tip(n);
+    tip.hidden = false;
+    tip.style.left = Math.min(mx + 12, canvas.clientWidth - 270) + "px"; tip.style.top = (my + 12) + "px";
+  });
+  canvas.addEventListener("pointerleave", () => { tip.hidden = true; });
+  new ResizeObserver(draw).observe(canvas);
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+  return { draw, filter(f) { visible = f; draw(); } };
+}
+const TYPE_NAME = { PartType: "part type", Report: "FAA report", Condition: "condition", JascCode: "JASC code", Operator: "operator",
+  AircraftModel: "aircraft model", AmmTask: "manual task", Aircraft: "aircraft", Employee: "employee", Skill: "skill",
+  Project: "project", Occupation: "ESCO occupation" };
+
+let hubView = null;
+if (D.views?.hub) {
+  const V = D.views.hub;
+  const top = new Set(V.nodes.map((n, i) => [n.deg, i]).filter(([, i]) => V.nodes[i].hub).sort((a, b) => b[0] - a[0]).slice(0, 10).map(([, i]) => i));
+  hubView = graphView($("g-hub"), V, {
+    keepRatio: true, edgeAlpha: 0.18,
+    radius: (n, i) => (i === V.start ? 8 : n.hub ? 3 + Math.min(7, Math.sqrt(n.deg) / 2) : 2.2),
+    label: (n, i) => i === V.start || top.has(i),
+    tip: (n) => `<b>${esc(n.label)}</b><br>${TYPE_NAME[n.type] || n.type} · ${n.deg} links · reached at hop ${n.hop}`,
+  });
+  legend($("g-hub-legend"), [["--accent", "part types"], ["--line-strong", "reports"], ["--struct", "conditions, codes, operators, models"], ["--llm", "manual tasks"], ["--muted", "aircraft"]]);
+}
+function drawHub() {
+  if (!hubView) return;
+  const V = D.views.hub, k = V.nodes.filter((n) => n.hop <= hop).length;
+  hubView.filter((n) => n.hop <= hop);
+  $("g-hub").setAttribute("aria-label", `Graph of the ${k} nodes within ${hop} hops of the engine-driven pump node`);
+}
+
 // ---- Traversals
 let hop = 3;
 $("hopseg").innerHTML = D.hops.map((h) => `<button type="button" data-h="${h.h}" aria-pressed="${h.h === hop}">${h.h}</button>`).join("");
@@ -519,7 +639,8 @@ function renderHops() {
     { label: "Blocking hubs (≥ 50 neighbours)", value: h.guarded, text: `${fmt(h.guarded)} nodes · ${pct(h.guarded, D.nNodes)}`, cls: "grey" },
     { label: "Schema-guided query", value: D.typed, text: `${fmt(D.typed)} nodes · ${pct(D.typed, D.nNodes)}` },
   ], D.nNodes);
-  $("hop-note").textContent = `The graph has ${fmt(D.nNodes)} nodes. The guided query follows one path defined by the ontology (part ← report → condition or manual task), so it does not depend on the number of hops.`;
+  drawHub();
+  $("hop-note").textContent = `Above: every node within ${hop} hop${hop > 1 ? "s" : ""} of the EDP node (centre). Each ring is one more hop; bigger dots are hubs (≥ 50 links), hover for details. Hop 1 is the EDP reports; hop 2 goes through hubs such as “LEAKING” or JASC 2910, and from there hop 3 reaches most of the graph. The graph has ${fmt(D.nNodes)} nodes. The guided query follows one path defined by the ontology (part ← report → condition or manual task), so it does not depend on the number of hops.`;
 }
 renderHops();
 bars($("hub-bars"), D.hubs.map((h) => ({ label: `${h.label}`, value: h.deg, cls: h.type === "PartType" ? "" : "struct" })), D.hubs[0].deg);
@@ -574,6 +695,34 @@ if (D.hr) {
     ["Islands mixing both sites", H.raw_mixed, H.esco_mixed],
   ].map(([a, b, c]) => `<tr><td>${a}</td><td class="n">${b}</td><td class="n big">${c}</td></tr>`).join("");
   $("hr-islands-note").textContent = `In the raw graph, Toulouse and Bristol meet only through “${H.raw_cross_vague.join("” and “")}”, spelled the same in both languages. ESCO carries French and English labels for the same concept and reconnects the sites through real skills.`;
+
+  if (D.views?.shortcut) {
+    const V = D.views.shortcut, path = V.nodes.filter((n) => n.onpath);
+    $("g-short-title").hidden = false; $("g-short-box").hidden = false;
+    graphView($("g-short"), V, {
+      pad: 34, pathEdges: true, edgeAlpha: 0.5,
+      radius: (n) => (n.hub ? 9 : n.onpath ? 6 : 4),
+      label: () => true,
+      labelBelow: (n) => n.onpath,
+      tip: (n) => `<b>${esc(n.label)}</b><br>${TYPE_NAME[n.type] || n.type}${n.hub ? ` · the human hub, ${V.hub_links} links` : ""}`,
+    });
+    $("g-short").setAttribute("aria-label", `Path from a ${path[0].label} to the job ${path[path.length - 1].label} through two projects and the operations manager`);
+    $("g-short-note").textContent = `Read left to right: ${path[0].label} worked on project ${path[1].label} with ${path[2].label}, who worked on ${path[3].label} with ${path[4].label}. Four hops, so a naive graph suggests “could become a ${path[5].label}”. Top left, the person’s skills; bottom right, the skills the job requires: ${V.shared} in common.`;
+  }
+  if (D.views?.bridge) {
+    const V = D.views.bridge;
+    $("g-bridge-box").hidden = false;
+    graphView($("g-bridge"), V, {
+      pad: 30, edgeAlpha: 0.45,
+      radius: (n) => (n.type === "PartType" ? 10 : n.type === "AircraftModel" ? 8 : 4),
+      label: (n) => n.hub,
+      labelBelow: (n) => n.hub,
+      tip: (n) => `<b>${esc(n.label)}</b><br>${TYPE_NAME[n.type] || n.type}${n.type === "Employee" ? (n.expired ? " · certification or type rating expired" : " · valid certification") : ""}`,
+    });
+    $("g-bridge").setAttribute("aria-label", `${V.reports} FAA reports on the left and ${V.valid + V.expired} certified technicians on the right, joined through the engine-driven pump and the A319, A320 and A321 nodes`);
+    legend($("g-bridge-legend"), [["--line-strong", `FAA reports (${V.reports})`], ["--accent", `technicians with a valid certification (${V.valid})`], ["--bg", `expired certification or type rating (${V.expired})`], ["--struct", "aircraft models"]]);
+    $("g-bridge-note").textContent = `Left: the ${V.reports} incident reports on an engine-driven pump of an A319, A320 or A321. Right: technicians certified for that part and type-rated on one of those models. The two domains meet only through the shared part-type and aircraft-model nodes. The ${V.expired} hollow red circles on the right would still be counted by a graph without validity dates.`;
+  }
   $("hr-bridge").innerHTML = `<em>“Engine-driven pumps on the A320 family: how many incidents, and who can work on them?”</em><br><strong>${H.bridge_reports}</strong> FAA incident reports in 2025, and <strong>${H.bridge_valid}</strong> technicians with a valid certification. Ignoring expiry dates would add ${H.bridge_ignored_expiry} people who are no longer qualified; without dates on reporting lines, a reorganisation gives ${H.two_managers} employees two managers.`;
 }
 
