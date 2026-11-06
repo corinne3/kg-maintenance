@@ -19,9 +19,9 @@ def build_graph(facts: list[Fact]) -> nx.MultiDiGraph:
         for n in (f.subject, f.object):
             if n.id not in g:
                 g.add_node(n.id, type=n.type, key=n.key, label=n.label or n.key)
-        g.add_edge(f.subject.id, f.object.id, key=f"{f.relation}|{f.source}",
+        g.add_edge(f.subject.id, f.object.id, key=f"{f.relation}|{f.source}|{f.attrs.get('valid_from', '')}",
                    relation=f.relation, source=f.source,
-                   record_id=f.record_id, evidence=f.evidence)
+                   record_id=f.record_id, evidence=f.evidence, **f.attrs)
     return g
 
 

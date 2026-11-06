@@ -1,0 +1,1289 @@
+employee,skill_text,true_skill,kind,synthetic
+E001,mechanical drawings,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E001,implement technical communication skills,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E001,aircraft mechanics,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E001,read standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E001,utilise bonding and welding equipment,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E001,install electrical and electronic equipment,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E001,attention to detail,,vague,True
+E001,Excel,,vague,True
+E002,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E002,règles communes de sécurité en matière d'aviation,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E002,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E002,porter des équipements de protection appropriés,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E002,règles de sécurité des aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E002,électromécanique,http://data.europa.eu/esco/skill/2bbdea06-a265-42b5-bb4f-7241b661f069,esco,True
+E002,communication,,vague,True
+E002,informatique,,vague,True
+E003,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E003,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E003,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E003,règles de sécurité des aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E003,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E003,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E003,rigueur,,vague,True
+E003,communication,,vague,True
+E004,évaluer la performance d’un moteur,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E004,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E004,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E004,électromécanique,http://data.europa.eu/esco/skill/2bbdea06-a265-42b5-bb4f-7241b661f069,esco,True
+E004,ingénierie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E004,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E004,Excel,,vague,True
+E004,communication,,vague,True
+E005,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E005,utiliser des outils électriques,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E005,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E005,règles communes de sécurité en matière d'aviation,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E005,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E005,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E005,Excel,,vague,True
+E005,rigueur,,vague,True
+E006,helicopter mechanics,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E006,interpret standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E006,install electrical and electronic equipment,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E006,use technical documentation,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E006,airport safety regulations,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E006,ensure compliance with airport security measures,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E006,people skills,,vague,True
+E006,teamwork,,vague,True
+E007,assemble electrical elements,http://data.europa.eu/esco/skill/415cb0c2-e169-4f99-ba3e-d1c433b75368,esco,True
+E007,engineering principle,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E007,aircraft mechanics,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E007,standard aviation safety regulations,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E007,electrics,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E007,mechanical engineering,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E007,attention to detail,,vague,True
+E007,teamwork,,vague,True
+E008,assurer la conformité avec les normes de santé  sécurité et hygiène,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E008,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E008,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E008,ingénierie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E008,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E008,génie électrique,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E008,informatique,,vague,True
+E008,rigueur,,vague,True
+E009,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E009,utiliser des outils électriques,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E009,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E009,assembler des composants électriques,http://data.europa.eu/esco/skill/415cb0c2-e169-4f99-ba3e-d1c433b75368,esco,True
+E009,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E009,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E009,Excel,,vague,True
+E009,autonomie,,vague,True
+E010,employ technical communication skills,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E010,electrical wiring plans,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E010,disassemble engines,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E010,aircraft mechanics,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E010,analyse mechanisms,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E010,electronics,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E010,people skills,,vague,True
+E010,Excel,,vague,True
+E011,principes d’ingénierie,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E011,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E011,réglementation en matière de sécurité aéroportuaire,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E011,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E011,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E011,électricité,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E011,informatique,,vague,True
+E011,rigueur,,vague,True
+E012,gérer les normes de santé et de sécurité,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E012,génie électrique,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E012,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E012,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E012,porter des équipements de protection appropriés,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E012,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E012,travail en équipe,,vague,True
+E012,relationnel,,vague,True
+E013,ensure airport security processes are observed,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E013,electricity,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E013,mend engines,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E013,electrical wiring plans,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E013,understand and implement technical documentation,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E013,electrical engineering,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E013,attention to detail,,vague,True
+E013,communication,,vague,True
+E014,suivre les directives du fabricant concernant l'utilisation des équipements aéroportuaires,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E014,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E014,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E014,installer des appareils électriques et électroniques,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E014,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E014,règles de sécurité des aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E014,autonomie,,vague,True
+E014,informatique,,vague,True
+E015,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E015,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E015,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E015,réglementation en matière de santé et de sécurité dans les aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E015,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E015,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E015,rigueur,,vague,True
+E015,autonomie,,vague,True
+E016,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E016,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E016,électromécanique,http://data.europa.eu/esco/skill/2bbdea06-a265-42b5-bb4f-7241b661f069,esco,True
+E016,règles communes de sécurité en matière d'aviation,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E016,électronique,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E016,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E016,autonomie,,vague,True
+E016,relationnel,,vague,True
+E017,apply technical communication skills,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E017,electrical wiring plan,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E017,disassemble engines,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E017,engine components,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E017,understand standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E017,operate airport equipment in accordance with advice provided by manufacturers,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E017,IT,,vague,True
+E017,attention to detail,,vague,True
+E018,garantir le respect des normes de santé  sécurité et hygiène,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E018,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E018,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E018,installer des appareils électriques et électroniques,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E018,plans de câblage électrique,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E018,principes d’ingénierie,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E018,communication,,vague,True
+E018,travail en équipe,,vague,True
+E019,utiliser des outils électriques,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E019,électronique,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E019,règles de sécurité des aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E019,électromécanique,http://data.europa.eu/esco/skill/2bbdea06-a265-42b5-bb4f-7241b661f069,esco,True
+E019,lire des schémas techniques,http://data.europa.eu/esco/skill/b07daddc-8625-4360-946e-ad2b0e56ebf6,esco,True
+E019,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E019,communication,,vague,True
+E019,travail en équipe,,vague,True
+E020,électricité,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E020,installer des appareils électriques et électroniques,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E020,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E020,électronique,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E020,parties physiques des moteurs,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E020,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E020,Excel,,vague,True
+E020,autonomie,,vague,True
+E021,electrification,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E021,ensure compliance with health and hygiene standards,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E021,extract information from standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E021,ensure compliance with airport security measures,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E021,wear appropriate protective gear,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E021,electrical wiring plans,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E021,Excel,,vague,True
+E021,self-starter,,vague,True
+E022,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E022,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E022,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E022,suivre les directives du fabricant concernant l'utilisation des équipements aéroportuaires,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E022,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E022,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E022,communication,,vague,True
+E022,rigueur,,vague,True
+E023,apply technical communication skills,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E023,manage health and safety standards,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E023,engine components,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E023,install electrical and electronic equipment,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E023,repair engines,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E023,engineering processes,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E023,people skills,,vague,True
+E023,teamwork,,vague,True
+E024,ingénierie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E024,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E024,lire des schémas techniques,http://data.europa.eu/esco/skill/b07daddc-8625-4360-946e-ad2b0e56ebf6,esco,True
+E024,dessin technique,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E024,évaluer la performance d’un moteur,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E024,électronique,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E024,Excel,,vague,True
+E024,informatique,,vague,True
+E025,employ technical communication skills,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E025,introduce electric and digital components and systems,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E025,disassemble engines,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E025,wear appropriate protective gear,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E025,mechanical engineering,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E025,mount electrical components,http://data.europa.eu/esco/skill/415cb0c2-e169-4f99-ba3e-d1c433b75368,esco,True
+E025,self-starter,,vague,True
+E025,Excel,,vague,True
+E026,plans de câblage électrique,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E026,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E026,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E026,conventions sur la sécurité aéroportuaire,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E026,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E026,composants des moteurs,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E026,autonomie,,vague,True
+E026,informatique,,vague,True
+E027,assemble electrical components,http://data.europa.eu/esco/skill/415cb0c2-e169-4f99-ba3e-d1c433b75368,esco,True
+E027,understand information presented in standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E027,aircraft mechanics,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E027,use power tools,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E027,electronics,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E027,repair engines,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E027,IT,,vague,True
+E027,communication,,vague,True
+E028,electricity,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E028,operate soldering equipment,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E028,comprehend information presented in standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E028,wear appropriate protective gear,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E028,helicopter mechanics,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E028,use power tools,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E028,people skills,,vague,True
+E028,attention to detail,,vague,True
+E029,évaluer la performance d’un moteur,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E029,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E029,utiliser des outils électriques,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E029,conventions de sécurité pour les aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E029,plans de câblage électrique,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E029,ingénierie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E029,Excel,,vague,True
+E029,relationnel,,vague,True
+E030,gérer les normes de santé et de sécurité,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E030,électronique,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E030,génie électrique,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E030,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E030,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E030,parties physiques des moteurs,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E030,travail en équipe,,vague,True
+E030,communication,,vague,True
+E031,installer des appareils électriques et électroniques,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E031,plans de câblage électrique,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E031,règles communes de sécurité en matière d'aviation,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E031,lire des schémas techniques,http://data.europa.eu/esco/skill/b07daddc-8625-4360-946e-ad2b0e56ebf6,esco,True
+E031,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E031,réglementation en matière de santé et de sécurité dans les aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E031,relationnel,,vague,True
+E031,autonomie,,vague,True
+E032,analyse engine performance,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E032,electronic devices,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E032,electricity,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E032,mechanical engineering,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E032,common safety regulations in aviation,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E032,engineering processes,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E032,teamwork,,vague,True
+E032,people skills,,vague,True
+E033,engineering mechanics,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E033,join together electrical parts,http://data.europa.eu/esco/skill/415cb0c2-e169-4f99-ba3e-d1c433b75368,esco,True
+E033,electrical engineering,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E033,use power tools,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E033,ensure compliance with airport security measures,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E033,read standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E033,teamwork,,vague,True
+E033,communication,,vague,True
+E034,functioning of electronics,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E034,maintain compliance with airport security measures,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E034,follow manufacturer guidelines in use of airport equipment,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E034,airport safety conventions,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E034,read standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E034,fundamentals of electrical engineering,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E034,self-starter,,vague,True
+E034,attention to detail,,vague,True
+E035,installer des appareils électriques et électroniques,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E035,ingénierie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E035,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E035,dessin technique,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E035,règles de sécurité des aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E035,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E035,informatique,,vague,True
+E035,rigueur,,vague,True
+E036,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E036,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E036,évaluer la performance d’un moteur,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E036,utiliser des outils électriques,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E036,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E036,principes d’ingénierie,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E036,relationnel,,vague,True
+E036,rigueur,,vague,True
+E037,parties constitutives des moteurs,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E037,plans de câblage électrique,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E037,utiliser du matériel de brasage tendre,http://data.europa.eu/esco/skill/f30a7ea4-77dd-452c-8a2d-b06c12606a7f,esco,True
+E037,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E037,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E037,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E037,travail en équipe,,vague,True
+E037,autonomie,,vague,True
+E038,évaluer la performance d’un moteur,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E038,principes d’ingénierie,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E038,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E038,installer des appareils électriques et électroniques,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E038,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E038,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E038,travail en équipe,,vague,True
+E038,rigueur,,vague,True
+E039,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E039,porter des équipements de protection appropriés,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E039,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E039,ingénierie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E039,lire des schémas techniques,http://data.europa.eu/esco/skill/b07daddc-8625-4360-946e-ad2b0e56ebf6,esco,True
+E039,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E039,Excel,,vague,True
+E039,communication,,vague,True
+E040,assembler des composants électriques,http://data.europa.eu/esco/skill/415cb0c2-e169-4f99-ba3e-d1c433b75368,esco,True
+E040,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E040,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E040,installer des appareils électriques et électroniques,http://data.europa.eu/esco/skill/52797dce-911c-4e6d-b0cb-491f6469014f,esco,True
+E040,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E040,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E040,autonomie,,vague,True
+E040,rigueur,,vague,True
+E041,utiliser des outils électriques,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E041,diagnostiquer des moteurs défectueux,http://data.europa.eu/esco/skill/68162174-68c3-4601-840b-5e63c2dd7481,esco,True
+E041,inspecter un avion pour contrôler sa navigabilité,http://data.europa.eu/esco/skill/2c02af08-a7f9-4535-889d-f4172cfc9a17,esco,True
+E041,gérer les ressources de développement d’un aéroport,http://data.europa.eu/esco/skill/d703c741-0f67-4388-9f0c-d2574143ee70,esco,True
+E041,génie électrique,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E041,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E041,communication,,vague,True
+E041,relationnel,,vague,True
+E042,inspecter un avion pour contrôler sa navigabilité,http://data.europa.eu/esco/skill/2c02af08-a7f9-4535-889d-f4172cfc9a17,esco,True
+E042,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E042,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E042,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E042,gérer les ressources de développement d’un aéroport,http://data.europa.eu/esco/skill/d703c741-0f67-4388-9f0c-d2574143ee70,esco,True
+E042,diagnostiquer des moteurs défectueux,http://data.europa.eu/esco/skill/68162174-68c3-4601-840b-5e63c2dd7481,esco,True
+E042,autonomie,,vague,True
+E042,Excel,,vague,True
+E043,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E043,gérer les ressources de développement d’un aéroport,http://data.europa.eu/esco/skill/d703c741-0f67-4388-9f0c-d2574143ee70,esco,True
+E043,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E043,génie électrique,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E043,systèmes de commande de vol d'un avion,http://data.europa.eu/esco/skill/2672f6a9-1e70-43c5-859d-e6a0fc9ea0f1,esco,True
+E043,inspecter un avion pour contrôler sa navigabilité,http://data.europa.eu/esco/skill/2c02af08-a7f9-4535-889d-f4172cfc9a17,esco,True
+E043,communication,,vague,True
+E043,autonomie,,vague,True
+E044,diagnose defective engines,http://data.europa.eu/esco/skill/68162174-68c3-4601-840b-5e63c2dd7481,esco,True
+E044,evaluate engine performance,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E044,mechanical engineering,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E044,engineering processes,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E044,employ testing tools,http://data.europa.eu/esco/skill/74374d09-7a54-4a05-ae78-d5940423de7c,esco,True
+E044,aircraft flight control systems,http://data.europa.eu/esco/skill/2672f6a9-1e70-43c5-859d-e6a0fc9ea0f1,esco,True
+E044,people skills,,vague,True
+E044,self-starter,,vague,True
+E045,caractéristiques des systèmes de contrôle de vol des avions,http://data.europa.eu/esco/skill/2672f6a9-1e70-43c5-859d-e6a0fc9ea0f1,esco,True
+E045,porter des équipements de protection appropriés,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E045,gérer les ressources de développement d’un aéroport,http://data.europa.eu/esco/skill/d703c741-0f67-4388-9f0c-d2574143ee70,esco,True
+E045,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E045,évaluer la performance d’un moteur,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E045,diagnostiquer des moteurs défectueux,http://data.europa.eu/esco/skill/68162174-68c3-4601-840b-5e63c2dd7481,esco,True
+E045,communication,,vague,True
+E045,informatique,,vague,True
+E046,follow manufacturer guidelines in use of airport equipment,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E046,electrical wiring plans,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E046,use power tools,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E046,manufacture mechanisms,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E046,ensure compliance with airport security measures,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E046,engine constituent parts,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E046,teamwork,,vague,True
+E046,IT,,vague,True
+E047,utiliser du matériel d’essai,http://data.europa.eu/esco/skill/74374d09-7a54-4a05-ae78-d5940423de7c,esco,True
+E047,inspecter un avion pour contrôler sa navigabilité,http://data.europa.eu/esco/skill/2c02af08-a7f9-4535-889d-f4172cfc9a17,esco,True
+E047,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E047,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E047,lire des schémas techniques,http://data.europa.eu/esco/skill/b07daddc-8625-4360-946e-ad2b0e56ebf6,esco,True
+E047,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E047,communication,,vague,True
+E047,autonomie,,vague,True
+E048,utiliser du matériel d’essai,http://data.europa.eu/esco/skill/74374d09-7a54-4a05-ae78-d5940423de7c,esco,True
+E048,domaine de l'ingénierie électrique,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E048,systèmes de commande de vol d'un avion,http://data.europa.eu/esco/skill/2672f6a9-1e70-43c5-859d-e6a0fc9ea0f1,esco,True
+E048,génie mécanique,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E048,électricité,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E048,suivre les directives du fabricant concernant l'utilisation des équipements aéroportuaires,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E048,communication,,vague,True
+E048,travail en équipe,,vague,True
+E049,engineering processes,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E049,control use of airport development resources,http://data.europa.eu/esco/skill/d703c741-0f67-4388-9f0c-d2574143ee70,esco,True
+E049,analyse defective engines,http://data.europa.eu/esco/skill/68162174-68c3-4601-840b-5e63c2dd7481,esco,True
+E049,use testing equipment,http://data.europa.eu/esco/skill/74374d09-7a54-4a05-ae78-d5940423de7c,esco,True
+E049,disassemble engines,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E049,engineering mechanics,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E049,IT,,vague,True
+E049,communication,,vague,True
+E050,ensure compliance with airport security measures,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E050,read and use technical documentation,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E050,repair engines,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E050,make sense of standard blueprints,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E050,mechanical engineering,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E050,follow manufacturer guidelines in use of airport equipment,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E050,Excel,,vague,True
+E050,attention to detail,,vague,True
+E051,plans de câblage électrique,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E051,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E051,réparer des moteurs,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E051,démonter des moteurs,http://data.europa.eu/esco/skill/db3c8181-31b4-4950-bf0b-de01f93c372b,esco,True
+E051,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E051,suivre les directives du fabricant concernant l'utilisation des équipements aéroportuaires,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E051,relationnel,,vague,True
+E051,informatique,,vague,True
+E052,ensure implementation of security procedures in airports,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E052,operate airport equipment according to recommendations of manufacturers,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E052,wear appropriate protective gear,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E052,planning for airport operations,http://data.europa.eu/esco/skill/137833bd-aa42-47b5-8005-dd004060c8b5,esco,True
+E052,engineering work principles,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E052,apply technical communication skills,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E052,IT,,vague,True
+E052,attention to detail,,vague,True
+E053,engineering methodologies,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E053,use power tools,http://data.europa.eu/esco/skill/5bf7f85a-b080-4b27-8ddc-9f62af4643f5,esco,True
+E053,electricity,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E053,airport planning,http://data.europa.eu/esco/skill/137833bd-aa42-47b5-8005-dd004060c8b5,esco,True
+E053,aircraft mechanics,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E053,electronics,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E053,attention to detail,,vague,True
+E053,self-starter,,vague,True
+E054,gérer les ressources de développement d’un aéroport,http://data.europa.eu/esco/skill/d703c741-0f67-4388-9f0c-d2574143ee70,esco,True
+E054,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E054,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E054,diagnostiquer des moteurs défectueux,http://data.europa.eu/esco/skill/68162174-68c3-4601-840b-5e63c2dd7481,esco,True
+E054,électromécanique,http://data.europa.eu/esco/skill/2bbdea06-a265-42b5-bb4f-7241b661f069,esco,True
+E054,inspecter un avion pour contrôler sa navigabilité,http://data.europa.eu/esco/skill/2c02af08-a7f9-4535-889d-f4172cfc9a17,esco,True
+E054,travail en équipe,,vague,True
+E054,rigueur,,vague,True
+E055,wear appropriate protective gear,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E055,manage health and safety standards,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E055,mechanical engineering,http://data.europa.eu/esco/skill/9c071f1d-eac3-449d-b004-c14775b5a3b9,esco,True
+E055,repair engines,http://data.europa.eu/esco/skill/1bc7c69b-4292-4592-b854-f48165a06082,esco,True
+E055,evaluate engine performance,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E055,follow manufacturer advice in use of airport equipment,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E055,teamwork,,vague,True
+E055,people skills,,vague,True
+E056,electromechanics,http://data.europa.eu/esco/skill/2bbdea06-a265-42b5-bb4f-7241b661f069,esco,True
+E056,use testing equipment,http://data.europa.eu/esco/skill/74374d09-7a54-4a05-ae78-d5940423de7c,esco,True
+E056,evaluate engine performance,http://data.europa.eu/esco/skill/ed938748-60ae-4964-a657-ff2685ecc0d0,esco,True
+E056,electrical wiring plans,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E056,apply technical communication skills,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E056,electrical engineering,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E056,people skills,,vague,True
+E056,attention to detail,,vague,True
+E057,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E057,dessin technique,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E057,plans de câblage électrique,http://data.europa.eu/esco/skill/d15e92c4-c8dc-48cd-a1f6-94fe13347f87,esco,True
+E057,électricité,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E057,porter des équipements de protection appropriés,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E057,électromécanique,http://data.europa.eu/esco/skill/2bbdea06-a265-42b5-bb4f-7241b661f069,esco,True
+E057,informatique,,vague,True
+E057,relationnel,,vague,True
+E058,airport safety regulations,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E058,manage health and safety standards,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E058,wear appropriate protective gear,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E058,ensure compliance with airport security requirements,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E058,mechanics theory,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E058,electronics,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E058,Excel,,vague,True
+E058,teamwork,,vague,True
+E059,règles communes de sécurité en matière d'aviation,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E059,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E059,diagnostiquer des moteurs défectueux,http://data.europa.eu/esco/skill/68162174-68c3-4601-840b-5e63c2dd7481,esco,True
+E059,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E059,suivre les directives du fabricant concernant l'utilisation des équipements aéroportuaires,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E059,principes de l'ingénierie électrique,http://data.europa.eu/esco/skill/3e40c7d0-0e36-4b33-bc33-0aa87eda0561,esco,True
+E059,autonomie,,vague,True
+E059,travail en équipe,,vague,True
+E060,électronique,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E060,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E060,gérer les normes de santé et de sécurité,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E060,lire des schémas techniques,http://data.europa.eu/esco/skill/b07daddc-8625-4360-946e-ad2b0e56ebf6,esco,True
+E060,notions de base en électricité,http://data.europa.eu/esco/skill/c8ac1986-38fa-43b2-89dc-50a4beeb420e,esco,True
+E060,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E060,communication,,vague,True
+E060,autonomie,,vague,True
+E061,électronique,http://data.europa.eu/esco/skill/95c35c3a-035f-47c2-90cf-7e934d20fc08,esco,True
+E061,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E061,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E061,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E061,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E061,porter des équipements de protection appropriés,http://data.europa.eu/esco/skill/6122d586-5978-431f-8e7a-96e61fc1f3fc,esco,True
+E061,communication,,vague,True
+E061,travail en équipe,,vague,True
+E062,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E062,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E062,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E062,règles de sécurité pour les aéroports,http://data.europa.eu/esco/skill/c648deac-4969-41b7-8a67-9987f5d414a6,esco,True
+E062,composants d'un moteur,http://data.europa.eu/esco/skill/f5fa2654-52cc-45d2-ac92-ac979dee5d12,esco,True
+E062,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E062,autonomie,,vague,True
+E062,communication,,vague,True
+E063,appliquer des compétences de communication technique,http://data.europa.eu/esco/skill/c32ad607-0c4d-4e34-b73f-668298f7bf13,esco,True
+E063,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E063,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E063,suivre les directives du fabricant concernant l'utilisation des équipements aéroportuaires,http://data.europa.eu/esco/skill/faf1930e-1818-4710-a85e-c690a153eeca,esco,True
+E063,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E063,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E063,travail en équipe,,vague,True
+E063,rigueur,,vague,True
+E064,règles communes de sécurité en matière d'aviation,http://data.europa.eu/esco/skill/d5b63f98-28ce-4cbb-b075-6ac539a685b0,esco,True
+E064,mécanique des aéronefs,http://data.europa.eu/esco/skill/532bcdca-a889-4dea-8f7f-4e03d8cfd0d2,esco,True
+E064,utiliser de la documentation technique,http://data.europa.eu/esco/skill/cffc3e97-e942-4b13-a2f3-0bf4910c06d3,esco,True
+E064,lire des plans standard,http://data.europa.eu/esco/skill/68b6ef08-d823-489d-a95c-752ae6f6e6a7,esco,True
+E064,gérer les normes de santé et de sécurité,http://data.europa.eu/esco/skill/44e2c4c4-9fd2-42d4-a133-d81360ded4bc,esco,True
+E064,garantir le respect des mesures de sécurité dans un aéroport,http://data.europa.eu/esco/skill/62b7060c-3055-4ab8-bcf2-8080fd7c01f3,esco,True
+E064,Excel,,vague,True
+E064,informatique,,vague,True
+E065,perform risk analysis,http://data.europa.eu/esco/skill/1dd23dba-dd00-45ab-abf4-642902538317,esco,True
+E065,quality assurance procedures,http://data.europa.eu/esco/skill/1177c6f5-09c5-4c35-873c-afd22d170ad3,esco,True
+E065,test procedures,http://data.europa.eu/esco/skill/d512d178-37a6-4eab-a660-412d2bb0824a,esco,True
+E065,analyse test data,http://data.europa.eu/esco/skill/81a2db2c-7e55-44d0-9cd9-74c25147d7cd,esco,True
+E065,record test data,http://data.europa.eu/esco/skill/328733a7-6d84-420d-a65c-2a8014fadc60,esco,True
+E065,identifying of process improvements,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E065,teamwork,,vague,True
+E065,self-starter,,vague,True
+E066,inspect quality of products,http://data.europa.eu/esco/skill/1a3660c2-011c-4e96-9b1d-529afc305428,esco,True
+E066,implementation support for quality management systems,http://data.europa.eu/esco/skill/ccbd0898-e225-4abc-8992-57a23b0e2eec,esco,True
+E066,perform risk analysis,http://data.europa.eu/esco/skill/1dd23dba-dd00-45ab-abf4-642902538317,esco,True
+E066,write inspection reports,http://data.europa.eu/esco/skill/cdd2b6cc-b4a9-42a0-824b-766f52176fd3,esco,True
+E066,define quality standards,http://data.europa.eu/esco/skill/5d9e766b-8f17-4e17-bfab-3bb0e0719791,esco,True
+E066,analyse test data,http://data.europa.eu/esco/skill/81a2db2c-7e55-44d0-9cd9-74c25147d7cd,esco,True
+E066,people skills,,vague,True
+E066,teamwork,,vague,True
+E067,report test findings,http://data.europa.eu/esco/skill/561c2525-5bd8-4d86-8f45-820f4be7db93,esco,True
+E067,recommend product improvements,http://data.europa.eu/esco/skill/c0fce59c-e227-4745-945f-95eb2f0bc03e,esco,True
+E067,identify process improvements,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E067,quality standards for products,http://data.europa.eu/esco/skill/8d4271ca-c9fd-40b3-875f-15f78332a49e,esco,True
+E067,inspect safety,http://data.europa.eu/esco/skill/36e9c099-614e-44f1-ab0a-5e6fda4a0763,esco,True
+E067,analyse test data,http://data.europa.eu/esco/skill/81a2db2c-7e55-44d0-9cd9-74c25147d7cd,esco,True
+E067,self-starter,,vague,True
+E067,attention to detail,,vague,True
+E068,write inspection reports,http://data.europa.eu/esco/skill/cdd2b6cc-b4a9-42a0-824b-766f52176fd3,esco,True
+E068,support implementation of quality management systems,http://data.europa.eu/esco/skill/ccbd0898-e225-4abc-8992-57a23b0e2eec,esco,True
+E068,recommend product improvements,http://data.europa.eu/esco/skill/c0fce59c-e227-4745-945f-95eb2f0bc03e,esco,True
+E068,test procedures,http://data.europa.eu/esco/skill/d512d178-37a6-4eab-a660-412d2bb0824a,esco,True
+E068,perform risk analysis,http://data.europa.eu/esco/skill/1dd23dba-dd00-45ab-abf4-642902538317,esco,True
+E068,define quality standards,http://data.europa.eu/esco/skill/5d9e766b-8f17-4e17-bfab-3bb0e0719791,esco,True
+E068,attention to detail,,vague,True
+E068,Excel,,vague,True
+E069,test procedures,http://data.europa.eu/esco/skill/d512d178-37a6-4eab-a660-412d2bb0824a,esco,True
+E069,inspect quality of products,http://data.europa.eu/esco/skill/1a3660c2-011c-4e96-9b1d-529afc305428,esco,True
+E069,quality standards,http://data.europa.eu/esco/skill/8d4271ca-c9fd-40b3-875f-15f78332a49e,esco,True
+E069,identify process improvements,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E069,quality assurance methodologies,http://data.europa.eu/esco/skill/c7cc6dc5-d56b-4323-8e5c-47c4022f615f,esco,True
+E069,quality management systems implementation support,http://data.europa.eu/esco/skill/ccbd0898-e225-4abc-8992-57a23b0e2eec,esco,True
+E069,people skills,,vague,True
+E069,Excel,,vague,True
+E070,define quality standards,http://data.europa.eu/esco/skill/5d9e766b-8f17-4e17-bfab-3bb0e0719791,esco,True
+E070,identify process improvements,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E070,quality assurance methodologies,http://data.europa.eu/esco/skill/c7cc6dc5-d56b-4323-8e5c-47c4022f615f,esco,True
+E070,recommend product improvements,http://data.europa.eu/esco/skill/c0fce59c-e227-4745-945f-95eb2f0bc03e,esco,True
+E070,quality assurance procedures,http://data.europa.eu/esco/skill/1177c6f5-09c5-4c35-873c-afd22d170ad3,esco,True
+E070,audit quality of products,http://data.europa.eu/esco/skill/1a3660c2-011c-4e96-9b1d-529afc305428,esco,True
+E070,communication,,vague,True
+E070,attention to detail,,vague,True
+E071,test procedures,http://data.europa.eu/esco/skill/d512d178-37a6-4eab-a660-412d2bb0824a,esco,True
+E071,quality assurance procedures,http://data.europa.eu/esco/skill/1177c6f5-09c5-4c35-873c-afd22d170ad3,esco,True
+E071,write inspection reports,http://data.europa.eu/esco/skill/cdd2b6cc-b4a9-42a0-824b-766f52176fd3,esco,True
+E071,set quality assurance objectives,http://data.europa.eu/esco/skill/22b8039c-c890-4610-9228-5527e3b98f12,esco,True
+E071,define quality standards,http://data.europa.eu/esco/skill/5d9e766b-8f17-4e17-bfab-3bb0e0719791,esco,True
+E071,report test findings,http://data.europa.eu/esco/skill/561c2525-5bd8-4d86-8f45-820f4be7db93,esco,True
+E071,people skills,,vague,True
+E071,communication,,vague,True
+E072,analyser des données de tests,http://data.europa.eu/esco/skill/81a2db2c-7e55-44d0-9cd9-74c25147d7cd,esco,True
+E072,normes de qualité,http://data.europa.eu/esco/skill/8d4271ca-c9fd-40b3-875f-15f78332a49e,esco,True
+E072,entreprendre des inspections,http://data.europa.eu/esco/skill/36e9c099-614e-44f1-ab0a-5e6fda4a0763,esco,True
+E072,recommander des améliorations de produit,http://data.europa.eu/esco/skill/c0fce59c-e227-4745-945f-95eb2f0bc03e,esco,True
+E072,identifier les améliorations des processus,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E072,rédiger des rapports d’inspection,http://data.europa.eu/esco/skill/cdd2b6cc-b4a9-42a0-824b-766f52176fd3,esco,True
+E072,communication,,vague,True
+E072,informatique,,vague,True
+E073,procédures de test,http://data.europa.eu/esco/skill/d512d178-37a6-4eab-a660-412d2bb0824a,esco,True
+E073,identifier les améliorations des processus,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E073,rédiger les conclusions d’un test,http://data.europa.eu/esco/skill/561c2525-5bd8-4d86-8f45-820f4be7db93,esco,True
+E073,analyser des données de tests,http://data.europa.eu/esco/skill/81a2db2c-7e55-44d0-9cd9-74c25147d7cd,esco,True
+E073,effectuer une analyse de risque,http://data.europa.eu/esco/skill/1dd23dba-dd00-45ab-abf4-642902538317,esco,True
+E073,méthodes de contrôle de la qualité,http://data.europa.eu/esco/skill/c7cc6dc5-d56b-4323-8e5c-47c4022f615f,esco,True
+E073,travail en équipe,,vague,True
+E073,relationnel,,vague,True
+E074,identifier les améliorations des processus,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E074,recommander des améliorations de produit,http://data.europa.eu/esco/skill/c0fce59c-e227-4745-945f-95eb2f0bc03e,esco,True
+E074,entreprendre des inspections,http://data.europa.eu/esco/skill/36e9c099-614e-44f1-ab0a-5e6fda4a0763,esco,True
+E074,enregistrer des données d'essais,http://data.europa.eu/esco/skill/328733a7-6d84-420d-a65c-2a8014fadc60,esco,True
+E074,contrôler la qualité de produits,http://data.europa.eu/esco/skill/1a3660c2-011c-4e96-9b1d-529afc305428,esco,True
+E074,procédures d’assurance qualité,http://data.europa.eu/esco/skill/1177c6f5-09c5-4c35-873c-afd22d170ad3,esco,True
+E074,informatique,,vague,True
+E074,travail en équipe,,vague,True
+E075,effectuer une analyse de risque,http://data.europa.eu/esco/skill/1dd23dba-dd00-45ab-abf4-642902538317,esco,True
+E075,enregistrer des données d'essais,http://data.europa.eu/esco/skill/328733a7-6d84-420d-a65c-2a8014fadc60,esco,True
+E075,analyser des données de tests,http://data.europa.eu/esco/skill/81a2db2c-7e55-44d0-9cd9-74c25147d7cd,esco,True
+E075,promouvoir la mise en œuvre de systèmes de gestion de la qualité,http://data.europa.eu/esco/skill/ccbd0898-e225-4abc-8992-57a23b0e2eec,esco,True
+E075,rédiger des rapports d’inspection,http://data.europa.eu/esco/skill/cdd2b6cc-b4a9-42a0-824b-766f52176fd3,esco,True
+E075,entreprendre des inspections,http://data.europa.eu/esco/skill/36e9c099-614e-44f1-ab0a-5e6fda4a0763,esco,True
+E075,rigueur,,vague,True
+E075,travail en équipe,,vague,True
+E076,recommander des améliorations de produit,http://data.europa.eu/esco/skill/c0fce59c-e227-4745-945f-95eb2f0bc03e,esco,True
+E076,méthodes d’assurance qualité,http://data.europa.eu/esco/skill/c7cc6dc5-d56b-4323-8e5c-47c4022f615f,esco,True
+E076,analyser des données de tests,http://data.europa.eu/esco/skill/81a2db2c-7e55-44d0-9cd9-74c25147d7cd,esco,True
+E076,enregistrer des données d'essais,http://data.europa.eu/esco/skill/328733a7-6d84-420d-a65c-2a8014fadc60,esco,True
+E076,effectuer une analyse de risque,http://data.europa.eu/esco/skill/1dd23dba-dd00-45ab-abf4-642902538317,esco,True
+E076,identifier les améliorations de processus,http://data.europa.eu/esco/skill/958b8802-ec3e-4813-97f7-6c8f48610dbd,esco,True
+E076,rigueur,,vague,True
+E076,communication,,vague,True
+E077,use technical drawing software,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E077,material mechanics,http://data.europa.eu/esco/skill/2964011e-f828-4c6c-b98b-51e984d66365,esco,True
+E077,mechanics of motor vehicles,http://data.europa.eu/esco/skill/7566f0b4-7f6e-455c-abb5-ec58e57f7e17,esco,True
+E077,principles of mechanical engineering,http://data.europa.eu/esco/skill/54804209-6aac-4ca4-bf3c-aef4fbe18f8c,esco,True
+E077,solid mechanics,http://data.europa.eu/esco/skill/a4557e97-d7f9-4669-88b0-c57591acce80,esco,True
+E077,perform a feasibility study on solar absorption cooling,http://data.europa.eu/esco/skill/1e3222fa-724d-41f0-9b0a-e88d1003cd35,esco,True
+E077,people skills,,vague,True
+E077,IT,,vague,True
+E078,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E078,mécanique des trains,http://data.europa.eu/esco/skill/af0bbc31-b54d-4e8d-82b1-2e91a1115523,esco,True
+E078,rédiger les spécifications techniques,http://data.europa.eu/esco/skill/d9e5349e-8791-49c2-8ba4-839fdd1606c2,esco,True
+E078,utiliser un logiciel de dessin technique,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E078,système de refroidissement par absorption solaire,http://data.europa.eu/esco/skill/9ccb56ee-3d5f-4d48-8692-8f96fe1e4adb,esco,True
+E078,mécatronique,http://data.europa.eu/esco/skill/d88cb3f1-8e02-4618-bf32-4b0488066934,esco,True
+E078,autonomie,,vague,True
+E078,communication,,vague,True
+E079,define part requirements,http://data.europa.eu/esco/skill/acc74047-f59f-4935-afc0-45ec43b9b57a,esco,True
+E079,precision tools using,http://data.europa.eu/esco/skill/a99c6783-50c0-4f7a-99df-bf93429ef6dc,esco,True
+E079,mechatronic science,http://data.europa.eu/esco/skill/d88cb3f1-8e02-4618-bf32-4b0488066934,esco,True
+E079,continuum mechanics,http://data.europa.eu/esco/skill/e3bcd26a-d16d-4f60-ae65-d41364931551,esco,True
+E079,fluid mechanics,http://data.europa.eu/esco/skill/87b1c959-236d-4761-b3be-b1c729497f75,esco,True
+E079,3D modelling,http://data.europa.eu/esco/skill/97965983-0da4-4902-9daf-d5cd2693ef73,esco,True
+E079,IT,,vague,True
+E079,teamwork,,vague,True
+E080,ajuster des conceptions techniques,http://data.europa.eu/esco/skill/42b23922-1c40-4dbe-9e0c-7a568dfdf06b,esco,True
+E080,concevoir des prototypes,http://data.europa.eu/esco/skill/bacbfc27-4b5d-47de-8bfd-af5fa27562a2,esco,True
+E080,principes de génie mécanique,http://data.europa.eu/esco/skill/54804209-6aac-4ca4-bf3c-aef4fbe18f8c,esco,True
+E080,mécanique des véhicules à moteur,http://data.europa.eu/esco/skill/7566f0b4-7f6e-455c-abb5-ec58e57f7e17,esco,True
+E080,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E080,concevoir des systèmes de chauffage et de refroidissement,http://data.europa.eu/esco/skill/d80ebb29-7b20-4343-b7c9-0e3ef9f2e1f2,esco,True
+E080,Excel,,vague,True
+E080,rigueur,,vague,True
+E081,fluid mechanics,http://data.europa.eu/esco/skill/87b1c959-236d-4761-b3be-b1c729497f75,esco,True
+E081,production mechanics,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E081,industrial engineering studies,http://data.europa.eu/esco/skill/a1816dfd-dbdc-4499-bef3-ff81dd895b33,esco,True
+E081,design a solar absorption cooling system,http://data.europa.eu/esco/skill/17446f6d-d8b0-4945-a37b-9ad0dfc9f3e8,esco,True
+E081,draft design specifications,http://data.europa.eu/esco/skill/a8d41cca-3bc9-4d2a-ae09-436dabe86e21,esco,True
+E081,field of mechatronics,http://data.europa.eu/esco/skill/d88cb3f1-8e02-4618-bf32-4b0488066934,esco,True
+E081,self-starter,,vague,True
+E081,communication,,vague,True
+E082,concevoir des prototypes,http://data.europa.eu/esco/skill/bacbfc27-4b5d-47de-8bfd-af5fa27562a2,esco,True
+E082,mécanique des trains,http://data.europa.eu/esco/skill/af0bbc31-b54d-4e8d-82b1-2e91a1115523,esco,True
+E082,système de refroidissement par absorption solaire,http://data.europa.eu/esco/skill/9ccb56ee-3d5f-4d48-8692-8f96fe1e4adb,esco,True
+E082,approuver une conception technique,http://data.europa.eu/esco/skill/f54c10e4-630d-4e50-95e9-4e9e268e8f12,esco,True
+E082,ajuster des conceptions techniques,http://data.europa.eu/esco/skill/42b23922-1c40-4dbe-9e0c-7a568dfdf06b,esco,True
+E082,principes d’ingénierie,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E082,travail en équipe,,vague,True
+E082,Excel,,vague,True
+E083,système de refroidissement par absorption solaire,http://data.europa.eu/esco/skill/9ccb56ee-3d5f-4d48-8692-8f96fe1e4adb,esco,True
+E083,conception intégrée,http://data.europa.eu/esco/skill/f03a3387-c4a7-41e3-a5d4-dd4577147940,esco,True
+E083,logiciel d’IAO,http://data.europa.eu/esco/skill/82313e12-9d39-47d1-b7c9-78bbd6bb50e2,esco,True
+E083,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E083,concevoir des prototypes,http://data.europa.eu/esco/skill/bacbfc27-4b5d-47de-8bfd-af5fa27562a2,esco,True
+E083,concevoir un système de refroidissement par absorption solaire,http://data.europa.eu/esco/skill/17446f6d-d8b0-4945-a37b-9ad0dfc9f3e8,esco,True
+E083,informatique,,vague,True
+E083,travail en équipe,,vague,True
+E084,approuver une conception technique,http://data.europa.eu/esco/skill/f54c10e4-630d-4e50-95e9-4e9e268e8f12,esco,True
+E084,ajuster des conceptions techniques,http://data.europa.eu/esco/skill/42b23922-1c40-4dbe-9e0c-7a568dfdf06b,esco,True
+E084,mécanique des solides,http://data.europa.eu/esco/skill/a4557e97-d7f9-4669-88b0-c57591acce80,esco,True
+E084,mécanique des fluides,http://data.europa.eu/esco/skill/87b1c959-236d-4761-b3be-b1c729497f75,esco,True
+E084,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E084,définir les exigences relatives aux parties,http://data.europa.eu/esco/skill/acc74047-f59f-4935-afc0-45ec43b9b57a,esco,True
+E084,informatique,,vague,True
+E084,autonomie,,vague,True
+E085,design an absorption cooling system with solar regeneration,http://data.europa.eu/esco/skill/17446f6d-d8b0-4945-a37b-9ad0dfc9f3e8,esco,True
+E085,sustainable installation materials,http://data.europa.eu/esco/skill/303c6ab0-21c3-4b09-ac77-d405936857d9,esco,True
+E085,define technical requirements,http://data.europa.eu/esco/skill/d9e5349e-8791-49c2-8ba4-839fdd1606c2,esco,True
+E085,mechatronics,http://data.europa.eu/esco/skill/d88cb3f1-8e02-4618-bf32-4b0488066934,esco,True
+E085,engineering teams coordinating,http://data.europa.eu/esco/skill/7af6e9e8-1e11-4c0b-b7c6-ac96bbbbc674,esco,True
+E085,perform feasibility study on solar heating,http://data.europa.eu/esco/skill/6561f116-70de-47d8-80b8-f0e2a1d2cf11,esco,True
+E085,IT,,vague,True
+E085,Excel,,vague,True
+E086,approuver une conception technique,http://data.europa.eu/esco/skill/f54c10e4-630d-4e50-95e9-4e9e268e8f12,esco,True
+E086,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E086,mécanique des véhicules à moteur,http://data.europa.eu/esco/skill/7566f0b4-7f6e-455c-abb5-ec58e57f7e17,esco,True
+E086,automatisation de bâtiments,http://data.europa.eu/esco/skill/6709e92c-7546-46a4-aa57-5e951bd4cb0f,esco,True
+E086,exécuter des calculs mathématiques et analytiques,http://data.europa.eu/esco/skill/31c69100-b612-4a61-8db5-fd314318854c,esco,True
+E086,réaliser une étude de faisabilité sur le refroidissement par absorption solaire,http://data.europa.eu/esco/skill/1e3222fa-724d-41f0-9b0a-e88d1003cd35,esco,True
+E086,informatique,,vague,True
+E086,autonomie,,vague,True
+E087,concevoir des composants d’ingénierie,http://data.europa.eu/esco/skill/87434439-c07d-48be-af34-b0cdd03121c4,esco,True
+E087,mécanique des véhicules à moteur,http://data.europa.eu/esco/skill/7566f0b4-7f6e-455c-abb5-ec58e57f7e17,esco,True
+E087,mécanique,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E087,concevoir des systèmes de chauffage et de refroidissement,http://data.europa.eu/esco/skill/d80ebb29-7b20-4343-b7c9-0e3ef9f2e1f2,esco,True
+E087,mécanique des fluides,http://data.europa.eu/esco/skill/87b1c959-236d-4761-b3be-b1c729497f75,esco,True
+E087,exécuter des calculs mathématiques et analytiques,http://data.europa.eu/esco/skill/31c69100-b612-4a61-8db5-fd314318854c,esco,True
+E087,travail en équipe,,vague,True
+E087,autonomie,,vague,True
+E088,engineering principles,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E088,define technical requirements,http://data.europa.eu/esco/skill/d9e5349e-8791-49c2-8ba4-839fdd1606c2,esco,True
+E088,carry out feasibility study on solar heating systems,http://data.europa.eu/esco/skill/6561f116-70de-47d8-80b8-f0e2a1d2cf11,esco,True
+E088,mechanical features of trains,http://data.europa.eu/esco/skill/af0bbc31-b54d-4e8d-82b1-2e91a1115523,esco,True
+E088,industrial engineering applications,http://data.europa.eu/esco/skill/a1816dfd-dbdc-4499-bef3-ff81dd895b33,esco,True
+E088,eco-friendly installation components,http://data.europa.eu/esco/skill/303c6ab0-21c3-4b09-ac77-d405936857d9,esco,True
+E088,communication,,vague,True
+E088,self-starter,,vague,True
+E089,draft design specifications,http://data.europa.eu/esco/skill/a8d41cca-3bc9-4d2a-ae09-436dabe86e21,esco,True
+E089,solar absorption cooling system,http://data.europa.eu/esco/skill/9ccb56ee-3d5f-4d48-8692-8f96fe1e4adb,esco,True
+E089,define part requirements,http://data.europa.eu/esco/skill/acc74047-f59f-4935-afc0-45ec43b9b57a,esco,True
+E089,mechanics,http://data.europa.eu/esco/skill/efa141df-f382-418f-9121-bd88fd735669,esco,True
+E089,perform feasibility study on solar heating,http://data.europa.eu/esco/skill/6561f116-70de-47d8-80b8-f0e2a1d2cf11,esco,True
+E089,approve engineering design,http://data.europa.eu/esco/skill/f54c10e4-630d-4e50-95e9-4e9e268e8f12,esco,True
+E089,teamwork,,vague,True
+E089,self-starter,,vague,True
+E090,design a solar absorption cooling system,http://data.europa.eu/esco/skill/17446f6d-d8b0-4945-a37b-9ad0dfc9f3e8,esco,True
+E090,define part requirements,http://data.europa.eu/esco/skill/acc74047-f59f-4935-afc0-45ec43b9b57a,esco,True
+E090,pneumatics applications,http://data.europa.eu/esco/skill/bf419e00-8548-491a-a06f-d72ab439df2f,esco,True
+E090,mechatronic science,http://data.europa.eu/esco/skill/d88cb3f1-8e02-4618-bf32-4b0488066934,esco,True
+E090,engineering processes,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E090,precision tool using,http://data.europa.eu/esco/skill/a99c6783-50c0-4f7a-99df-bf93429ef6dc,esco,True
+E090,communication,,vague,True
+E090,attention to detail,,vague,True
+E091,rédiger un cahier des charges de normes de conception,http://data.europa.eu/esco/skill/a8d41cca-3bc9-4d2a-ae09-436dabe86e21,esco,True
+E091,génie industriel,http://data.europa.eu/esco/skill/a1816dfd-dbdc-4499-bef3-ff81dd895b33,esco,True
+E091,rédiger une liste de spécifications techniques,http://data.europa.eu/esco/skill/d9e5349e-8791-49c2-8ba4-839fdd1606c2,esco,True
+E091,matériaux d’installation durables,http://data.europa.eu/esco/skill/303c6ab0-21c3-4b09-ac77-d405936857d9,esco,True
+E091,automatisation de bâtiments,http://data.europa.eu/esco/skill/6709e92c-7546-46a4-aa57-5e951bd4cb0f,esco,True
+E091,ajuster des conceptions techniques,http://data.europa.eu/esco/skill/42b23922-1c40-4dbe-9e0c-7a568dfdf06b,esco,True
+E091,Excel,,vague,True
+E091,communication,,vague,True
+E092,matériaux d’installation durables,http://data.europa.eu/esco/skill/303c6ab0-21c3-4b09-ac77-d405936857d9,esco,True
+E092,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E092,concevoir des prototypes,http://data.europa.eu/esco/skill/bacbfc27-4b5d-47de-8bfd-af5fa27562a2,esco,True
+E092,génie industriel,http://data.europa.eu/esco/skill/a1816dfd-dbdc-4499-bef3-ff81dd895b33,esco,True
+E092,utiliser des outils de précision,http://data.europa.eu/esco/skill/a99c6783-50c0-4f7a-99df-bf93429ef6dc,esco,True
+E092,mécanique des matériaux,http://data.europa.eu/esco/skill/2964011e-f828-4c6c-b98b-51e984d66365,esco,True
+E092,communication,,vague,True
+E092,travail en équipe,,vague,True
+E093,develop automated migration methods,http://data.europa.eu/esco/skill/0b0335f3-0aa1-491e-895e-81fc8774a300,esco,True
+E093,use an application-specific interface,http://data.europa.eu/esco/skill/04fe962b-4017-4eb7-9139-7d69b6922bc9,esco,True
+E093,use programming design patterns,http://data.europa.eu/esco/skill/2b7a79e5-84d8-4880-be66-3d9bb05bea17,esco,True
+E093,build flowchart,http://data.europa.eu/esco/skill/901105f8-3a08-453e-b1dc-23619e317fd3,esco,True
+E093,manage engineering project,http://data.europa.eu/esco/skill/6a899482-8bcf-40ca-ae67-579a1cc467ab,esco,True
+E093,use technical drawing software,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E093,communication,,vague,True
+E093,attention to detail,,vague,True
+E094,use technical drawing software,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E094,design automated transfer of ICT information,http://data.europa.eu/esco/skill/0b0335f3-0aa1-491e-895e-81fc8774a300,esco,True
+E094,scientific drawings,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E094,utilise computer-aided software engineering tools,http://data.europa.eu/esco/skill/172020d1-e151-445b-8173-e2a5fb16fe51,esco,True
+E094,software debugging tools,http://data.europa.eu/esco/skill/6014921e-1d25-4039-adc2-04852d61880e,esco,True
+E094,engineering processes,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E094,IT,,vague,True
+E094,attention to detail,,vague,True
+E095,créer un organigramme de programmation,http://data.europa.eu/esco/skill/901105f8-3a08-453e-b1dc-23619e317fd3,esco,True
+E095,utiliser une interface spécifique à une application,http://data.europa.eu/esco/skill/04fe962b-4017-4eb7-9139-7d69b6922bc9,esco,True
+E095,identifier les exigences des clients,http://data.europa.eu/esco/skill/0e0c9c11-b39e-43cf-ba95-2fe646f5de64,esco,True
+E095,utiliser des bibliothèques logicielles,http://data.europa.eu/esco/skill/8b94aa1e-89c9-459d-b3b4-1dfab8dec2df,esco,True
+E095,outils de gestion de configuration logicielle,http://data.europa.eu/esco/skill/9d2e926f-53d9-41f5-98f3-19dfaa687f3f,esco,True
+E095,analyser les spécifications du logiciel,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E095,autonomie,,vague,True
+E095,relationnel,,vague,True
+E096,designing with specialist software,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E096,define technical requirements,http://data.europa.eu/esco/skill/d9e5349e-8791-49c2-8ba4-839fdd1606c2,esco,True
+E096,categorise customer requirements,http://data.europa.eu/esco/skill/0e0c9c11-b39e-43cf-ba95-2fe646f5de64,esco,True
+E096,scientific drawings,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E096,develop software mockup,http://data.europa.eu/esco/skill/797a4416-0b8d-44f3-8fcd-eb10bd0be6b4,esco,True
+E096,ICT debugging tools,http://data.europa.eu/esco/skill/6014921e-1d25-4039-adc2-04852d61880e,esco,True
+E096,Excel,,vague,True
+E096,communication,,vague,True
+E097,utiliser des outils de génie logiciel assisté par ordinateur,http://data.europa.eu/esco/skill/172020d1-e151-445b-8173-e2a5fb16fe51,esco,True
+E097,services web,http://data.europa.eu/esco/skill/f84a433f-34f1-4083-b0a3-24802623509c,esco,True
+E097,principes d’ingénierie,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E097,environnement de développement intégré,http://data.europa.eu/esco/skill/925463a7-d51f-4d5b-9f79-4d28cf30acde,esco,True
+E097,développer un prototype de logiciel,http://data.europa.eu/esco/skill/797a4416-0b8d-44f3-8fcd-eb10bd0be6b4,esco,True
+E097,dessin technique,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E097,autonomie,,vague,True
+E097,relationnel,,vague,True
+E098,utilize computer-aided software engineering tools,http://data.europa.eu/esco/skill/172020d1-e151-445b-8173-e2a5fb16fe51,esco,True
+E098,utilise software design patterns,http://data.europa.eu/esco/skill/2b7a79e5-84d8-4880-be66-3d9bb05bea17,esco,True
+E098,analyse software specifications,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E098,interpret technical requirements,http://data.europa.eu/esco/skill/be48353d-25c7-4f86-bea9-7b9e248fbc6e,esco,True
+E098,technical drawings,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E098,manage engineering project,http://data.europa.eu/esco/skill/6a899482-8bcf-40ca-ae67-579a1cc467ab,esco,True
+E098,communication,,vague,True
+E098,Excel,,vague,True
+E099,assess software specifications,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E099,ICT debugging tools,http://data.europa.eu/esco/skill/6014921e-1d25-4039-adc2-04852d61880e,esco,True
+E099,computer programming,http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97,esco,True
+E099,analyse testing results for incorrect software output,http://data.europa.eu/esco/skill/2522a6ce-3202-4ac8-9f5b-b9cb5a3a83a1,esco,True
+E099,use software libraries,http://data.europa.eu/esco/skill/8b94aa1e-89c9-459d-b3b4-1dfab8dec2df,esco,True
+E099,engineering principles,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E099,people skills,,vague,True
+E099,communication,,vague,True
+E100,interpret technical requirement,http://data.europa.eu/esco/skill/be48353d-25c7-4f86-bea9-7b9e248fbc6e,esco,True
+E100,create automated transfer of ICT information,http://data.europa.eu/esco/skill/0b0335f3-0aa1-491e-895e-81fc8774a300,esco,True
+E100,tools for software configuration management,http://data.europa.eu/esco/skill/9d2e926f-53d9-41f5-98f3-19dfaa687f3f,esco,True
+E100,use an application-specific interface,http://data.europa.eu/esco/skill/04fe962b-4017-4eb7-9139-7d69b6922bc9,esco,True
+E100,project management,http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,esco,True
+E100,use technical drawing software,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E100,attention to detail,,vague,True
+E100,Excel,,vague,True
+E101,outils de gestion de configuration logicielle,http://data.europa.eu/esco/skill/9d2e926f-53d9-41f5-98f3-19dfaa687f3f,esco,True
+E101,utiliser une interface spécifique à une application,http://data.europa.eu/esco/skill/04fe962b-4017-4eb7-9139-7d69b6922bc9,esco,True
+E101,gestion de projets,http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,esco,True
+E101,utiliser des patrons d’architecture,http://data.europa.eu/esco/skill/2b7a79e5-84d8-4880-be66-3d9bb05bea17,esco,True
+E101,programmation informatique,http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97,esco,True
+E101,gérer un projet d'ingénierie,http://data.europa.eu/esco/skill/6a899482-8bcf-40ca-ae67-579a1cc467ab,esco,True
+E101,informatique,,vague,True
+E101,rigueur,,vague,True
+E102,utilise software libraries,http://data.europa.eu/esco/skill/8b94aa1e-89c9-459d-b3b4-1dfab8dec2df,esco,True
+E102,GCC,http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97,esco,True
+E102,technical drawings,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E102,integrated development environment software,http://data.europa.eu/esco/skill/925463a7-d51f-4d5b-9f79-4d28cf30acde,esco,True
+E102,develop software prototype,http://data.europa.eu/esco/skill/797a4416-0b8d-44f3-8fcd-eb10bd0be6b4,esco,True
+E102,manage engineering project,http://data.europa.eu/esco/skill/6a899482-8bcf-40ca-ae67-579a1cc467ab,esco,True
+E102,communication,,vague,True
+E102,teamwork,,vague,True
+E103,identify customer requirements,http://data.europa.eu/esco/skill/0e0c9c11-b39e-43cf-ba95-2fe646f5de64,esco,True
+E103,use technical drawing software,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E103,performing scientific research,http://data.europa.eu/esco/skill/4fabca9a-7435-4f33-b1da-3cdb00340fdc,esco,True
+E103,use software design patterns,http://data.europa.eu/esco/skill/2b7a79e5-84d8-4880-be66-3d9bb05bea17,esco,True
+E103,ICT testing tools,http://data.europa.eu/esco/skill/6014921e-1d25-4039-adc2-04852d61880e,esco,True
+E103,interpret technical requirement,http://data.europa.eu/esco/skill/be48353d-25c7-4f86-bea9-7b9e248fbc6e,esco,True
+E103,Excel,,vague,True
+E103,communication,,vague,True
+E104,engage in scientific research,http://data.europa.eu/esco/skill/4fabca9a-7435-4f33-b1da-3cdb00340fdc,esco,True
+E104,create flowchart diagram,http://data.europa.eu/esco/skill/901105f8-3a08-453e-b1dc-23619e317fd3,esco,True
+E104,analyse software specifications,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E104,use software design patterns,http://data.europa.eu/esco/skill/2b7a79e5-84d8-4880-be66-3d9bb05bea17,esco,True
+E104,engineering processes,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E104,categorise customer requirements,http://data.europa.eu/esco/skill/0e0c9c11-b39e-43cf-ba95-2fe646f5de64,esco,True
+E104,IT,,vague,True
+E104,attention to detail,,vague,True
+E105,créer un organigramme de programmation,http://data.europa.eu/esco/skill/901105f8-3a08-453e-b1dc-23619e317fd3,esco,True
+E105,interpréter des exigences techniques,http://data.europa.eu/esco/skill/be48353d-25c7-4f86-bea9-7b9e248fbc6e,esco,True
+E105,accéder à des bibliothèques logicielles,http://data.europa.eu/esco/skill/8b94aa1e-89c9-459d-b3b4-1dfab8dec2df,esco,True
+E105,réaliser des recherches scientifiques,http://data.europa.eu/esco/skill/4fabca9a-7435-4f33-b1da-3cdb00340fdc,esco,True
+E105,analyser les spécifications des logiciels,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E105,principes d’ingénierie,http://data.europa.eu/esco/skill/209a5498-3449-4689-8ed9-bd08cab4fd78,esco,True
+E105,informatique,,vague,True
+E105,autonomie,,vague,True
+E106,services web,http://data.europa.eu/esco/skill/f84a433f-34f1-4083-b0a3-24802623509c,esco,True
+E106,utiliser des outils de génie logiciel assisté par ordinateur,http://data.europa.eu/esco/skill/172020d1-e151-445b-8173-e2a5fb16fe51,esco,True
+E106,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E106,identifier les exigences des clients,http://data.europa.eu/esco/skill/0e0c9c11-b39e-43cf-ba95-2fe646f5de64,esco,True
+E106,consigner les spécifications techniques dans une liste,http://data.europa.eu/esco/skill/d9e5349e-8791-49c2-8ba4-839fdd1606c2,esco,True
+E106,utiliser des patrons de conception,http://data.europa.eu/esco/skill/2b7a79e5-84d8-4880-be66-3d9bb05bea17,esco,True
+E106,communication,,vague,True
+E106,informatique,,vague,True
+E107,create automated transfer of ICT information,http://data.europa.eu/esco/skill/0b0335f3-0aa1-491e-895e-81fc8774a300,esco,True
+E107,develop software throw-away simulation,http://data.europa.eu/esco/skill/797a4416-0b8d-44f3-8fcd-eb10bd0be6b4,esco,True
+E107,ICT debugging tools,http://data.europa.eu/esco/skill/6014921e-1d25-4039-adc2-04852d61880e,esco,True
+E107,technical drawing software usage,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E107,computer programming,http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97,esco,True
+E107,tools for software configuration management,http://data.europa.eu/esco/skill/9d2e926f-53d9-41f5-98f3-19dfaa687f3f,esco,True
+E107,IT,,vague,True
+E107,teamwork,,vague,True
+E108,analyser les spécifications du logiciel ou système,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E108,gestion du programme,http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,esco,True
+E108,dessin technique,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E108,utiliser un logiciel de dessin technique,http://data.europa.eu/esco/skill/541561bc-510c-4a99-881c-2d8bf5a85462,esco,True
+E108,identifier les exigences des clients,http://data.europa.eu/esco/skill/0e0c9c11-b39e-43cf-ba95-2fe646f5de64,esco,True
+E108,programmation informatique,http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97,esco,True
+E108,rigueur,,vague,True
+E108,Excel,,vague,True
+E109,employer des bibliothèques logicielles,http://data.europa.eu/esco/skill/8b94aa1e-89c9-459d-b3b4-1dfab8dec2df,esco,True
+E109,utiliser une interface spécifique à une application,http://data.europa.eu/esco/skill/04fe962b-4017-4eb7-9139-7d69b6922bc9,esco,True
+E109,logiciels de gestion de versions,http://data.europa.eu/esco/skill/9d2e926f-53d9-41f5-98f3-19dfaa687f3f,esco,True
+E109,dessin technique,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E109,créer un organigramme de programmation,http://data.europa.eu/esco/skill/901105f8-3a08-453e-b1dc-23619e317fd3,esco,True
+E109,services web,http://data.europa.eu/esco/skill/f84a433f-34f1-4083-b0a3-24802623509c,esco,True
+E109,relationnel,,vague,True
+E109,informatique,,vague,True
+E110,dessin industriel,http://data.europa.eu/esco/skill/59ea80e1-463a-4dba-82c6-d0b6d577d532,esco,True
+E110,identifier les exigences des clients,http://data.europa.eu/esco/skill/0e0c9c11-b39e-43cf-ba95-2fe646f5de64,esco,True
+E110,gérer un projet d'ingénierie,http://data.europa.eu/esco/skill/6a899482-8bcf-40ca-ae67-579a1cc467ab,esco,True
+E110,analyser les spécifications du logiciel,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E110,utiliser des bibliothèques logicielles,http://data.europa.eu/esco/skill/8b94aa1e-89c9-459d-b3b4-1dfab8dec2df,esco,True
+E110,développer des méthodes de migration automatisées,http://data.europa.eu/esco/skill/0b0335f3-0aa1-491e-895e-81fc8774a300,esco,True
+E110,communication,,vague,True
+E110,Excel,,vague,True
+E111,processus d'ingénierie,http://data.europa.eu/esco/skill/72a74f69-5cf1-43c5-99b9-62a444578919,esco,True
+E111,déboguer un logiciel,http://data.europa.eu/esco/skill/2522a6ce-3202-4ac8-9f5b-b9cb5a3a83a1,esco,True
+E111,systèmes de services web,http://data.europa.eu/esco/skill/f84a433f-34f1-4083-b0a3-24802623509c,esco,True
+E111,définir les exigences techniques,http://data.europa.eu/esco/skill/d9e5349e-8791-49c2-8ba4-839fdd1606c2,esco,True
+E111,utiliser une interface spécifique à une application,http://data.europa.eu/esco/skill/04fe962b-4017-4eb7-9139-7d69b6922bc9,esco,True
+E111,réaliser des recherches scientifiques,http://data.europa.eu/esco/skill/4fabca9a-7435-4f33-b1da-3cdb00340fdc,esco,True
+E111,relationnel,,vague,True
+E111,travail en équipe,,vague,True
+E112,développer des méthodes de migration automatisées,http://data.europa.eu/esco/skill/0b0335f3-0aa1-491e-895e-81fc8774a300,esco,True
+E112,utiliser des patrons d’architecture,http://data.europa.eu/esco/skill/2b7a79e5-84d8-4880-be66-3d9bb05bea17,esco,True
+E112,analyser les spécifications du logiciel,http://data.europa.eu/esco/skill/f28617ad-afdd-4041-814c-216153a38998,esco,True
+E112,déboguer un logiciel,http://data.europa.eu/esco/skill/2522a6ce-3202-4ac8-9f5b-b9cb5a3a83a1,esco,True
+E112,utiliser des bibliothèques logicielles,http://data.europa.eu/esco/skill/8b94aa1e-89c9-459d-b3b4-1dfab8dec2df,esco,True
+E112,gestion de projets,http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,esco,True
+E112,rigueur,,vague,True
+E112,relationnel,,vague,True
+E113,construire des systèmes de recommandation,http://data.europa.eu/esco/skill/505e4ef3-7ce4-437d-b7b4-5c608f71c258,esco,True
+E113,langages de requête,http://data.europa.eu/esco/skill/9cf681c7-89ec-470c-b651-7fe03786f586,esco,True
+E113,effectuer un nettoyage de données,http://data.europa.eu/esco/skill/50b100ea-74fd-4706-99db-3e4ca55e51b8,esco,True
+E113,gérer des données interopérables et réutilisables faciles à trouver et accessibles,http://data.europa.eu/esco/skill/4f5c1208-62fd-4e5a-a51e-306c06947e11,esco,True
+E113,langage de requête Cadre de Description des Ressources,http://data.europa.eu/esco/skill/99207709-d076-4cce-ba38-e90d3bb28806,esco,True
+E113,appliquer des principes d’éthique et d’intégrité scientifique de la recherche dans les activités de recherche,http://data.europa.eu/esco/skill/833289fa-3646-4010-9d9e-93ba8c9ef2d8,esco,True
+E113,communication,,vague,True
+E113,Excel,,vague,True
+E114,gérer le développement professionnel personnel,http://data.europa.eu/esco/skill/a8d24a95-47b3-4f88-92e7-06600bcd3612,esco,True
+E114,diffuser des résultats à la communauté scientifique,http://data.europa.eu/esco/skill/2b1e2927-3542-48da-9063-02925e7562c1,esco,True
+E114,analyse quantitative,http://data.europa.eu/esco/skill/6360a934-cc87-4954-9656-b32db20592e3,esco,True
+E114,exécuter des calculs mathématiques et analytiques,http://data.europa.eu/esco/skill/31c69100-b612-4a61-8db5-fd314318854c,esco,True
+E114,gérer les droits de propriété intellectuelle,http://data.europa.eu/esco/skill/518dc04d-092d-4fa1-bd82-88b7a9278ef7,esco,True
+E114,faire preuve d’une expertise disciplinaire,http://data.europa.eu/esco/skill/4134622c-c3fb-4a41-beb6-6d58ba5107db,esco,True
+E114,communication,,vague,True
+E114,autonomie,,vague,True
+E115,mettre en œuvre des processus de qualité des données,http://data.europa.eu/esco/skill/713fb616-118e-40bc-9366-4a69879a49d5,esco,True
+E115,appliquer des principes d’éthique et d’intégrité scientifique de la recherche dans les activités de recherche,http://data.europa.eu/esco/skill/833289fa-3646-4010-9d9e-93ba8c9ef2d8,esco,True
+E115,communiquer des résultats scientifiques,http://data.europa.eu/esco/skill/ff64e9fc-36dd-4035-872a-83aa41dc1ad9,esco,True
+E115,mettre au point des logiciels libres,http://data.europa.eu/esco/skill/2b34764d-637c-48f5-aa70-31e15c965db6,esco,True
+E115,parrainer des individus,http://data.europa.eu/esco/skill/a584a638-a2c0-4b3c-bdf3-a64f87225be9,esco,True
+E115,utiliser des techniques de traitement des données,http://data.europa.eu/esco/skill/1b70a55d-b8a4-49fc-96c6-15ab4cff2522,esco,True
+E115,rigueur,,vague,True
+E115,communication,,vague,True
+E116,mettre au point des logiciels libres,http://data.europa.eu/esco/skill/2b34764d-637c-48f5-aa70-31e15c965db6,esco,True
+E116,évaluer des activités de recherche,http://data.europa.eu/esco/skill/39f67488-cfd3-4370-8d7e-da98163102d9,esco,True
+E116,gérer des systèmes de collecte de données,http://data.europa.eu/esco/skill/a80fb090-63f4-4b05-83a5-2f090deb7757,esco,True
+E116,appliquer des principes d’éthique et d’intégrité scientifique de la recherche dans les activités de recherche,http://data.europa.eu/esco/skill/833289fa-3646-4010-9d9e-93ba8c9ef2d8,esco,True
+E116,effectuer un nettoyage de données,http://data.europa.eu/esco/skill/50b100ea-74fd-4706-99db-3e4ca55e51b8,esco,True
+E116,promouvoir l’innovation ouverte dans la recherche,http://data.europa.eu/esco/skill/872a1632-f1db-4feb-bb27-0a6a359b7591,esco,True
+E116,Excel,,vague,True
+E116,informatique,,vague,True
+E117,utiliser des techniques de traitement des données,http://data.europa.eu/esco/skill/1b70a55d-b8a4-49fc-96c6-15ab4cff2522,esco,True
+E117,évaluer des activités de recherche,http://data.europa.eu/esco/skill/39f67488-cfd3-4370-8d7e-da98163102d9,esco,True
+E117,gérer le développement professionnel personnel,http://data.europa.eu/esco/skill/a8d24a95-47b3-4f88-92e7-06600bcd3612,esco,True
+E117,traitement analytique en ligne,http://data.europa.eu/esco/skill/b0a3bb25-a02f-43ed-ab1f-994fa66a424a,esco,True
+E117,gérer les connaissances en vue d’une incidence stratégique,http://data.europa.eu/esco/skill/4d39b27a-b34f-4c89-8d46-df844d42f728,esco,True
+E117,faire preuve d’une expertise disciplinaire,http://data.europa.eu/esco/skill/4134622c-c3fb-4a41-beb6-6d58ba5107db,esco,True
+E117,travail en équipe,,vague,True
+E117,informatique,,vague,True
+E118,apply research ethics and scientific integrity principles in research activities,http://data.europa.eu/esco/skill/833289fa-3646-4010-9d9e-93ba8c9ef2d8,esco,True
+E118,draw up scientific papers,http://data.europa.eu/esco/skill/c3c2420c-ce9a-4371-8eed-1db479c3a562,esco,True
+E118,information classification,http://data.europa.eu/esco/skill/93aaf65c-5aad-4e6f-a7ba-ce9bf7c0e6e6,esco,True
+E118,use research findings across disciplines,http://data.europa.eu/esco/skill/f7b071bf-4882-4cfc-ae0a-7e0e0ab94c61,esco,True
+E118,conceptualise abstract ideas,http://data.europa.eu/esco/skill/9a58cd26-58eb-4a1c-b1b6-64037fe9cfa1,esco,True
+E118,data science,http://data.europa.eu/esco/skill/edebd83d-35f6-4ed5-a940-6c203d178c01,esco,True
+E118,Excel,,vague,True
+E118,IT,,vague,True
+E119,ensure corrected data storing,http://data.europa.eu/esco/skill/4f5c1208-62fd-4e5a-a51e-306c06947e11,esco,True
+E119,resource description framework query language,http://data.europa.eu/esco/skill/99207709-d076-4cce-ba38-e90d3bb28806,esco,True
+E119,interact professionally in research and professional environments,http://data.europa.eu/esco/skill/20a8fe89-d4eb-4698-8521-8881c13377e0,esco,True
+E119,manage research data,http://data.europa.eu/esco/skill/08b04e53-ed25-41a2-9f90-0b9cd939ba3d,esco,True
+E119,query languages,http://data.europa.eu/esco/skill/9cf681c7-89ec-470c-b651-7fe03786f586,esco,True
+E119,evaluate research activities,http://data.europa.eu/esco/skill/39f67488-cfd3-4370-8d7e-da98163102d9,esco,True
+E119,attention to detail,,vague,True
+E119,people skills,,vague,True
+E120,statistiques,http://data.europa.eu/esco/skill/7ee4c2ea-b349-4bd2-81a3-ec31475d4833,esco,True
+E120,traiter des échantillons de données,http://data.europa.eu/esco/skill/4a193795-fa63-414e-9f2e-bfdb3924571e,esco,True
+E120,diffuser des résultats à la communauté scientifique,http://data.europa.eu/esco/skill/2b1e2927-3542-48da-9063-02925e7562c1,esco,True
+E120,créer des traitements de données,http://data.europa.eu/esco/skill/2daec0e6-f0c1-43e8-8178-aedba99130ec,esco,True
+E120,gérer les droits de propriété intellectuelle,http://data.europa.eu/esco/skill/518dc04d-092d-4fa1-bd82-88b7a9278ef7,esco,True
+E120,littérature scientifique,http://data.europa.eu/esco/skill/74e49482-75e8-4637-bdb1-fff868d02f7a,esco,True
+E120,relationnel,,vague,True
+E120,travail en équipe,,vague,True
+E121,manage quantitative data,http://data.europa.eu/esco/skill/57231a22-4da7-49c8-97b8-75672feadf1e,esco,True
+E121,data storage,http://data.europa.eu/esco/skill/a7f0fbe0-c546-4f30-8e41-34a58c64567e,esco,True
+E121,cloud technologies,http://data.europa.eu/esco/skill/bd14968e-e409-45af-b362-3495ed7b10e0,esco,True
+E121,perform dimensionality reduction,http://data.europa.eu/esco/skill/3e2ab38a-4519-4bef-b762-a8bf4836a775,esco,True
+E121,design database in the cloud,http://data.europa.eu/esco/skill/7e796b51-49d7-4e73-95af-2e7323763f15,esco,True
+E121,back up data,http://data.europa.eu/esco/skill/611ed16b-99bf-4840-9cab-f55d1d286e0a,esco,True
+E121,communication,,vague,True
+E121,teamwork,,vague,True
+E122,analyse de données,http://data.europa.eu/esco/skill/97bd1c21-66b2-4b7e-ad0f-e3cda590e378,esco,True
+E122,créer des ensembles de données,http://data.europa.eu/esco/skill/906323f4-00c4-4c3b-ab5a-8af77be3456e,esco,True
+E122,mettre en œuvre les techniques de stockage des données,http://data.europa.eu/esco/skill/fd6d2981-3d4a-4ce2-9741-cfc98c5b74bd,esco,True
+E122,modèles de données,http://data.europa.eu/esco/skill/fecf8a0d-62c4-4e71-9b03-0f4fc2ad7bf5,esco,True
+E122,concevoir une base de données dans le nuage,http://data.europa.eu/esco/skill/7e796b51-49d7-4e73-95af-2e7323763f15,esco,True
+E122,créer des traitements de données,http://data.europa.eu/esco/skill/2daec0e6-f0c1-43e8-8178-aedba99130ec,esco,True
+E122,travail en équipe,,vague,True
+E122,informatique,,vague,True
+E123,analyse de données,http://data.europa.eu/esco/skill/97bd1c21-66b2-4b7e-ad0f-e3cda590e378,esco,True
+E123,données non structurées,http://data.europa.eu/esco/skill/c5e8abde-d2ba-4e8e-a65e-720b71180666,esco,True
+E123,technologies de dématérialisation,http://data.europa.eu/esco/skill/bd14968e-e409-45af-b362-3495ed7b10e0,esco,True
+E123,créer des ensembles de données,http://data.europa.eu/esco/skill/906323f4-00c4-4c3b-ab5a-8af77be3456e,esco,True
+E123,créer des traitements de données,http://data.europa.eu/esco/skill/2daec0e6-f0c1-43e8-8178-aedba99130ec,esco,True
+E123,utiliser des bases de données,http://data.europa.eu/esco/skill/4463a721-69f3-413d-8321-43e3af13a4f1,esco,True
+E123,communication,,vague,True
+E123,travail en équipe,,vague,True
+E124,utiliser des bases de données,http://data.europa.eu/esco/skill/4463a721-69f3-413d-8321-43e3af13a4f1,esco,True
+E124,entrepôt de données,http://data.europa.eu/esco/skill/3ec2e4d6-7000-4905-bf1a-c5b1679416de,esco,True
+E124,modèles de données,http://data.europa.eu/esco/skill/fecf8a0d-62c4-4e71-9b03-0f4fc2ad7bf5,esco,True
+E124,stockage de données,http://data.europa.eu/esco/skill/a7f0fbe0-c546-4f30-8e41-34a58c64567e,esco,True
+E124,gérer les données,http://data.europa.eu/esco/skill/9ff9db9d-d14b-426e-83f3-e7449af6c79f,esco,True
+E124,données non structurées,http://data.europa.eu/esco/skill/c5e8abde-d2ba-4e8e-a65e-720b71180666,esco,True
+E124,Excel,,vague,True
+E124,rigueur,,vague,True
+E125,manage quantitative data,http://data.europa.eu/esco/skill/57231a22-4da7-49c8-97b8-75672feadf1e,esco,True
+E125,use data processing techniques,http://data.europa.eu/esco/skill/1b70a55d-b8a4-49fc-96c6-15ab4cff2522,esco,True
+E125,produce data sets,http://data.europa.eu/esco/skill/906323f4-00c4-4c3b-ab5a-8af77be3456e,esco,True
+E125,digital data processing,http://data.europa.eu/esco/skill/629685b8-5f9e-4522-8cff-b3e2c4ec625a,esco,True
+E125,computer science,http://data.europa.eu/esco/skill/7b5cce4d-c7fe-4119-b48f-70aa05391787,esco,True
+E125,manage ICT data architecture,http://data.europa.eu/esco/skill/4d85b881-e490-4b4c-897a-2faa4ef53956,esco,True
+E125,communication,,vague,True
+E125,Excel,,vague,True
+E126,process data,http://data.europa.eu/esco/skill/f2d57f41-43b4-4f5b-8100-3df5c21eda50,esco,True
+E126,define enterprise data architecture,http://data.europa.eu/esco/skill/4d85b881-e490-4b4c-897a-2faa4ef53956,esco,True
+E126,data processing,http://data.europa.eu/esco/skill/629685b8-5f9e-4522-8cff-b3e2c4ec625a,esco,True
+E126,data analytics,http://data.europa.eu/esco/skill/97bd1c21-66b2-4b7e-ad0f-e3cda590e378,esco,True
+E126,Adabas,http://data.europa.eu/esco/skill/ab1e97ed-2319-4293-a8b7-072d2648822f,esco,True
+E126,design data processing software,http://data.europa.eu/esco/skill/f9670490-8aa4-4540-b121-d440a8294aab,esco,True
+E126,Excel,,vague,True
+E126,attention to detail,,vague,True
+E127,stockage des donnnées,http://data.europa.eu/esco/skill/a7f0fbe0-c546-4f30-8e41-34a58c64567e,esco,True
+E127,créer des ensembles de données,http://data.europa.eu/esco/skill/906323f4-00c4-4c3b-ab5a-8af77be3456e,esco,True
+E127,données non structurées,http://data.europa.eu/esco/skill/c5e8abde-d2ba-4e8e-a65e-720b71180666,esco,True
+E127,stocker des données et des systèmes numériques,http://data.europa.eu/esco/skill/611ed16b-99bf-4840-9cab-f55d1d286e0a,esco,True
+E127,gérer une architecture de données,http://data.europa.eu/esco/skill/4d85b881-e490-4b4c-897a-2faa4ef53956,esco,True
+E127,traitement de données numériques,http://data.europa.eu/esco/skill/629685b8-5f9e-4522-8cff-b3e2c4ec625a,esco,True
+E127,travail en équipe,,vague,True
+E127,autonomie,,vague,True
+E128,develop data processing applications,http://data.europa.eu/esco/skill/f9670490-8aa4-4540-b121-d440a8294aab,esco,True
+E128,data storage,http://data.europa.eu/esco/skill/a7f0fbe0-c546-4f30-8e41-34a58c64567e,esco,True
+E128,computer science,http://data.europa.eu/esco/skill/7b5cce4d-c7fe-4119-b48f-70aa05391787,esco,True
+E128,store digital data and systems,http://data.europa.eu/esco/skill/611ed16b-99bf-4840-9cab-f55d1d286e0a,esco,True
+E128,create data sets,http://data.europa.eu/esco/skill/906323f4-00c4-4c3b-ab5a-8af77be3456e,esco,True
+E128,digital data processing,http://data.europa.eu/esco/skill/629685b8-5f9e-4522-8cff-b3e2c4ec625a,esco,True
+E128,self-starter,,vague,True
+E128,IT,,vague,True
+E129,gérer des modifications de projet,http://data.europa.eu/esco/skill/4df7a57a-9405-4995-8e02-4ca404832247,esco,True
+E129,garantir la disponibilité d'équipements,http://data.europa.eu/esco/skill/69f23426-9279-4fe6-a283-24c2aa4c855d,esco,True
+E129,gérer des fournitures,http://data.europa.eu/esco/skill/020b3c27-bae1-4b85-9d6f-eccee0f5ed99,esco,True
+E129,respecter les normes d’une entreprise,http://data.europa.eu/esco/skill/f5f5b244-6cea-4fbc-8a50-8f712791bc09,esco,True
+E129,négocier avec des parties prenantes,http://data.europa.eu/esco/skill/87de6e49-ca1c-42a4-8751-5ff0b991966b,esco,True
+E129,organiser des réunions de projet,http://data.europa.eu/esco/skill/c3687b34-fe53-4db2-ad1b-5055a6c5b6fd,esco,True
+E129,communication,,vague,True
+E129,informatique,,vague,True
+E130,ensure compliance with legal requirements,http://data.europa.eu/esco/skill/1dae8445-12e5-423a-bb26-824010e299b9,esco,True
+E130,manage project changes,http://data.europa.eu/esco/skill/4df7a57a-9405-4995-8e02-4ca404832247,esco,True
+E130,train employees,http://data.europa.eu/esco/skill/e54ff029-1ce9-447d-a5b2-eb7283a23e6e,esco,True
+E130,communication principles,http://data.europa.eu/esco/skill/fe30a4b0-1a99-4fc7-afff-b162b8c834ba,esco,True
+E130,risk management internal policy,http://data.europa.eu/esco/skill/0daaf096-1639-461c-bf1a-bbeea77e6b67,esco,True
+E130,give accurate project information,http://data.europa.eu/esco/skill/22902bf9-cc3f-495b-811a-c441e28e23f6,esco,True
+E130,self-starter,,vague,True
+E130,Excel,,vague,True
+E131,gérer des indicateurs de projet,http://data.europa.eu/esco/skill/c5a135be-218d-48e6-a422-5225a576dcd8,esco,True
+E131,gérer des fournitures,http://data.europa.eu/esco/skill/020b3c27-bae1-4b85-9d6f-eccee0f5ed99,esco,True
+E131,gérer les budgets,http://data.europa.eu/esco/skill/21c5790c-0930-4d74-b3b0-84caf5af12ea,esco,True
+E131,garantir la disponibilité d'équipements,http://data.europa.eu/esco/skill/69f23426-9279-4fe6-a283-24c2aa4c855d,esco,True
+E131,assurer la planification des ressources,http://data.europa.eu/esco/skill/f5dd06b8-5d17-4932-9d03-957d0c4f5051,esco,True
+E131,rédiger des documents de projet,http://data.europa.eu/esco/skill/f17f94f1-88cb-4815-873a-2a9639f10729,esco,True
+E131,travail en équipe,,vague,True
+E131,communication,,vague,True
+E132,gérer des fournitures,http://data.europa.eu/esco/skill/020b3c27-bae1-4b85-9d6f-eccee0f5ed99,esco,True
+E132,assurer la gestion de projets,http://data.europa.eu/esco/skill/cd5efa8c-e44d-4cbc-91c6-796018dbed68,esco,True
+E132,assurer le respect des règles légales,http://data.europa.eu/esco/skill/1dae8445-12e5-423a-bb26-824010e299b9,esco,True
+E132,contrôler les dépenses,http://data.europa.eu/esco/skill/e1f5c539-7c93-49ee-917d-a24e0d887686,esco,True
+E132,méthode de gestion de projets (PM²),http://data.europa.eu/esco/skill/802e6973-3270-4cf0-86e4-a6835caf1ba6,esco,True
+E132,gérer les budgets,http://data.europa.eu/esco/skill/21c5790c-0930-4d74-b3b0-84caf5af12ea,esco,True
+E132,relationnel,,vague,True
+E132,travail en équipe,,vague,True
+E133,respecter les exigences légales,http://data.europa.eu/esco/skill/1dae8445-12e5-423a-bb26-824010e299b9,esco,True
+E133,principes de gestion de projet,http://data.europa.eu/esco/skill/237db40b-4600-47c0-837f-4a2c4f3014ab,esco,True
+E133,gérer la logistique,http://data.europa.eu/esco/skill/953c0b65-537a-42fe-a90b-26cd36c64361,esco,True
+E133,assurer la gestion de projets,http://data.europa.eu/esco/skill/cd5efa8c-e44d-4cbc-91c6-796018dbed68,esco,True
+E133,garantir la disponibilité d'équipements,http://data.europa.eu/esco/skill/69f23426-9279-4fe6-a283-24c2aa4c855d,esco,True
+E133,établir des priorités quotidiennes,http://data.europa.eu/esco/skill/65ca5e3c-940c-46b2-b277-aff394cfdd4c,esco,True
+E133,travail en équipe,,vague,True
+E133,relationnel,,vague,True
+E134,communiquer avec des cadres,http://data.europa.eu/esco/skill/f14ff4b7-be1e-4b55-b39b-520005f8a97e,esco,True
+E134,politique de gestion interne des risques,http://data.europa.eu/esco/skill/0daaf096-1639-461c-bf1a-bbeea77e6b67,esco,True
+E134,gestion de programmes,http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,esco,True
+E134,assurer la planification des ressources,http://data.europa.eu/esco/skill/f5dd06b8-5d17-4932-9d03-957d0c4f5051,esco,True
+E134,gérer des modifications de projet,http://data.europa.eu/esco/skill/4df7a57a-9405-4995-8e02-4ca404832247,esco,True
+E134,principes de gestion de projet,http://data.europa.eu/esco/skill/237db40b-4600-47c0-837f-4a2c4f3014ab,esco,True
+E134,Excel,,vague,True
+E134,communication,,vague,True
+E135,méthode de gestion de projets (PM²),http://data.europa.eu/esco/skill/802e6973-3270-4cf0-86e4-a6835caf1ba6,esco,True
+E135,gérer les informations relatives au projet,http://data.europa.eu/esco/skill/22902bf9-cc3f-495b-811a-c441e28e23f6,esco,True
+E135,fournir des rapports d’analyse coût-bénéfice,http://data.europa.eu/esco/skill/48b68726-0fd6-4e03-a5eb-82236516ee7a,esco,True
+E135,fondamentaux de la gestion de projet,http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,esco,True
+E135,gérer des indicateurs de projet,http://data.europa.eu/esco/skill/c5a135be-218d-48e6-a422-5225a576dcd8,esco,True
+E135,communiquer avec des cadres,http://data.europa.eu/esco/skill/f14ff4b7-be1e-4b55-b39b-520005f8a97e,esco,True
+E135,travail en équipe,,vague,True
+E135,rigueur,,vague,True
+E136,train employees,http://data.europa.eu/esco/skill/e54ff029-1ce9-447d-a5b2-eb7283a23e6e,esco,True
+E136,customise project methodologies,http://data.europa.eu/esco/skill/32db65d3-5ef3-43eb-9bf8-752c9cf0b22e,esco,True
+E136,manage project changes,http://data.europa.eu/esco/skill/4df7a57a-9405-4995-8e02-4ca404832247,esco,True
+E136,manage budgets,http://data.europa.eu/esco/skill/21c5790c-0930-4d74-b3b0-84caf5af12ea,esco,True
+E136,internal risk management policy,http://data.europa.eu/esco/skill/0daaf096-1639-461c-bf1a-bbeea77e6b67,esco,True
+E136,control expenses,http://data.europa.eu/esco/skill/e1f5c539-7c93-49ee-917d-a24e0d887686,esco,True
+E136,Excel,,vague,True
+E136,self-starter,,vague,True
+E137,manage supplies,http://data.europa.eu/esco/skill/020b3c27-bae1-4b85-9d6f-eccee0f5ed99,esco,True
+E137,project management,http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,esco,True
+E137,provide cost benefit analysis reports,http://data.europa.eu/esco/skill/48b68726-0fd6-4e03-a5eb-82236516ee7a,esco,True
+E137,ensuring equipment maintenance,http://data.europa.eu/esco/skill/c927ec6e-9082-4b22-afd3-0c4e219eaf73,esco,True
+E137,identify legal requirements,http://data.europa.eu/esco/skill/b9bf9e17-ae47-417b-bbb1-e8b7c263ccac,esco,True
+E137,formulate project documents,http://data.europa.eu/esco/skill/f17f94f1-88cb-4815-873a-2a9639f10729,esco,True
+E137,self-starter,,vague,True
+E137,Excel,,vague,True
+E138,generate cost benefit analysis reports,http://data.europa.eu/esco/skill/48b68726-0fd6-4e03-a5eb-82236516ee7a,esco,True
+E138,communication principle,http://data.europa.eu/esco/skill/fe30a4b0-1a99-4fc7-afff-b162b8c834ba,esco,True
+E138,customise project methodologies,http://data.europa.eu/esco/skill/32db65d3-5ef3-43eb-9bf8-752c9cf0b22e,esco,True
+E138,perform risk analysis,http://data.europa.eu/esco/skill/1dd23dba-dd00-45ab-abf4-642902538317,esco,True
+E138,implement conflict management,http://data.europa.eu/esco/skill/0ee94af1-b445-4973-9c3f-459fab250342,esco,True
+E138,manage resource schedules,http://data.europa.eu/esco/skill/f5dd06b8-5d17-4932-9d03-957d0c4f5051,esco,True
+E138,people skills,,vague,True
+E138,teamwork,,vague,True
+E139,méthode de gestion de projets (PM²),http://data.europa.eu/esco/skill/802e6973-3270-4cf0-86e4-a6835caf1ba6,esco,True
+E139,superviser des opérations quotidiennes d'information,http://data.europa.eu/esco/skill/9013b46e-5a9b-4929-8918-fcadfdfd37ce,esco,True
+E139,établir des priorités quotidiennes,http://data.europa.eu/esco/skill/65ca5e3c-940c-46b2-b277-aff394cfdd4c,esco,True
+E139,gérer les informations relatives au projet,http://data.europa.eu/esco/skill/22902bf9-cc3f-495b-811a-c441e28e23f6,esco,True
+E139,principes de gestion de projet,http://data.europa.eu/esco/skill/237db40b-4600-47c0-837f-4a2c4f3014ab,esco,True
+E139,jauger la durée de travail,http://data.europa.eu/esco/skill/e207163b-7963-4c3e-9494-7a4bb000211b,esco,True
+E139,informatique,,vague,True
+E139,autonomie,,vague,True
+E140,manage project metrics,http://data.europa.eu/esco/skill/c5a135be-218d-48e6-a422-5225a576dcd8,esco,True
+E140,identify legal requirements,http://data.europa.eu/esco/skill/b9bf9e17-ae47-417b-bbb1-e8b7c263ccac,esco,True
+E140,manage supplies,http://data.europa.eu/esco/skill/020b3c27-bae1-4b85-9d6f-eccee0f5ed99,esco,True
+E140,establish daily priorities,http://data.europa.eu/esco/skill/65ca5e3c-940c-46b2-b277-aff394cfdd4c,esco,True
+E140,communication ideals,http://data.europa.eu/esco/skill/fe30a4b0-1a99-4fc7-afff-b162b8c834ba,esco,True
+E140,risk management internal policy,http://data.europa.eu/esco/skill/0daaf096-1639-461c-bf1a-bbeea77e6b67,esco,True
+E140,Excel,,vague,True
+E140,IT,,vague,True
+E141,évaluer un caractère,http://data.europa.eu/esco/skill/786a74d6-7ecd-44d5-ae4f-87ff02fe3dbf,esco,True
+E141,s’identifier aux objectifs de l’entreprise,http://data.europa.eu/esco/skill/fc54bd7f-0c03-4fdd-af8c-5eb4021e716d,esco,True
+E141,gérer des salaires,http://data.europa.eu/esco/skill/9d916d7c-89b3-4084-a6d9-e2b0b3091404,esco,True
+E141,appliquer les politiques d’une entreprise,http://data.europa.eu/esco/skill/0a43729f-2a79-4dae-9faa-95520daae79f,esco,True
+E141,offres d’emploi,http://data.europa.eu/esco/skill/38a5c459-c591-4f76-a358-37de342bb11d,esco,True
+E141,interviewer des gens,http://data.europa.eu/esco/skill/66d47084-9437-48b2-819b-c4c8214ed650,esco,True
+E141,travail en équipe,,vague,True
+E141,Excel,,vague,True
+E142,respecter la confidentialité,http://data.europa.eu/esco/skill/8d202e22-85e9-47b1-a1e0-3296d17244cd,esco,True
+E142,écouter activement,http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de,esco,True
+E142,documenter des entretiens,http://data.europa.eu/esco/skill/e1f09038-b493-4771-ae29-a2d3e7ea013a,esco,True
+E142,instaurer un climat de confiance,http://data.europa.eu/esco/skill/eade4171-3d57-4fb2-9518-44d5a1da4ff5,esco,True
+E142,s’identifier aux objectifs de l’entreprise,http://data.europa.eu/esco/skill/fc54bd7f-0c03-4fdd-af8c-5eb4021e716d,esco,True
+E142,négocier des contrats de travail,http://data.europa.eu/esco/skill/811acf0c-4dd7-4dda-a4fa-7ca498a95204,esco,True
+E142,informatique,,vague,True
+E142,travail en équipe,,vague,True
+E143,interviewer des gens,http://data.europa.eu/esco/skill/66d47084-9437-48b2-819b-c4c8214ed650,esco,True
+E143,recruter des employés,http://data.europa.eu/esco/skill/496932f1-0b6b-4f73-9432-d95c7ddcd43b,esco,True
+E143,stratégies de gestion des talents,http://data.europa.eu/esco/skill/f206e732-110c-47ce-a53f-f00c9d97c90d,esco,True
+E143,s’identifier aux objectifs de l’entreprise,http://data.europa.eu/esco/skill/fc54bd7f-0c03-4fdd-af8c-5eb4021e716d,esco,True
+E143,documenter des entretiens,http://data.europa.eu/esco/skill/e1f09038-b493-4771-ae29-a2d3e7ea013a,esco,True
+E143,évaluer un caractère,http://data.europa.eu/esco/skill/786a74d6-7ecd-44d5-ae4f-87ff02fe3dbf,esco,True
+E143,relationnel,,vague,True
+E143,rigueur,,vague,True
+E144,législation sociale,http://data.europa.eu/esco/skill/08fe5910-8c4c-4679-a988-eb2ded3c4909,esco,True
+E144,respecter la confidentialité,http://data.europa.eu/esco/skill/8d202e22-85e9-47b1-a1e0-3296d17244cd,esco,True
+E144,établir le profil d’une personne,http://data.europa.eu/esco/skill/e49c4d19-dea6-42a1-bde2-30d69dc0ca24,esco,True
+E144,appliquer les politiques d’une entreprise,http://data.europa.eu/esco/skill/0a43729f-2a79-4dae-9faa-95520daae79f,esco,True
+E144,embaucher des ressources humaines,http://data.europa.eu/esco/skill/5aa57bdc-5765-435e-8fc9-99b3febdb213,esco,True
+E144,écouter activement,http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de,esco,True
+E144,rigueur,,vague,True
+E144,relationnel,,vague,True
+E145,négocier des contrats de travail,http://data.europa.eu/esco/skill/811acf0c-4dd7-4dda-a4fa-7ca498a95204,esco,True
+E145,recruter des employés,http://data.europa.eu/esco/skill/496932f1-0b6b-4f73-9432-d95c7ddcd43b,esco,True
+E145,s’identifier aux objectifs de l’entreprise,http://data.europa.eu/esco/skill/fc54bd7f-0c03-4fdd-af8c-5eb4021e716d,esco,True
+E145,offres d’emploi,http://data.europa.eu/esco/skill/38a5c459-c591-4f76-a358-37de342bb11d,esco,True
+E145,législation sociale,http://data.europa.eu/esco/skill/08fe5910-8c4c-4679-a988-eb2ded3c4909,esco,True
+E145,appliquer les politiques d’une entreprise,http://data.europa.eu/esco/skill/0a43729f-2a79-4dae-9faa-95520daae79f,esco,True
+E145,travail en équipe,,vague,True
+E145,autonomie,,vague,True
+E146,écouter activement,http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de,esco,True
+E146,négocier des contrats de travail,http://data.europa.eu/esco/skill/811acf0c-4dd7-4dda-a4fa-7ca498a95204,esco,True
+E146,embaucher les employés,http://data.europa.eu/esco/skill/496932f1-0b6b-4f73-9432-d95c7ddcd43b,esco,True
+E146,documenter des entretiens,http://data.europa.eu/esco/skill/e1f09038-b493-4771-ae29-a2d3e7ea013a,esco,True
+E146,respecter la confidentialité,http://data.europa.eu/esco/skill/8d202e22-85e9-47b1-a1e0-3296d17244cd,esco,True
+E146,interviewer des gens,http://data.europa.eu/esco/skill/66d47084-9437-48b2-819b-c4c8214ed650,esco,True
+E146,communication,,vague,True
+E146,rigueur,,vague,True
+E147,négocier des contrats de travail,http://data.europa.eu/esco/skill/811acf0c-4dd7-4dda-a4fa-7ca498a95204,esco,True
+E147,instaurer un climat de confiance,http://data.europa.eu/esco/skill/eade4171-3d57-4fb2-9518-44d5a1da4ff5,esco,True
+E147,interviewer des gens,http://data.europa.eu/esco/skill/66d47084-9437-48b2-819b-c4c8214ed650,esco,True
+E147,gestion des talents,http://data.europa.eu/esco/skill/f206e732-110c-47ce-a53f-f00c9d97c90d,esco,True
+E147,écouter activement,http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de,esco,True
+E147,appliquer les politiques d’une entreprise,http://data.europa.eu/esco/skill/0a43729f-2a79-4dae-9faa-95520daae79f,esco,True
+E147,Excel,,vague,True
+E147,informatique,,vague,True
+E148,stratégies de gestion des talents,http://data.europa.eu/esco/skill/f206e732-110c-47ce-a53f-f00c9d97c90d,esco,True
+E148,législation sociale,http://data.europa.eu/esco/skill/08fe5910-8c4c-4679-a988-eb2ded3c4909,esco,True
+E148,offres d’emploi,http://data.europa.eu/esco/skill/38a5c459-c591-4f76-a358-37de342bb11d,esco,True
+E148,fixer des rendez-vous,http://data.europa.eu/esco/skill/906c9e66-bdee-4f8e-93d7-88d9fcf39a0a,esco,True
+E148,gérer des salaires,http://data.europa.eu/esco/skill/9d916d7c-89b3-4084-a6d9-e2b0b3091404,esco,True
+E148,rédiger des rapports sur le travail,http://data.europa.eu/esco/skill/918f5211-b99f-4b29-9a34-6e475583ef55,esco,True
+E148,autonomie,,vague,True
+E148,rigueur,,vague,True
+E149,human resource oversight,http://data.europa.eu/esco/skill/88b406d0-72e2-4087-be19-d5992d259473,esco,True
+E149,recruit personnel,http://data.europa.eu/esco/skill/65715f7a-c791-416b-b88a-2933a1c81647,esco,True
+E149,outplacement,http://data.europa.eu/esco/skill/57c3021c-defc-4a39-b60b-95db8af25c3a,esco,True
+E149,build up staff,http://data.europa.eu/esco/skill/714eebcb-569a-4f1b-b592-28f70b59a9ba,esco,True
+E149,develop training programmes,http://data.europa.eu/esco/skill/517f678e-001b-4985-acb4-9edc3500d74c,esco,True
+E149,build trust,http://data.europa.eu/esco/skill/eade4171-3d57-4fb2-9518-44d5a1da4ff5,esco,True
+E149,communication,,vague,True
+E149,Excel,,vague,True
+E150,coordonner des activités opérationnelles,http://data.europa.eu/esco/skill/afdb41dd-5dd5-4fbb-bf9e-e041422698b4,esco,True
+E150,développer des programmes de fidélisation des employés,http://data.europa.eu/esco/skill/f77b73f0-8c65-4389-a3ae-3a57a73ad148,esco,True
+E150,développer des programmes de formation,http://data.europa.eu/esco/skill/517f678e-001b-4985-acb4-9edc3500d74c,esco,True
+E150,recruter du personnel,http://data.europa.eu/esco/skill/65715f7a-c791-416b-b88a-2933a1c81647,esco,True
+E150,surveiller la politique d'une entreprise,http://data.europa.eu/esco/skill/6fce8d3f-a15f-4f26-943a-d200b32f6949,esco,True
+E150,gestion des talents,http://data.europa.eu/esco/skill/f206e732-110c-47ce-a53f-f00c9d97c90d,esco,True
+E150,informatique,,vague,True
+E150,travail en équipe,,vague,True
+E151,outplacement,http://data.europa.eu/esco/skill/57c3021c-defc-4a39-b60b-95db8af25c3a,esco,True
+E151,organise staff assessment,http://data.europa.eu/esco/skill/2ae4ae1a-367e-47e0-a0cc-6777be3e58d0,esco,True
+E151,promote gender equality in business contexts,http://data.europa.eu/esco/skill/19bf58ed-23b8-4763-b231-d4a1e98a225d,esco,True
+E151,recruiting personnel,http://data.europa.eu/esco/skill/65715f7a-c791-416b-b88a-2933a1c81647,esco,True
+E151,human resources department's processes,http://data.europa.eu/esco/skill/c6e308b4-8799-4461-a9bd-560bdecb0dbb,esco,True
+E151,hire new personnel,http://data.europa.eu/esco/skill/496932f1-0b6b-4f73-9432-d95c7ddcd43b,esco,True
+E151,Excel,,vague,True
+E151,self-starter,,vague,True
+E152,gestion des ressources humaines,http://data.europa.eu/esco/skill/e437eba1-3e22-41f2-8703-741e94785cba,esco,True
+E152,procédures des services de ressources humaines,http://data.europa.eu/esco/skill/c6e308b4-8799-4461-a9bd-560bdecb0dbb,esco,True
+E152,négocier des contrats de travail,http://data.europa.eu/esco/skill/811acf0c-4dd7-4dda-a4fa-7ca498a95204,esco,True
+E152,coordonner des activités opérationnelles,http://data.europa.eu/esco/skill/afdb41dd-5dd5-4fbb-bf9e-e041422698b4,esco,True
+E152,se conformer aux réglementations juridiques,http://data.europa.eu/esco/skill/3d3ee5c3-4286-457f-9f76-1704011f7e11,esco,True
+E152,embaucher des ressources humaines,http://data.europa.eu/esco/skill/5aa57bdc-5765-435e-8fc9-99b3febdb213,esco,True
+E152,informatique,,vague,True
+E152,Excel,,vague,True
+E153,monitor expenditures,http://data.europa.eu/esco/skill/b08ec8ff-1a3e-4cc3-8016-9520b21666a6,esco,True
+E153,develop financial statistics reports,http://data.europa.eu/esco/skill/4f060129-8b75-4d58-a8dd-515bd8fef349,esco,True
+E153,statements on finances,http://data.europa.eu/esco/skill/4a460161-eaea-4fe2-bd0e-164ccc635be1,esco,True
+E153,tax legislation,http://data.europa.eu/esco/skill/d669af41-756c-48d9-a286-1443253f54b1,esco,True
+E153,investigate financial performance of a company,http://data.europa.eu/esco/skill/8a43795b-bb38-4f29-91df-a6c92ad4643c,esco,True
+E153,track key performance indicators,http://data.europa.eu/esco/skill/8dcbcabe-09f7-4d11-940d-125af57bbc40,esco,True
+E153,communication,,vague,True
+E153,teamwork,,vague,True
+E154,ensure compliance with accounting conventions,http://data.europa.eu/esco/skill/d6e78d9a-deca-4bcb-b08d-011b2616758d,esco,True
+E154,track key performance indicators,http://data.europa.eu/esco/skill/8dcbcabe-09f7-4d11-940d-125af57bbc40,esco,True
+E154,financial department processes,http://data.europa.eu/esco/skill/39e43f7c-a95e-4583-be76-bb134ccce1ae,esco,True
+E154,create a financial plan,http://data.europa.eu/esco/skill/56ff27ef-2565-45bf-a70c-f06d78d2a480,esco,True
+E154,financial statements,http://data.europa.eu/esco/skill/4a460161-eaea-4fe2-bd0e-164ccc635be1,esco,True
+E154,analyse financial performance of a company,http://data.europa.eu/esco/skill/8a43795b-bb38-4f29-91df-a6c92ad4643c,esco,True
+E154,IT,,vague,True
+E154,people skills,,vague,True
+E155,évaluer des budgets,http://data.europa.eu/esco/skill/6556cbf1-d5c0-4f53-89a9-8707066069a6,esco,True
+E155,faire la synthèse d’informations financières,http://data.europa.eu/esco/skill/5c99d21a-9d02-4638-9b52-a6ba840dcb0a,esco,True
+E155,procédures des services de comptabilité,http://data.europa.eu/esco/skill/08371fe9-c658-4f6a-966f-71dbb0ab683d,esco,True
+E155,respecter des obligations légales,http://data.europa.eu/esco/skill/83e97138-899a-4af8-9187-47823e875841,esco,True
+E155,expliquer des comptabilisations,http://data.europa.eu/esco/skill/cb059032-dd34-4761-a786-98cfb9d0efe3,esco,True
+E155,appliquer des politiques financières,http://data.europa.eu/esco/skill/2313b15d-a9a7-4830-9bcc-fd7df79d842b,esco,True
+E155,autonomie,,vague,True
+E155,Excel,,vague,True
+E156,exert expenditure control,http://data.europa.eu/esco/skill/b08ec8ff-1a3e-4cc3-8016-9520b21666a6,esco,True
+E156,evaluate budgets,http://data.europa.eu/esco/skill/6556cbf1-d5c0-4f53-89a9-8707066069a6,esco,True
+E156,enforce financial policies,http://data.europa.eu/esco/skill/2313b15d-a9a7-4830-9bcc-fd7df79d842b,esco,True
+E156,follow the statutory obligations,http://data.europa.eu/esco/skill/83e97138-899a-4af8-9187-47823e875841,esco,True
+E156,create an economic plan,http://data.europa.eu/esco/skill/56ff27ef-2565-45bf-a70c-f06d78d2a480,esco,True
+E156,prepare financial statements,http://data.europa.eu/esco/skill/60f51172-37c0-4933-a27a-cbf55dcd7580,esco,True
+E156,people skills,,vague,True
+E156,self-starter,,vague,True
+E157,financial department processes,http://data.europa.eu/esco/skill/39e43f7c-a95e-4583-be76-bb134ccce1ae,esco,True
+E157,follow the statutory obligations,http://data.europa.eu/esco/skill/83e97138-899a-4af8-9187-47823e875841,esco,True
+E157,explain accounting records,http://data.europa.eu/esco/skill/cb059032-dd34-4761-a786-98cfb9d0efe3,esco,True
+E157,tax legislation,http://data.europa.eu/esco/skill/d669af41-756c-48d9-a286-1443253f54b1,esco,True
+E157,impose financial policies,http://data.europa.eu/esco/skill/2313b15d-a9a7-4830-9bcc-fd7df79d842b,esco,True
+E157,develop financial statistical reports,http://data.europa.eu/esco/skill/4f060129-8b75-4d58-a8dd-515bd8fef349,esco,True
+E157,attention to detail,,vague,True
+E157,self-starter,,vague,True
+E158,élaborer un plan financier,http://data.europa.eu/esco/skill/56ff27ef-2565-45bf-a70c-f06d78d2a480,esco,True
+E158,faire la synthèse d’informations financières,http://data.europa.eu/esco/skill/5c99d21a-9d02-4638-9b52-a6ba840dcb0a,esco,True
+E158,évaluer des budgets,http://data.europa.eu/esco/skill/6556cbf1-d5c0-4f53-89a9-8707066069a6,esco,True
+E158,législation fiscale,http://data.europa.eu/esco/skill/d669af41-756c-48d9-a286-1443253f54b1,esco,True
+E158,contrôler des dépenses,http://data.europa.eu/esco/skill/b08ec8ff-1a3e-4cc3-8016-9520b21666a6,esco,True
+E158,suivre des indicateurs clés de performance,http://data.europa.eu/esco/skill/8dcbcabe-09f7-4d11-940d-125af57bbc40,esco,True
+E158,communication,,vague,True
+E158,relationnel,,vague,True
+E159,interpret finance statements,http://data.europa.eu/esco/skill/5f1d1319-7954-4a9b-90c7-57668e3a0d4b,esco,True
+E159,track key performance indicators,http://data.europa.eu/esco/skill/8dcbcabe-09f7-4d11-940d-125af57bbc40,esco,True
+E159,exert expenditure control,http://data.europa.eu/esco/skill/b08ec8ff-1a3e-4cc3-8016-9520b21666a6,esco,True
+E159,create a financial plan,http://data.europa.eu/esco/skill/56ff27ef-2565-45bf-a70c-f06d78d2a480,esco,True
+E159,develop financial statistics reports,http://data.europa.eu/esco/skill/4f060129-8b75-4d58-a8dd-515bd8fef349,esco,True
+E159,synthesize financial information,http://data.europa.eu/esco/skill/5c99d21a-9d02-4638-9b52-a6ba840dcb0a,esco,True
+E159,IT,,vague,True
+E159,teamwork,,vague,True
+E160,prepare financial statements,http://data.europa.eu/esco/skill/60f51172-37c0-4933-a27a-cbf55dcd7580,esco,True
+E160,create a financial plan,http://data.europa.eu/esco/skill/56ff27ef-2565-45bf-a70c-f06d78d2a480,esco,True
+E160,financial statements,http://data.europa.eu/esco/skill/4a460161-eaea-4fe2-bd0e-164ccc635be1,esco,True
+E160,interpret financial statements,http://data.europa.eu/esco/skill/5f1d1319-7954-4a9b-90c7-57668e3a0d4b,esco,True
+E160,analyse financial performance of a company,http://data.europa.eu/esco/skill/8a43795b-bb38-4f29-91df-a6c92ad4643c,esco,True
+E160,tax legislation,http://data.europa.eu/esco/skill/d669af41-756c-48d9-a286-1443253f54b1,esco,True
+E160,communication,,vague,True
+E160,attention to detail,,vague,True
+E161,respecter les normes d’une entreprise,http://data.europa.eu/esco/skill/f5f5b244-6cea-4fbc-8a50-8f712791bc09,esco,True
+E161,gérer les budgets,http://data.europa.eu/esco/skill/21c5790c-0930-4d74-b3b0-84caf5af12ea,esco,True
+E161,communiquer avec des cadres,http://data.europa.eu/esco/skill/f14ff4b7-be1e-4b55-b39b-520005f8a97e,esco,True
+E161,réguler la logistique,http://data.europa.eu/esco/skill/953c0b65-537a-42fe-a90b-26cd36c64361,esco,True
+E161,évaluer les employés,http://data.europa.eu/esco/skill/8b9332c7-2551-4527-9a64-a615713d8b02,esco,True
+E161,gérer la rentabilité,http://data.europa.eu/esco/skill/4cfc7ef6-e251-4c93-bd5e-fd6936dee11c,esco,True
+E161,communication,,vague,True
+E161,informatique,,vague,True

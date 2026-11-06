@@ -1,0 +1,162 @@
+employee,site,job_title,title_kind,true_occupation,salary_band,long_absence,synthetic
+E001,Bristol,Aircraft Tech,company,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E002,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E003,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E004,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E005,Toulouse,technicien en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E006,Bristol,aircraft maintenance technician,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E007,Bristol,aircraft maintenance technician,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E008,Toulouse,technicienne en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E009,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E010,Bristol,Licensed B1 Engineer,company,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E011,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E012,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E013,Bristol,aircraft instrument operative,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E014,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E015,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,True,True
+E016,Toulouse,Mécano avion,company,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E017,Bristol,aircraft maintenance technician,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,True,True
+E018,Toulouse,technicien en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E019,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E020,Toulouse,technicienne en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E021,Bristol,aircraft maintenance technician,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E022,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E023,Bristol,aircraft maintenance technician,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E024,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E025,Bristol,avionics line inspector,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E026,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E027,Bristol,aircraft instrument operator,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E028,Bristol,aircraft maintenance technician,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E029,Toulouse,technicienne en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E030,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E031,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E032,Bristol,aircraft preventative maintenance technician,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E033,Bristol,aircraft engineer,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E034,Bristol,aviation maintenance technician,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E035,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E036,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,True,True
+E037,Toulouse,technicien en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E038,Toulouse,technicienne en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E039,Toulouse,technicienne en maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,True,True
+E040,Toulouse,technicienne en maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/91373a70-79b6-47a2-aa50-07dfe20dd258,B2,False,True
+E041,Toulouse,Ingénieur Méthodes MRO,company,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E042,Toulouse,technicienne d'entretien d'avion en ligne,esco_alt,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E043,Toulouse,technicien de maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E044,Bristol,aviation systems technician,esco_alt,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E045,Toulouse,technicien de maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E046,Bristol,air transportation engineer,esco_alt,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E047,Toulouse,technicien de maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E048,Toulouse,technicien de maintenance aéronautique,esco_pref,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E049,Bristol,aviation systems technician,esco_alt,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E050,Bristol,aircraft maintenance engineer,esco_pref,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E051,Toulouse,technicienne d'entretien d'avion en ligne,esco_alt,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,True,True
+E052,Bristol,aircraft maintenance engineer,esco_pref,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E053,Bristol,MRO Engineer,company,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E054,Toulouse,technicienne de maintenance aéronautique,esco_alt,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E055,Bristol,aircraft maintenance engineer,esco_pref,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E056,Bristol,aviation systems technician,esco_alt,http://data.europa.eu/esco/occupation/81a1e1f5-cce3-444d-bfc3-9771236d57cd,B3,False,True
+E057,Toulouse,spécialiste de moteurs d’avion,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E058,Bristol,aircraft engine specialist,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E059,Toulouse,spécialiste de moteurs d’avion,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E060,Toulouse,spécialiste de moteurs d’avion,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E061,Toulouse,spécialiste de moteurs d’avion,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E062,Toulouse,spécialiste de moteurs d’avion,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E063,Toulouse,spécialiste de moteurs d’avion,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E064,Toulouse,spécialiste de moteurs d’avion,esco_pref,http://data.europa.eu/esco/occupation/0ac8fe65-32e6-4c25-8345-2b87bc7b2698,B3,False,True
+E065,Bristol,quality engineer,esco_pref,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E066,Bristol,quality engineer,esco_pref,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E067,Bristol,junior quality engineer,esco_alt,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E068,Bristol,junior quality engineer,esco_alt,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E069,Bristol,quality engineer,esco_pref,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E070,Bristol,product quality monitor,esco_alt,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E071,Bristol,firmware and diagnostics quality engineer,esco_alt,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E072,Toulouse,ingénieur qualité,esco_pref,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E073,Toulouse,Ing. qualité,company,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E074,Toulouse,ingénieur qualité,esco_alt,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E075,Toulouse,ingénieure qualité,esco_alt,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E076,Toulouse,Ing. qualité,company,http://data.europa.eu/esco/occupation/30c0943c-caa1-411d-b273-26f475971273,B3,False,True
+E077,Bristol,mechanical engineer,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E078,Toulouse,ingénieur en mécanique,esco_alt,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E079,Bristol,mechanical engineer,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E080,Toulouse,ingénieure mécanicienne,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E081,Bristol,mechanical technology engineering specialist,esco_alt,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E082,Toulouse,ingénieur mécanicien,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,True,True
+E083,Toulouse,ingénieure mécanicienne,esco_alt,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E084,Toulouse,ingénieure en mécanique,esco_alt,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E085,Bristol,mechanical engineer,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E086,Toulouse,ingénieure mécanicienne,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E087,Toulouse,ingénieure mécanicienne,esco_alt,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E088,Bristol,mechanical engineer,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E089,Bristol,mechanical engineer,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E090,Bristol,mechanical engineer,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E091,Toulouse,ingénieur en mécanique,esco_alt,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E092,Toulouse,ingénieure mécanicienne,esco_pref,http://data.europa.eu/esco/occupation/579254cf-6d69-4889-9000-9c79dc568644,B3,False,True
+E093,Bristol,Full Stack Dev,company,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E094,Bristol,battery software developer,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E095,Toulouse,développeur applications,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E096,Bristol,software developer,esco_pref,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E097,Toulouse,développeuse applications,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E098,Bristol,software developer,esco_pref,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E099,Bristol,software specialist,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E100,Bristol,software developers,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E101,Toulouse,développeur de logiciels pour les batteries,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E102,Bristol,application programmer,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E103,Bristol,applications engineer,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E104,Bristol,battery software developer,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E105,Toulouse,développeuse logiciels,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E106,Toulouse,développeur logiciels,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E107,Bristol,Full Stack Dev,company,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E108,Toulouse,développeur applications,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E109,Toulouse,développeuse de logiciels,esco_pref,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E110,Toulouse,développeur de logiciels,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E111,Toulouse,développeur de logiciels de batterie,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E112,Toulouse,développeur logiciels,esco_alt,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,B3,False,True
+E113,Toulouse,experte en analyse des données,esco_alt,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E114,Toulouse,analyste scientifique des données,esco_alt,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E115,Toulouse,scientifique des données,esco_pref,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E116,Toulouse,scientifique des données,esco_pref,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E117,Toulouse,scientifique des données,esco_pref,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E118,Bristol,AI Product Owner,company,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E119,Bristol,data expert,esco_alt,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E120,Toulouse,data scientist,esco_alt,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,B4,False,True
+E121,Bristol,data engineer,esco_pref,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,False,True
+E122,Toulouse,ingénieur en données de recherche,esco_alt,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,False,True
+E123,Toulouse,ingénieur en mégadonnées,esco_alt,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,False,True
+E124,Toulouse,ingénieur de recherche en données,esco_alt,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,False,True
+E125,Bristol,data engineer,esco_pref,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,False,True
+E126,Bristol,data engineer,esco_pref,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,True,True
+E127,Toulouse,Ingé Data,company,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,False,True
+E128,Bristol,Data Platform Engineer,company,http://data.europa.eu/esco/occupation/2079755f-d809-49e6-8037-4de6180e54c0,B3,False,True
+E129,Toulouse,responsable de projet,esco_alt,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E130,Bristol,project manager,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E131,Toulouse,gestionnaire de projet,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E132,Toulouse,gestionnaire de projet,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E133,Toulouse,gestionnaire de projet,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E134,Toulouse,Chef de projet SI,company,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E135,Toulouse,gestionnaire de projet,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E136,Bristol,project manager,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E137,Bristol,project manager,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E138,Bristol,project manager,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E139,Toulouse,gestionnaire de projet,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E140,Bristol,project manager,esco_pref,http://data.europa.eu/esco/occupation/bea99fea-0383-4c63-b944-70d4799de2c5,B4,False,True
+E141,Toulouse,coordinatrice des ressources humaines,esco_alt,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E142,Toulouse,coordinateur des ressources humaines,esco_alt,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E143,Toulouse,responsable des ressources humaines,esco_pref,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E144,Toulouse,responsable des ressources humaines,esco_pref,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E145,Toulouse,coordinatrice des ressources humaines,esco_alt,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E146,Toulouse,responsable des ressources humaines,esco_pref,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E147,Toulouse,responsable des ressources humaines,esco_pref,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E148,Toulouse,responsable du personnel,esco_alt,http://data.europa.eu/esco/occupation/d3e32e5e-7f24-48e3-b939-e4f800eb62fb,B3,False,True
+E149,Bristol,human resources manager,esco_pref,http://data.europa.eu/esco/occupation/f605bcd2-90b6-45a0-a558-d05016d68a77,B5,False,True
+E150,Toulouse,DRH adjointe,company,http://data.europa.eu/esco/occupation/f605bcd2-90b6-45a0-a558-d05016d68a77,B5,False,True
+E151,Bristol,human resources manager,esco_pref,http://data.europa.eu/esco/occupation/f605bcd2-90b6-45a0-a558-d05016d68a77,B5,False,True
+E152,Toulouse,directeur des ressources humaines,esco_pref,http://data.europa.eu/esco/occupation/f605bcd2-90b6-45a0-a558-d05016d68a77,B5,False,True
+E153,Bristol,financial controller,esco_pref,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,False,True
+E154,Bristol,financial controller,esco_pref,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,False,True
+E155,Toulouse,contrôleuse financière,esco_alt,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,False,True
+E156,Bristol,financial controller,esco_pref,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,False,True
+E157,Bristol,finance manager,esco_alt,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,True,True
+E158,Toulouse,contrôleur financier,esco_alt,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,False,True
+E159,Bristol,accountant,esco_alt,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,False,True
+E160,Bristol,financial controller,esco_pref,http://data.europa.eu/esco/occupation/5e5b1b61-1351-4d3b-a293-deb3661715dd,B4,False,True
+E161,Toulouse,directeur des opérations,esco_pref,http://data.europa.eu/esco/occupation/c6bd511a-d966-4df9-a48e-4f800354f268,B6,False,True

@@ -184,8 +184,8 @@ footer a { color: var(--accent-ink); }
 
 <div class="wrap">
   <header class="head">
-    <div class="eyebrow">FAA Service Difficulty Reports · 2025 · ATA 29 Hydraulic Power</div>
-    <h1>Where maintenance knowledge graphs break</h1>
+    <div class="eyebrow">Maintenance: FAA Service Difficulty Reports 2025 · HR: ESCO taxonomy + synthetic company</div>
+    <h1>Where enterprise knowledge graphs break</h1>
     <p class="lead" id="lead"></p>
     <p class="note">Case study on real public data: <a href="https://www.faa.gov/av-info/download_SDR" target="_blank" rel="noopener" style="color:var(--accent-ink)">FAA Service Difficulty Reports (download page)</a>, 2025 file, 514 reports with JASC codes 29xx. Code written with an AI assistant; framing, design decisions and analysis by Corinne Bergès.</p>
   </header>
@@ -270,6 +270,60 @@ footer a { color: var(--accent-ink); }
     </details>
   </section>
 
+  <section id="hr" hidden>
+    <div class="head">
+      <div class="eyebrow">Part two · HR, on the real ESCO taxonomy and a synthetic company</div>
+      <h2>A people graph shows what the maintenance graph could not</h2>
+      <p id="hr-intro"></p>
+    </div>
+    <div class="figures" id="hr-figs"></div>
+    <div class="hopbox">
+      <h3>Internal mobility: suggestions with zero matching skills</h3>
+      <div class="bars" id="hr-mob"></div>
+      <p class="note" id="hr-mob-note"></p>
+    </div>
+    <div class="twocol">
+      <div class="codecard">
+        <h3>Garbage nodes hold the graph together</h3>
+        <div class="scroll"><table class="compare"><thead><tr><th></th><th style="text-align:right">Raw text</th><th style="text-align:right">Linked to ESCO</th></tr></thead><tbody id="hr-islands"></tbody></table></div>
+        <p class="note" id="hr-islands-note"></p>
+      </div>
+      <div class="codecard">
+        <h3>One graph, two domains</h3>
+        <p id="hr-bridge"></p>
+        <p class="note">Shared <code>PartType</code> and <code>AircraftModel</code> nodes link HR certifications to FAA incident reports. Same <code>kgcore/</code>; HR added one generic module for linking to a taxonomy, plus validity dates and sensitivity on edges.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="agent" hidden>
+    <div class="head">
+      <div class="eyebrow">Part three · An agent over both graphs</div>
+      <h2>Let the agent choose its tools, inside guardrails</h2>
+      <p id="agent-intro"></p>
+    </div>
+    <div class="hopbox">
+      <h3>Routing: right tools and right outcome, on 16 questions</h3>
+      <div class="bars" id="agent-bars"></div>
+      <p class="note" id="agent-note"></p>
+    </div>
+    <div class="twocol">
+      <div class="codecard">
+        <h3>What went wrong, and why it matters</h3>
+        <div class="traps" id="agent-fails"></div>
+      </div>
+      <div class="codecard">
+        <h3>Guardrails every tool call goes through</h3>
+        <div class="traps">
+          <div class="trap"><h3>Schema</h3><p>Arguments must be values of the ontology. “leaks” is repaired to <code>LEAKING</code>; an invented tool such as <code>delete_database</code> is rejected.</p></div>
+          <div class="trap"><h3>Access</h3><p>Salary and absence aggregates are HR-only, even when the LLM picks that tool for an employee.</p></div>
+          <div class="trap"><h3>Privacy</h3><p>No aggregate on fewer than 5 people (k-anonymity), enforced in the data layer.</p></div>
+          <div class="trap"><h3>Escalation</h3><p>No tool fits, invalid JSON, or no usable result: handed over to a person, nothing invented. Every decision is written to a trace.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="modeles">
     <div class="head">
       <div class="eyebrow">Pitfall 4 · Choosing a model</div>
@@ -311,6 +365,7 @@ WHERE {
 
   <footer>
     <div>Data: <a href="https://www.faa.gov/av-info/download_SDR" target="_blank" rel="noopener">FAA Service Difficulty Reports</a>, 2025 file, filtered on JASC codes 29xx.</div>
+    <div>HR: <a href="https://esco.ec.europa.eu/en/use-esco/download" target="_blank" rel="noopener">ESCO v1.2.1</a> (European Commission), English and French; employees are synthetic. Code: <a href="https://github.com/corinne3/kg-maintenance" target="_blank" rel="noopener">github.com/corinne3/kg-maintenance</a>.</div>
     <div>Stack: Python, pandas, NetworkX, rdflib (SPARQL), Cypher export for Neo4j / FalkorDB, Ollama for LLM extraction. Fully local, on a laptop with no GPU.</div>
   </footer>
 </div>
@@ -334,7 +389,7 @@ const edp = D.parts.find((p) => p.key === "ENGINE_DRIVEN_PUMP");
 const emp = D.parts.find((p) => p.key === "ELECTRIC_MOTOR_PUMP");
 const h3 = D.hops.find((h) => h.h === 3);
 
-$("lead").textContent = `${fmt(D.nReports)} real hydraulic incident reports, turned into a knowledge graph. The goal is not a demo that works. It is to make visible, with numbers, the problems teams run into when they build these graphs from industrial data.`;
+$("lead").textContent = `${fmt(D.nReports)} real aircraft hydraulic incident reports, then an HR skills graph on the same stack. The goal is not a demo that works. It is to make visible, with numbers, the problems teams run into when they build knowledge graphs from enterprise data.`;
 
 $("figures").innerHTML = [
   [`<span class="vs">0 →</span> ${edp.nAll}`, "reports about an engine-driven pump: structured field only, then reading the free text"],
@@ -492,6 +547,55 @@ if (D.llmEval && D.llmEval.reference.length) {
     return `<tr><td><code>${esc(r.id)}</code><small>${esc(r.comment)}</small></td><td>${esc(r.gold)}</td>
       <td class="${c(r.dico)}">${esc(r.dico)}</td><td class="${c(r.llm)}">${esc(r.llm)}</td><td class="${c(r.hybrid)}">${esc(r.hybrid)}</td></tr>`;
   }).join("");
+}
+
+// ---- HR
+if (D.hr) {
+  const H = D.hr;
+  $("hr").hidden = false;
+  $("hr-intro").textContent = `${H.employees} synthetic employees of a fictional aerospace company (Toulouse writes in French, Bristol in English), linked to the real ESCO v1.2.1 taxonomy of occupations and skills. No real person. People graphs have long chains, sensitive data and change over time: the pitfalls a star-shaped maintenance graph cannot show.`;
+  const mob = H.mobility;
+  $("hr-figs").innerHTML = [
+    [fmt(H.occ_amb), `ESCO occupation labels point to more than one occupation (${pct(H.occ_amb, H.occ_labels)} of ${fmt(H.occ_labels)}). The reference is ambiguous too: “technicien en” and “technicien de” maintenance aéronautique are two occupations.`],
+    [`${H.titles.ambiguous} + ${H.titles.unresolved}`, `of ${H.employees} job titles are ambiguous or not found, e.g. “data scientist” (ambiguous in ESCO), “HRBP”, “Mécano avion”.`],
+    [pct(mob[0].absurd, mob[0].pairs), "of “colleague of a colleague” mobility suggestions share no skill with the target job (transitivity bias)."],
+    [`${H.small_teams} / ${H.teams}`, `teams have fewer than ${H.k} people: a per-team salary average would reveal ${H.exposed} individuals.`],
+  ].map(([b, t]) => `<div class="fig"><b>${esc(b)}</b><span>${esc(t)}</span></div>`).join("");
+  const labels = ["Colleague of a colleague", "Through the human hub only"];
+  bars($("hr-mob"), [
+    ...mob.map((m, i) => ({ label: labels[i], value: m.absurd / m.pairs * 100, text: `${pct(m.absurd, m.pairs)} of ${fmt(m.pairs)}`, cls: "grey" })),
+    { label: "Schema-guided: person → skill ← required by → job", value: 0.0001, text: `0% of ${H.typed_suggestions} (no suggestion for ${H.typed_abstain} people)` },
+  ], 100);
+  $("hr-mob-note").textContent = `Following links between people turns “who you know” into “what you can do”. The operations manager, on most projects, is the most connected person (${H.hub_links} links) and makes it worse. The schema-guided path only suggests what the skills support, and can say “no suggestion”.`;
+  $("hr-islands").innerHTML = [
+    ["Meaningful skills shared by the two sites", H.raw_cross_real, H.esco_cross_real],
+    ["Vague words shared by the two sites", H.raw_cross_vague.length, "—"],
+    ["Islands, ignoring vague words", H.raw_islands, H.esco_islands],
+    ["Islands mixing both sites", H.raw_mixed, H.esco_mixed],
+  ].map(([a, b, c]) => `<tr><td>${a}</td><td class="n">${b}</td><td class="n big">${c}</td></tr>`).join("");
+  $("hr-islands-note").textContent = `In the raw graph, Toulouse and Bristol meet only through “${H.raw_cross_vague.join("” and “")}”, spelled the same in both languages. ESCO carries French and English labels for the same concept and reconnects the sites through real skills.`;
+  $("hr-bridge").innerHTML = `<em>“Engine-driven pumps on the A320 family: how many incidents, and who can work on them?”</em><br><strong>${H.bridge_reports}</strong> FAA incident reports in 2025, and <strong>${H.bridge_valid}</strong> technicians with a valid certification. Ignoring expiry dates would add ${H.bridge_ignored_expiry} people who are no longer qualified; without dates on reporting lines, a reorganisation gives ${H.two_managers} employees two managers.`;
+}
+
+// ---- Agent
+if (D.agent) {
+  const A = D.agent, n = A.n;
+  $("agent").hidden = false;
+  $("agent-intro").textContent = `The assistant's agent answers questions on maintenance and HR by choosing among five typed tools: maintenance statistics, report search, qualified technicians, internal mobility, and a sensitive HR aggregate. It runs locally with ${A.model} on a laptop CPU. Three ways of routing a question to tools were measured on the same ${n} questions, ${n - A.paraphrases_from} of them paraphrases that the rules were not written for.`;
+  bars($("agent-bars"), [
+    { label: "Rules only (no LLM)", value: A.score.rules, text: `${A.score.rules} of ${n} · ${A.seconds.rules} s`, cls: "grey" },
+    { label: "LLM only", value: A.score.llm, text: `${A.score.llm} of ${n} · ${A.seconds.llm} s per question`, cls: "grey" },
+    { label: "Hybrid: rules first, LLM only when no rule applies", value: A.score.hybrid, text: `${A.score.hybrid} of ${n} · ${A.seconds.hybrid} s per question` },
+  ], n);
+  $("agent-note").textContent = `The rules were written while looking at the first ${A.paraphrases_from} questions, so their score there is optimistic. The hybrid is the most accurate and about ${Math.round(A.seconds.llm / Math.max(A.seconds.hybrid, 0.1))} times faster than the LLM alone, because the LLM is only called when the rules have nothing to say.`;
+  const fails = [];
+  const multi = A.cases.find((c) => c.expected.length > 1 && !c.llm.ok);
+  if (multi) fails.push(["LLM: one tool out of two", `“${multi.q}” needs incidents <em>and</em> qualified people. The LLM called only ${multi.llm.tools.join(", ")}. Multi-step planning is where a small model breaks first.`]);
+  const esc2 = A.cases.find((c) => !c.llm.ok && c.llm.outcome === "escalated" && c.expected_outcome === "answered");
+  if (esc2) fails.push(["LLM: gave up too early", `“${esc2.q}” could be answered, but the LLM returned no tool. Safe (it escalated instead of inventing), but not useful.`]);
+  const hy = A.cases.find((c) => !c.hybrid.ok);
+  if (hy) fails.push(["Hybrid: a confident rule", `“${hy.q}”: a broad rule (any “pump” question → text search) fired, so the LLM was never asked. Rules fail silently when they are too sure of themselves.`]);
+  $("agent-fails").innerHTML = fails.map(([t, x]) => `<div class="trap"><h3>${t}</h3><p>${x}</p></div>`).join("");
 }
 
 // ---- RDF

@@ -113,7 +113,11 @@ class KnowledgeBase:
         linked = self.link(question)
         if not linked["parts"]:
             return Context("Schema-guided GraphRAG", "No part type from the question found in the ontology.", [], [])
-        part = linked["parts"][0]
+        return self.guided_query(linked["parts"][0], linked["families"], linked["conditions"], k)
+
+    def guided_query(self, part: str, families: list[str], conditions: list[str], k: int = 8) -> Context:
+        """The ontology path part <- report -> condition / manual task / aircraft, with filters."""
+        linked = {"parts": [part], "families": list(families), "conditions": list(conditions)}
         pnode = f"PartType:{part}"
         reports = {u for u, _, d in self.g.in_edges(pnode, data=True) if d["relation"] == "INVOLVES_PART"}
 

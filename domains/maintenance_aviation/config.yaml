@@ -125,7 +125,7 @@ part_types:
   POWER_TRANSFER_UNIT:
     label: "Power Transfer Unit (PTU)"
     label_en: "Power transfer unit (PTU)"
-    aliases: ["\\bPTU\\b", "\\bPOWER TRANSFER UNIT\\b"]
+    aliases: ["\\bPTUS?\\b", "\\bPOWER TRANSFER UNITS?\\b"]
   RAM_AIR_TURBINE:
     label: "Ram Air Turbine (RAT)"
     label_en: "Ram air turbine (RAT)"

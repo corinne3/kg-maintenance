@@ -75,3 +75,34 @@ streamlit run app.py
 - Trois colonnes : **RAG classique** (textes ressemblants), **GraphRAG naïf** (tout à N sauts, déborde), **GraphRAG guidé** (le chemin de l'ontologie, avec des comptages).
 - Case « Generate answers with the LLM » : le LLM répond à partir de chaque contexte (30 à 60 s par réponse).
 - Case « model hierarchy » : décoche-la pour voir la question « A320 family » perdre la moitié de ses rapports (51 → 24).
+
+## Le cas RH (2e domaine)
+
+- **Données** : le vrai référentiel **ESCO** (métiers et compétences, en anglais et en français) + une **entreprise fictive** de 161 salariés générée par `domains/hr/generate.py`. Aucune personne réelle ; chaque fichier porte `synthetic=True`.
+- **Pourquoi** : le graphe maintenance est en étoile autour des rapports. Un graphe de personnes a des chaînes longues, des données sensibles et du temps : il montre les pièges que la maintenance ne pouvait pas montrer.
+- **Ce qu'il montre** (chiffres dans `outputs/hr_report.md`) :
+  - le référentiel lui-même est ambigu : 1 539 libellés ESCO désignent plusieurs métiers ; « technicien **en** » et « technicien **de** » maintenance aéronautique sont deux métiers ;
+  - Toulouse (français) et Bristol (anglais) ne sont reliés que par « Excel » et « communication » : des nœuds poubelles qui donnent une fausse impression de graphe connecté ;
+  - la règle « collègue de collègue » propose 72 % de mobilités absurdes (aucune compétence commune) ; le chemin guidé par l'ontologie : 0 % ;
+  - 13 équipes sur 30 ont moins de 5 personnes : une moyenne de salaire par équipe révélerait des individus ;
+  - sans dates sur les liens, une réorganisation donne deux managers à 4 personnes, et 12 personnes gardent une habilitation expirée ;
+  - une seule requête traverse les deux domaines : 51 incidents EDP sur famille A320, et 23 techniciens habilités.
+
+```powershell
+# ESCO v1.2.1, classification, CSV, en + fr : dézipper dans data\esco\en et data\esco\fr
+python -m domains.hr.generate
+python run_hr.py
+python build_explorer.py
+```
+
+## L'agent (onglet 2 de l'assistant)
+
+- **Ce qu'il fait** : pour chaque question, il choisit lui-même les outils (statistiques maintenance, recherche dans les textes, techniciens habilités, mobilité interne, agrégat RH sensible), vérifie les arguments, vérifie les droits, exécute, contrôle le résultat, et escalade vers une personne s'il ne peut pas répondre. Chaque décision est tracée.
+- **Les garde-fous** (testés avec un LLM qui se trompe exprès) : outil inventé rejeté, JSON invalide → escalade, « leaks » réparé en LEAKING, outil sensible refusé pour un simple salarié même si le LLM le choisit, agrégat refusé sous 5 personnes.
+- **Le routage, mesuré sur 16 questions** : règles seules (13/16, ratent les reformulations), LLM seul, ou hybride (règles d'abord, LLM seulement si aucune règle ne s'applique). C'est le même principe que la règle hybride de l'extraction.
+- **Le vocabulaire à savoir dire** : tool use, router, garde-fous (validation de schéma, contrôle d'accès), human-in-the-loop (escalade), observabilité (trace des décisions), évaluation (jeu de questions de référence).
+
+```powershell
+python eval_agent.py          # environ 10 min : règles vs LLM vs hybride
+streamlit run app.py          # onglet « Agent »
+```

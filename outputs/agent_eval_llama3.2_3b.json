@@ -1,0 +1,454 @@
+{
+ "model": "llama3.2:3b",
+ "n": 16,
+ "score": {
+  "rules": 13,
+  "llm": 14,
+  "hybrid": 15
+ },
+ "seconds": {
+  "rules": 0.0,
+  "llm": 10.5,
+  "hybrid": 0.9
+ },
+ "cases": [
+  {
+   "q": "How many engine-driven pump incidents on the A320 family?",
+   "expected": [
+    "maintenance_stats"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "Which maintenance manual tasks are cited for electric motor pump leaks?",
+   "expected": [
+    "maintenance_stats"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": false,
+    "tools": [],
+    "outcome": "escalated"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "Find reports describing a burning smell in the cockpit hydraulics",
+   "expected": [
+    "report_search"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "Who is qualified to work on PTUs on the 737?",
+   "expected": [
+    "qualified_technicians"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "qualified_technicians"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "qualified_technicians"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "qualified_technicians"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "Who can work on engine-driven pumps on the A320 family, and how many incidents are there?",
+   "expected": [
+    "maintenance_stats",
+    "qualified_technicians"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats",
+     "qualified_technicians"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": false,
+    "tools": [
+     "qualified_technicians"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats",
+     "qualified_technicians"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "What internal move would suit employee E002?",
+   "expected": [
+    "internal_mobility"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "What is the average salary band of the team managed by E095?",
+   "expected": [
+    "team_aggregate"
+   ],
+   "expected_outcome": "refused",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "team_aggregate"
+    ],
+    "outcome": "refused"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "team_aggregate"
+    ],
+    "outcome": "refused"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "team_aggregate"
+    ],
+    "outcome": "refused"
+   }
+  },
+  {
+   "q": "Which operators report the most PTU problems?",
+   "expected": [
+    "maintenance_stats"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "What is the weather in Toulouse tomorrow?",
+   "expected": [],
+   "expected_outcome": "escalated",
+   "rules": {
+    "ok": true,
+    "tools": [],
+    "outcome": "escalated"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [],
+    "outcome": "escalated"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [],
+    "outcome": "escalated"
+   }
+  },
+  {
+   "q": "Tell me about hydraulic pump cavitation",
+   "expected": [
+    "report_search"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "How many reservoir overheat events are there?",
+   "expected": [
+    "maintenance_stats"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "Who is on long absence in team E095?",
+   "expected": [
+    "team_aggregate"
+   ],
+   "expected_outcome": "refused",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "team_aggregate"
+    ],
+    "outcome": "refused"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "team_aggregate"
+    ],
+    "outcome": "refused"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "team_aggregate"
+    ],
+    "outcome": "refused"
+   }
+  },
+  {
+   "q": "What internal move would suit employee E120?",
+   "expected": [
+    "internal_mobility"
+   ],
+   "expected_outcome": "escalated",
+   "rules": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "escalated"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "escalated"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "escalated"
+   }
+  },
+  {
+   "q": "Are there people certified for electric motor pumps on the 737?",
+   "expected": [
+    "qualified_technicians"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": false,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "qualified_technicians"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": false,
+    "tools": [
+     "report_search"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "Give me an overview of accumulator problems",
+   "expected": [
+    "maintenance_stats"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": false,
+    "tools": [],
+    "outcome": "escalated"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "maintenance_stats"
+    ],
+    "outcome": "answered"
+   }
+  },
+  {
+   "q": "Could E002 be a good fit for another role?",
+   "expected": [
+    "internal_mobility"
+   ],
+   "expected_outcome": "answered",
+   "rules": {
+    "ok": false,
+    "tools": [],
+    "outcome": "escalated"
+   },
+   "llm": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "answered"
+   },
+   "hybrid": {
+    "ok": true,
+    "tools": [
+     "internal_mobility"
+    ],
+    "outcome": "answered"
+   }
+  }
+ ],
+ "paraphrases_from": 13
+}

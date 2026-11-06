@@ -85,6 +85,16 @@ def main():
         recs = [json.loads(x) for x in files[-1].read_text(encoding="utf-8").splitlines()]
         llm_eval = summarize(df, MaintenanceMapper(cfg), recs)
 
+    agent_eval = None
+    agent_files = [f for f in sorted((ROOT / "outputs").glob("agent_eval_*.json")) if "mock" not in f.name]
+    if agent_files:
+        agent_eval = json.loads(agent_files[-1].read_text(encoding="utf-8"))
+
+    hr = None
+    if (ROOT / "data" / "esco" / "en").exists() and (ROOT / "data" / "hr_synthetic").exists():
+        from run_hr import main as run_hr
+        hr = run_hr(quiet=True)
+
     # Part types
     parts = []
     for key in cfg["part_types"]:
@@ -153,6 +163,8 @@ def main():
         "edpVariantsRaw": len(edp_variants_raw),
         "llmModel": llm_model, "nLlm": len(llm),
         "llmEval": llm_eval,
+        "hr": hr,
+        "agent": agent_eval,
     }
     tpl = (ROOT / "web" / "explorer_template.html").read_text(encoding="utf-8")
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")

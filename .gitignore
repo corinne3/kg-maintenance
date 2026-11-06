@@ -3,3 +3,4 @@ __pycache__/
 data/*.csv
 outputs/graph.ttl
 outputs/property_graph/*.csv
+data/esco/
