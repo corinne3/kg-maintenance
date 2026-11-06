@@ -162,14 +162,24 @@ with tab_explore:
     st.caption(f"The whole graph: {g.number_of_nodes():,} nodes, {g.number_of_edges():,} edges "
                "(FAA maintenance + synthetic HR on ESCO). Salary bands and long absences are not shown: "
                "they are sensitive and stay behind the agent's access rules.")
+    def on_search():
+        """Typing a search and pressing Enter moves to the best match at once."""
+        hits = search(g, ss.search_text)
+        ss.matches = hits
+        if hits:
+            go(hits[0][0])
+
+    def on_pick():
+        go(ss.search_pick[0])
+
     s1, s2 = st.columns([2, 3])
-    found = search(g, s1.text_input("Search a node (part, condition, operator, aircraft model, "
-                                    "report number, employee, skill, job…)", placeholder="e.g. PTU, LEAKING, A320, E161, Excel"))
-    if found:
-        pick = s2.selectbox(f"{len(found)} match{'es' if len(found) > 1 else ''}", found, format_func=lambda x: x[1])
-        if s2.button("Show this node"):
-            go(pick[0])
-            st.rerun()
+    s1.text_input("Search a node, then press Enter (part, condition, operator, aircraft model, report number, "
+                  "employee, skill, job…)", placeholder="e.g. PTU, LEAKING, A320, E161, Excel",
+                  key="search_text", on_change=on_search)
+    found = ss.get("matches", [])
+    if len(found) > 1:
+        s2.selectbox(f"{len(found)} matches: the first one is shown, pick another to move there", found,
+                     format_func=lambda x: x[1], key="search_pick", on_change=on_pick)
 
     center = ss.center
     rels = sorted({d["relation"] for _, _, d in g.edges(data=True)})
