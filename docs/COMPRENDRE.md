@@ -106,3 +106,13 @@ python build_explorer.py
 python eval_agent.py          # environ 10 min : règles vs LLM vs hybride
 streamlit run app.py          # onglet « Agent »
 ```
+
+
+## Se promener dans tout le graphe (Streamlit, 2e onglet)
+
+- `streamlit run app.py`, onglet **Explore the graph**.
+- Chercher un nœud (ex. `PTU`, `LEAKING`, `A320`, `E161`, `Excel`), choisir 1 ou 2 sauts, filtrer les relations.
+- Cliquer une ligne du tableau des relations = aller sur ce voisin ; bouton **← Back** pour revenir.
+- Survoler un point du dessin = son nom, son type, son nombre de liens, et le nom des relations autour.
+- Les arêtes sensibles (tranche de salaire, absence longue) ne sont pas affichées : elles restent derrière les règles d'accès de l'agent.
+- Code : `assistant/explore.py` (calcul des positions avec NetworkX, dessin sans bibliothèque JavaScript).

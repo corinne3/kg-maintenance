@@ -539,7 +539,9 @@ function graphView(canvas, view, opt) {
   const tip = canvas.parentElement.querySelector(".gtip");
   let pts = [], visible = () => true;
   function draw() {
-    const W = canvas.clientWidth, H = +canvas.getAttribute("height"), dpr = window.devicePixelRatio || 1;
+    if (!canvas.dataset.h) canvas.dataset.h = canvas.getAttribute("height");
+    const W = canvas.clientWidth, H = +canvas.dataset.h, dpr = window.devicePixelRatio || 1;
+    if (!W) return;
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px";
     const c = canvas.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
     const vis = view.nodes.map((n, i) => visible(n, i));

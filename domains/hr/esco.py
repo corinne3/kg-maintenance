@@ -21,6 +21,7 @@ class Esco:
     skill_index: LabelIndex = field(default_factory=LabelIndex)
     full_occ_index: LabelIndex = field(default_factory=LabelIndex)
     all_occ_labels: dict = field(default_factory=dict)   # every ESCO occupation uri -> English label
+    all_skill_labels: dict = field(default_factory=dict) # every ESCO skill uri -> English label
 
 
 def _read(lang: str, name: str) -> pd.DataFrame:
@@ -51,7 +52,7 @@ def load(cfg: dict) -> Esco:
 
     e = Esco(occ=sel.reset_index(drop=True), skills=sk[sk.uri.isin(needed)].reset_index(drop=True),
              essential=essential, transversal=set(tr["conceptUri"]),
-             all_occ_labels=dict(zip(occ.uri, occ.label_en)))
+             all_occ_labels=dict(zip(occ.uri, occ.label_en)), all_skill_labels=dict(zip(sk.uri, sk.label_en)))
     # Occupation index: the WHOLE of ESCO, as a real HR system would use it.
     for _, r in occ.iterrows():
         for lab, alt in ((r.label_en, r.alt_en), (r.label_fr, r.alt_fr)):

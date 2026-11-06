@@ -68,9 +68,13 @@ Details: [`outputs/hr_report.md`](outputs/hr_report.md)
 | Naive GraphRAG | every triple within N hops of the entities in the question | overflows the context budget and gets cut |
 | Schema-guided GraphRAG | one ontology path (part ← report → condition / manual task / aircraft): counts plus 8 source reports | compact and countable, but only as good as entity linking |
 
+## Explore the whole graph
+
+The assistant's second tab draws the merged maintenance + HR graph around any node: search a part, a condition, an operator, a report number, an employee or a skill, choose 1 or 2 hops and the relations to follow, then click a neighbour in the table to move there. Hubs are flagged, with the share of the graph a traversal through them pulls in. Sensitive edges (salary band, long absence) are not in the explorer. No JavaScript library: positions are computed with NetworkX (`assistant/explore.py`) and drawn on a canvas.
+
 ## The agent: choosing its own tools, inside guardrails
 
-The assistant's second tab is an agent over **both** graphs. For each question it plans which tools to call, checks every argument against the ontology, checks the role's access rights, runs the tools, checks the results, and escalates to a person when it cannot answer. Every decision is written to a trace.
+The assistant's third tab is an agent over **both** graphs. For each question it plans which tools to call, checks every argument against the ontology, checks the role's access rights, runs the tools, checks the results, and escalates to a person when it cannot answer. Every decision is written to a trace.
 
 | Tool | What it does | Who may use it |
 | --- | --- | --- |

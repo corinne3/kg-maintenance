@@ -1,7 +1,8 @@
 """Knowledge graph assistant.
 
 Tab 1: compare classic RAG, naive GraphRAG and schema-guided GraphRAG (maintenance).
-Tab 2: an agent that chooses its tools over the maintenance and HR graphs, with guardrails.
+Tab 2: free exploration of the whole graph (maintenance + HR): search any node, walk from neighbour to neighbour.
+Tab 3: an agent that chooses its tools over the maintenance and HR graphs, with guardrails.
 
     pip install streamlit scikit-learn
     streamlit run app.py
@@ -18,11 +19,13 @@ import urllib.request
 from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from assistant.agent import Agent, ollama  # noqa: E402
+from assistant.explore import ego_view, full_graph, neighbours, render_html, search  # noqa: E402
 from assistant.retrieval import PROMPT, KnowledgeBase  # noqa: E402
 from assistant.tools import build_tools  # noqa: E402
 
@@ -83,7 +86,8 @@ with st.sidebar:
                 "model running locally; they can be wrong.")
 
 kb = get_kb(use_hierarchy)
-tab_compare, tab_agent = st.tabs(["Compare retrieval (maintenance)", "Agent (maintenance + HR)"])
+tab_compare, tab_explore, tab_agent = st.tabs(
+    ["Compare retrieval (maintenance)", "Explore the graph", "Agent (maintenance + HR)"])
 
 # ---------------------------------------------------------------- tab 1
 with tab_compare:
@@ -137,7 +141,76 @@ with tab_compare:
             "plus a few sources. It is only as good as entity linking: switch off the model "
             "hierarchy to see the A320 family answer lose half its reports.")
 
-# ---------------------------------------------------------------- tab 2
+# ---------------------------------------------------------------- tab 2 (written before the agent tab,
+# because the agent tab may call st.stop())
+@st.cache_resource(show_spinner="Merging the maintenance and HR graphs…")
+def get_full_graph(use_hierarchy: bool):
+    return full_graph(get_kb(use_hierarchy), get_hr())
+
+
+with tab_explore:
+    g = get_full_graph(use_hierarchy)
+    ss = st.session_state
+    ss.setdefault("center", "PartType:ENGINE_DRIVEN_PUMP")
+    ss.setdefault("history", [])
+
+    def go(node: str):
+        if node != ss.center:
+            ss.history.append(ss.center)
+            ss.center = node
+
+    st.caption(f"The whole graph: {g.number_of_nodes():,} nodes, {g.number_of_edges():,} edges "
+               "(FAA maintenance + synthetic HR on ESCO). Salary bands and long absences are not shown: "
+               "they are sensitive and stay behind the agent's access rules.")
+    s1, s2 = st.columns([2, 3])
+    found = search(g, s1.text_input("Search a node (part, condition, operator, aircraft model, "
+                                    "report number, employee, skill, job…)", placeholder="e.g. PTU, LEAKING, A320, E161, Excel"))
+    if found:
+        pick = s2.selectbox(f"{len(found)} match{'es' if len(found) > 1 else ''}", found, format_func=lambda x: x[1])
+        if s2.button("Show this node"):
+            go(pick[0])
+            st.rerun()
+
+    center = ss.center
+    rels = sorted({d["relation"] for _, _, d in g.edges(data=True)})
+    c1, c2, c3, c4 = st.columns([1, 1, 3, 1])
+    depth = c1.radio("Hops", [1, 2], horizontal=True)
+    max_nodes = c2.slider("Max nodes", 30, 400, 200, step=10)
+    keep = c3.multiselect("Relations to follow (empty = all)", rels)
+    if c4.button("← Back", disabled=not ss.history):
+        ss.center = ss.history.pop()
+        st.rerun()
+
+    view = ego_view(g, center, depth, set(keep) or None, max_nodes)
+    d = g.nodes[center]
+    deg = view["by_hop"].get(1, 0)
+    st.subheader(f"{d.get('label', center)}  ·  {d['type']}")
+    m1, m2, m3 = st.columns(3)
+    m1.metric("Direct neighbours", deg)
+    m2.metric(f"Nodes within {depth} hop{'s' if depth > 1 else ''}", view["reached"])
+    m3.metric("Share of the whole graph", f"{100 * view['reached'] / g.number_of_nodes():.0f}%")
+    if view["shown"] < view["reached"]:
+        st.warning(f"Only the {view['shown']} closest and most connected nodes are drawn, out of {view['reached']}.")
+    if deg >= 50:
+        st.info("This node is a hub: a naive GraphRAG traversal that goes through it pulls in a large part "
+                "of the graph. Try filtering the relations to follow.")
+    components.html(render_html(view, 560), height=600, scrolling=False)
+
+    st.markdown("**Relations of this node** · click a row to move to that neighbour")
+    rows = neighbours(g, center, hr.today if (hr := get_hr()) else "")
+    if keep:
+        rows = [r for r in rows if r["relation"] in keep]
+    if rows:
+        event = st.dataframe([{k: v for k, v in r.items() if k != "id"} for r in rows], hide_index=True,
+                             use_container_width=True, on_select="rerun", selection_mode="single-row",
+                             key=f"nb_{center}")
+        if event.selection.rows:
+            go(rows[event.selection.rows[0]]["id"])
+            st.rerun()
+    else:
+        st.caption("No relation with the current filter.")
+
+# ---------------------------------------------------------------- tab 3
 with tab_agent:
     hr = get_hr()
     if hr is None:

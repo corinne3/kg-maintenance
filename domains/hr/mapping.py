@@ -30,7 +30,7 @@ class HRMapper:
     def __init__(self, cfg: dict, esco: Esco):
         self.cfg, self.esco = cfg, esco
         self.occ_label = dict(zip(esco.occ.uri, esco.occ.label_en))
-        self.skill_label = dict(zip(esco.skills.uri, esco.skills.label_en))
+        self.skill_label = esco.all_skill_labels or dict(zip(esco.skills.uri, esco.skills.label_en))
         self.title_links: list[dict] = []
         self.skill_links: list[dict] = []
 
