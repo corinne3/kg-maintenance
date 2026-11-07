@@ -162,6 +162,10 @@ details.rep summary .flag { font-size: 0.75rem; color: var(--warn); font-weight:
 /* Parcours GraphRAG */
 .hopbox { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: grid; gap: 16px; }
 .hop-ctl { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.tour { justify-self: start; font: inherit; font-size: 0.95rem; font-weight: 600; padding: 8px 16px; border-radius: 6px;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--surface); cursor: pointer; }
+.tour:hover { filter: brightness(1.08); }
+.tour:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
 .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden; }
 .seg button { font: inherit; font-size: 0.9rem; padding: 6px 14px; border: 0; background: transparent; color: var(--ink); cursor: pointer; font-variant-numeric: tabular-nums; }
 .seg button + button { border-left: 1px solid var(--line-strong); }
@@ -198,6 +202,7 @@ footer a { color: var(--accent-ink); }
     <h1>Where enterprise knowledge graphs break</h1>
     <p class="lead" id="lead"></p>
     <p class="note">Case study on real public data: <a href="https://www.faa.gov/av-info/download_SDR" target="_blank" rel="noopener" style="color:var(--accent-ink)">FAA Service Difficulty Reports (download page)</a>, 2025 file, 514 reports with JASC codes 29xx. Code written with an AI assistant; framing, design decisions and analysis by Corinne Bergès.</p>
+    <button class="tour" id="tour" type="button">▶ Play a 50-second guided tour</button>
   </header>
 
   <section aria-label="Key figures">
@@ -776,34 +781,58 @@ const traps = [
 ];
 $("traps").innerHTML = traps.map(([t, x]) => `<div class="trap"><h3>${t}</h3><p>${x}</p></div>`).join("");
 
-// ---- Demo mode: open the page with ?demo and it plays by itself (for a screen recording)
-if (new URLSearchParams(location.search).has("demo")) (async () => {
-  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  const show = async (el, ms = 1800, offset = 24) => {
-    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: "smooth" });
-    await wait(ms);
-  };
+// ---- Guided tour: the "Play" button, or ?demo in the address (plays by itself, for a screen recording).
+// Any scroll, click or key press by the reader stops it.
+let touring = false;
+async function tour({ hideCursor = false } = {}) {
+  if (touring) return;
+  touring = true;
+  const stop = () => { touring = false; };
+  const events = ["wheel", "touchstart", "keydown", "pointerdown"];
+  const btn = $("tour");
+  setTimeout(() => events.forEach((e) => window.addEventListener(e, stop, { once: true, passive: true })), 300);
+  const wait = (ms) => new Promise((r, x) => setTimeout(() => (touring ? r() : x(new Error("stopped"))), ms));
+  const scrollTo = (y, ms) => new Promise((r) => {   // own animation: same speed everywhere
+    const y0 = window.scrollY, t0 = performance.now();
+    const step = (t) => {
+      if (!touring) return r();
+      const k = Math.min(1, (t - t0) / ms), e = k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
+      window.scrollTo(0, y0 + (y - y0) * e);
+      k < 1 ? requestAnimationFrame(step) : r();
+    };
+    requestAnimationFrame(step);
+  });
+  const show = async (el, offset = 24) => { await scrollTo(el.getBoundingClientRect().top + window.scrollY - offset, 1400); await wait(300); };
   const hover = (gv, pred) => {
     const p = gv && gv.point(pred);
     if (p) gv.canvas.dispatchEvent(new PointerEvent("pointermove", { clientX: p[0], clientY: p[1], bubbles: true }));
   };
   const leave = (gv) => gv && gv.canvas.dispatchEvent(new PointerEvent("pointerleave"));
   const hopTo = (h) => document.querySelector(`#hopseg button[data-h="${h}"]`)?.click();
-  document.documentElement.style.cursor = "none";
-  window.scrollTo(0, 0); hopTo(1);
-  await wait(4000);                                    // title and key figures
-  await show($("pompes")); await wait(4000);           // "PUMP": which one?
-  await show($("graphrag"));
-  await wait(2500); hopTo(2); await wait(2500);
-  hover(hubView, (n) => n.label === "LEAKING"); await wait(3000); leave(hubView);
-  hopTo(3); await wait(3000); hopTo(4); await wait(2500);
-  await show($("hr")); await wait(3500);               // HR intro and figures
-  await show($("g-short-title"), 1800, 120);
-  hover(window.shortView, (n) => n.hub); await wait(5000); leave(window.shortView);
-  await show($("g-bridge-box"), 1800, 24);
-  hover(window.bridgeView, (n) => n.expired); await wait(5000); leave(window.bridgeView);
-  await show($("agent")); await wait(4500);
-  window.scrollTo({ top: 0, behavior: "smooth" }); await wait(2500);
+  if (hideCursor) document.documentElement.style.cursor = "none";
+  btn.textContent = "Playing… scroll or press any key to stop";
+  try {
+    hopTo(1);
+    await wait(hideCursor ? 4000 : 1500);                // title and key figures
+    await show($("pompes")); await wait(4000);           // "PUMP": which one?
+    await show($("graphrag"));
+    await wait(2500); hopTo(2); await wait(2500);
+    hover(hubView, (n) => n.label === "LEAKING"); await wait(3000); leave(hubView);
+    hopTo(3); await wait(3000); hopTo(4); await wait(2500);
+    await show($("hr")); await wait(3500);               // HR intro and figures
+    await show($("g-short-title"), 120);
+    hover(window.shortView, (n) => n.hub); await wait(5000); leave(window.shortView);
+    await show($("g-bridge-box"));
+    hover(window.bridgeView, (n) => n.expired); await wait(5000); leave(window.bridgeView);
+    await show($("agent")); await wait(4500);
+    await scrollTo(0, 1800);
+  } catch (e) { /* stopped by the reader */ }
+  [hubView, window.shortView, window.bridgeView].forEach(leave);
+  events.forEach((e) => window.removeEventListener(e, stop));
   document.documentElement.style.cursor = "";
-})();
+  btn.textContent = "▶ Play a 50-second guided tour";
+  touring = false;
+}
+$("tour").addEventListener("click", (e) => { e.stopPropagation(); tour(); });
+if (new URLSearchParams(location.search).has("demo")) window.addEventListener("load", () => setTimeout(() => tour({ hideCursor: true }), 500));
 </script>
