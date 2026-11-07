@@ -600,7 +600,15 @@ function graphView(canvas, view, opt) {
   canvas.addEventListener("pointerleave", () => { tip.hidden = true; });
   new ResizeObserver(draw).observe(canvas);
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
-  return { draw, filter(f) { visible = f; draw(); } };
+  return {
+    canvas, draw, filter(f) { visible = f; draw(); },
+    point(pred) {  // screen position of the first visible node matching pred (used by the demo mode)
+      const i = view.nodes.findIndex((n, k) => visible(n, k) && pred(n));
+      if (i < 0) return null;
+      const r = canvas.getBoundingClientRect();
+      return [r.left + pts[i][0], r.top + pts[i][1]];
+    },
+  };
 }
 const TYPE_NAME = { PartType: "part type", Report: "FAA report", Condition: "condition", JascCode: "JASC code", Operator: "operator",
   AircraftModel: "aircraft model", AmmTask: "manual task", Aircraft: "aircraft", Employee: "employee", Skill: "skill",
@@ -701,7 +709,7 @@ if (D.hr) {
   if (D.views?.shortcut) {
     const V = D.views.shortcut, path = V.nodes.filter((n) => n.onpath);
     $("g-short-title").hidden = false; $("g-short-box").hidden = false;
-    graphView($("g-short"), V, {
+    window.shortView = graphView($("g-short"), V, {
       pad: 34, pathEdges: true, edgeAlpha: 0.5,
       radius: (n) => (n.hub ? 9 : n.onpath ? 6 : 4),
       label: () => true,
@@ -714,7 +722,7 @@ if (D.hr) {
   if (D.views?.bridge) {
     const V = D.views.bridge;
     $("g-bridge-box").hidden = false;
-    graphView($("g-bridge"), V, {
+    window.bridgeView = graphView($("g-bridge"), V, {
       pad: 30, edgeAlpha: 0.45,
       radius: (n) => (n.type === "PartType" ? 10 : n.type === "AircraftModel" ? 8 : 4),
       label: (n) => n.hub,
@@ -767,4 +775,35 @@ const traps = [
   ["An LLM must be validated before it writes to the graph", `Around 12% of the local model’s answers contained a part type outside the allowed list, and it altered two manual references into plausible but wrong ones. Its output is checked against the ontology before it becomes a fact.`],
 ];
 $("traps").innerHTML = traps.map(([t, x]) => `<div class="trap"><h3>${t}</h3><p>${x}</p></div>`).join("");
+
+// ---- Demo mode: open the page with ?demo and it plays by itself (for a screen recording)
+if (new URLSearchParams(location.search).has("demo")) (async () => {
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const show = async (el, ms = 1800, offset = 24) => {
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: "smooth" });
+    await wait(ms);
+  };
+  const hover = (gv, pred) => {
+    const p = gv && gv.point(pred);
+    if (p) gv.canvas.dispatchEvent(new PointerEvent("pointermove", { clientX: p[0], clientY: p[1], bubbles: true }));
+  };
+  const leave = (gv) => gv && gv.canvas.dispatchEvent(new PointerEvent("pointerleave"));
+  const hopTo = (h) => document.querySelector(`#hopseg button[data-h="${h}"]`)?.click();
+  document.documentElement.style.cursor = "none";
+  window.scrollTo(0, 0); hopTo(1);
+  await wait(4000);                                    // title and key figures
+  await show($("pompes")); await wait(4000);           // "PUMP": which one?
+  await show($("graphrag"));
+  await wait(2500); hopTo(2); await wait(2500);
+  hover(hubView, (n) => n.label === "LEAKING"); await wait(3000); leave(hubView);
+  hopTo(3); await wait(3000); hopTo(4); await wait(2500);
+  await show($("hr")); await wait(3500);               // HR intro and figures
+  await show($("g-short-title"), 1800, 120);
+  hover(window.shortView, (n) => n.hub); await wait(5000); leave(window.shortView);
+  await show($("g-bridge-box"), 1800, 24);
+  hover(window.bridgeView, (n) => n.expired); await wait(5000); leave(window.bridgeView);
+  await show($("agent")); await wait(4500);
+  window.scrollTo({ top: 0, behavior: "smooth" }); await wait(2500);
+  document.documentElement.style.cursor = "";
+})();
 </script>
